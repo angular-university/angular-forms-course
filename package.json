@@ -1,9 +1,9 @@
 {
-  "name": "angular2-for-beginnners",
-  "description": "Angular For Beginners - Course Lessons",
+  "name": "angular-forms-course",
+  "description": "Angular Forms Course",
   "version": "1.0.0",
   "scripts": {
-    "start": "./node_modules/.bin/ts-node lessons-server.ts"
+    "start": "./node_modules/.bin/http-server -c-1 ."
   },
   "devDependencies": {
     "http-server": "^0.9.0"

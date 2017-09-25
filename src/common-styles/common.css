@@ -249,3 +249,18 @@ img.dashboard-section  {
     box-shadow: none;
     vertical-align: bottom;
 }
+
+.course-title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.main-logo {
+    text-align: center;
+    max-height: 200px;
+    margin: 0 auto;
+    display: block;
+
+
+}
