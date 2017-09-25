@@ -1,0 +1,38 @@
+
+.lesson {
+    text-align: left;
+}
+
+
+.toggle-panel {
+    background: #d00000;
+    color: white;
+    padding: 5px 10px;
+    border:1px solid gray;
+    border-radius: 4px;
+    width: 100px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    background-repeat: no-repeat;
+    background-size: 80px;
+    background-position-x: center;
+    background-position-y: center;
+    height: 50px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.superman {
+    background-image: url('/images/superman.png');
+}
+
+.batman {
+    background-image: url('/images/batman.jpg');
+}
+
+.flash {
+    background-image: url('/images/flash.svg');
+}

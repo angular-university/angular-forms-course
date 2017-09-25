@@ -1,0 +1,33 @@
+{
+  "name": "angular2-for-beginnners",
+  "description": "Angular For Beginners - Course Lessons",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "./node_modules/.bin/ts-node lessons-server.ts"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  },
+  "dependencies": {
+    "@angular/common": "4.0.0",
+    "@angular/compiler": "4.0.0",
+    "@angular/core": "4.0.0",
+    "@angular/forms": "4.0.0",
+    "@angular/http": "4.0.0",
+    "@angular/platform-browser": "4.0.0",
+    "@angular/platform-browser-dynamic": "4.0.0",
+    "@angular/router": "4.0.0",
+    "body-parser": "1.15.1",
+    "express": "4.13.4",
+    "lodash": "4.13.1",
+    "rxjs": "5.1.0",
+    "systemjs": "0.19.27",
+    "ts-node": "3.0.2",
+    "typescript": "2.2.0",
+    "zone.js": "0.8.4"
+  },
+  "engines": {
+    "node": "4.2.1",
+    "npm": "3.7.5"
+  }
+}
