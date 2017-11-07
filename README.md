@@ -5,7 +5,7 @@
 
 This repository contains the code of the [Angular Forms Course](https://angular-university.io/course/angular2-forms).
 
-This course repository is updated to Angular 4, there is a npm-lock.json file available for avoiding semantic versioning issues.
+This course repository is updated to Angular v5, there is a npm-lock.json file available for avoiding semantic versioning issues.
 
 ![Angular Forms Course](https://angular-academy.s3.amazonaws.com/thumbnails/angular-forms-small-v2.png)
 
