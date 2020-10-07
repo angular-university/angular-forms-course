@@ -1,9 +1,0 @@
-node_modules
-typings
-tsd_typings/
-npm-debug.log
-dist/
-.idea
-.DS_Store
-tmp
-*.map
