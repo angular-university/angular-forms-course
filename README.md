@@ -1,7 +1,24 @@
 
+# IMPORTANT
+
+This repository currently contains two courses:
+
+- The old version of the Angular Forms Course, currently in this master branch (instructions below)
+
+- The brand new **Angular Forms in Depth** course, still being filmed and to be published soon
+
+If you are looking for the old course, you can use this master branch.
+
+But if you are looking for the new course, then head over to the [1-start](https://github.com/angular-university/angular-forms-course/tree/1-start) branch instead.
+
+Here is the logo of the new course, not to be confused with the old one:
+
+[Angular Forms In Depth](https://angular-university.io/course/angular-forms-course)
+
+![Angular Forms In Depth Video Course](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
 
 
-# Angular Forms Course
+# Angular Forms Course (old course)
 
 This repository contains the code of the [Angular Forms Course](https://angular-university.io/course/angular2-forms).
 
