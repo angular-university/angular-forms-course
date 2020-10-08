@@ -64,6 +64,7 @@ import {LoginComponent} from './login/login.component';
         MatSelectModule,
         MatDatepickerModule,
         MatMomentDateModule,
+        FormsModule,
         ReactiveFormsModule
     ],
     providers: [

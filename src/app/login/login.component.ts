@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
+
+interface LoginFormData {
+  email?:string;
+  password?:string
+}
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+  val: LoginFormData = {};
 
-  constructor(
-    private fb:FormBuilder) {
+  constructor() {
 
-    this.form = fb.group({
-      email: ['test@angular-university.io', [Validators.required]],
-      password: ['test', [Validators.required]]
-    });
 
   }
 
@@ -25,8 +24,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login() {
+  login(val: LoginFormData) {
 
+    console.log('Received form value: ', val);
+
+    console.log('Form value: ', this.val);
 
   }
 

@@ -1,28 +1,42 @@
 <mat-card class="login-page">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-    <form [formGroup]="form" class="login-form">
+
+    Simple input:
+
+    <input class="test-input" matInput name="email"
+           ngModel
+           required minlength="8">
+
+
+    <form class="login-form" #loginForm="ngForm">
 
       <mat-form-field>
 
-        <input matInput type="email"
-               placeholder="Email"
-               formControlName="email">
+        <input matInput type="email" name="email" #email="ngModel"
+               placeholder="Email" ngModel
+               required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="8">
 
       </mat-form-field>
 
       <mat-form-field>
 
-        <input matInput type="password"
-               placeholder="Password"
-               formControlName="password">
+        <input matInput type="password" #password="ngModel"
+               placeholder="Password" ngModel required [ngModelOptions]="{updateOn: 'blur', name:'password', standalone:true}">
 
       </mat-form-field>
 
       <button mat-raised-button color="primary"
-              (click)="login()"
-              [disabled]="!form.valid">Login</button>
+              (click)="login({email: email.value, password:password.value})"
+              [disabled]="!loginForm.valid">Login</button>
 
     </form>
+
+    <div class="form-val">
+
+      {{val | json}}
+
+    </div>
+
   </mat-card-content>
 </mat-card>

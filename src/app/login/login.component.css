@@ -9,3 +9,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.form-val {
+  margin-top: 10px;
+}
+
+.test-input {
+  border-bottom: 1px solid grey;
+  margin-bottom: 10px;
+}
+
+input.test-input.ng-invalid.ng-touched {
+  border-bottom: 3px solid red;
+}
