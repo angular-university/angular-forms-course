@@ -19,6 +19,4 @@
   margin-bottom: 10px;
 }
 
-input.test-input.ng-invalid.ng-touched {
-  border-bottom: 3px solid red;
-}
+

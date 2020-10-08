@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 
-interface LoginFormData {
-  email?:string;
-  password?:string
-}
-
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -13,7 +8,6 @@ interface LoginFormData {
 })
 export class LoginComponent implements OnInit {
 
-  val: LoginFormData = {};
 
   constructor() {
 
@@ -21,14 +15,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
-  }
-
-  login(val: LoginFormData) {
-
-    console.log('Received form value: ', val);
-
-    console.log('Form value: ', this.val);
 
   }
 
