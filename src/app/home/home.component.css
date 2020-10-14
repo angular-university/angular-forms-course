@@ -5,6 +5,19 @@
     margin: 0 auto;
 }
 
-h3 {
-  font-family: Roboto;
+h2 {
+  font-family: "Roboto";
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.title {
+  text-align: center;
+  margin-right: 15px;
+
 }
