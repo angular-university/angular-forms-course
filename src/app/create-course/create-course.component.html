@@ -9,7 +9,11 @@
 
       <input matInput
              placeholder="Course title"
-             formControlName="title">
+             formControlName="title" #titleHint>
+
+      <mat-hint align="end">
+        {{titleHint.value.length}} / 60
+      </mat-hint>
 
     </mat-form-field>
 
@@ -54,18 +58,22 @@
 
     <div class="form-buttons">
 
-      <button mat-raised-button>
+      <button mat-raised-button (click)="reset()">
         Reset
       </button>
 
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSave()">
         Save
       </button>
 
     </div>
 
+    <div class="form-val">
+
+      {{form.value | json}}
+
+    </div>
 
   </div>
-
 
 </div>

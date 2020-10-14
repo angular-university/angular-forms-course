@@ -32,6 +32,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {LoginComponent} from './login/login.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -65,7 +66,7 @@ import { CreateCourseComponent } from './create-course/create-course.component';
         AppRoutingModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatMomentDateModule,
+        MatNativeDateModule,
         FormsModule,
         ReactiveFormsModule
     ],

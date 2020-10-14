@@ -13,7 +13,7 @@ export class CreateCourseComponent implements OnInit {
   constructor(private fb: FormBuilder) {
 
     this.form = fb.group({
-      title: ["", Validators.required],
+      title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
       category: ["BEGINNER", Validators.required],
       releasedAt: [new Date(), Validators.required],
       longDescription: ["",Validators.required]
@@ -25,6 +25,14 @@ export class CreateCourseComponent implements OnInit {
 
 
 
+  }
+
+  reset() {
+    this.form.reset();
+  }
+
+  onSave() {
+    console.log(this.form.value);
   }
 
 }
