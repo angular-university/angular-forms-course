@@ -1,0 +1,25 @@
+
+
+.data-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+
+.data-form mat-form-field {
+  display: block;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-buttons button {
+  margin-right: 10px;
+}
