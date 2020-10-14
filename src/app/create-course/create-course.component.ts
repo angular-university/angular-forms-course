@@ -14,6 +14,8 @@ export class CreateCourseComponent implements OnInit {
 
     this.form = fb.group({
       title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
+      supportEmail: ["", [Validators.required, Validators.email]],
+      price: [null, [Validators.required, Validators.pattern("[0-9]+")]],
       category: ["BEGINNER", Validators.required],
       releasedAt: [new Date(), Validators.required],
       longDescription: ["",Validators.required]
