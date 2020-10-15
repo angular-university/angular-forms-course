@@ -4,11 +4,11 @@
 
     Simple input:
 
-    <input class="test-input" matInput
-           ngModel
+    <input class="test-input"
+           ngModel #testInput="ngModel"
            required minlength="8" [ngModelOptions]="{standalone:true}">
 
-    <form class="login-form" #loginForm="ngForm" (ngSubmit)="login({email: email.value, password:password.value})">
+    <form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login({email: email.value, password:password.value})">
 
       <mat-form-field>
 
@@ -17,9 +17,9 @@
                [ngModelOptions]="{updateOn: 'blur'}"
                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="8">
 
-      </mat-form-field>
+        <mat-error *ngIf="email.invalid && email.dirty">You must enter a valid email.</mat-error>
 
-      <div class="field-message" [hidden]="email.valid || email.pristine">You must enter a valid email.</div>
+      </mat-form-field>
 
       <mat-form-field>
 
