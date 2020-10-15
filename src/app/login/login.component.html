@@ -4,9 +4,9 @@
 
     Simple input:
 
-    <input class="test-input" matInput name="email"
+    <input class="test-input" matInput
            ngModel
-           required minlength="8">
+           required minlength="8" [ngModelOptions]="{standalone:true}">
 
 
     <form class="login-form" #loginForm="ngForm">
@@ -15,26 +15,30 @@
 
         <input matInput type="email" name="email" #email="ngModel"
                placeholder="Email" ngModel
+               [ngModelOptions]="{updateOn: 'blur'}"
                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="8">
 
       </mat-form-field>
 
+      <div class="field-message" [hidden]="email.valid || email.pristine">You must enter a valid email.</div>
+
       <mat-form-field>
 
         <input matInput type="password" #password="ngModel"
-               placeholder="Password" ngModel required [ngModelOptions]="{updateOn: 'blur', name:'password', standalone:true}">
+               placeholder="Password" ngModel required [ngModelOptions]="{name:'password'}">
 
       </mat-form-field>
 
       <button mat-raised-button color="primary"
               (click)="login({email: email.value, password:password.value})"
-              [disabled]="!loginForm.valid">Login</button>
+              [disabled]="!loginForm.valid">Login
+      </button>
 
     </form>
 
     <div class="form-val">
 
-      {{val | json}}
+      {{ loginForm.errors | json }}
 
     </div>
 
