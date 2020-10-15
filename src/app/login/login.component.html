@@ -8,8 +8,7 @@
            ngModel
            required minlength="8" [ngModelOptions]="{standalone:true}">
 
-
-    <form class="login-form" #loginForm="ngForm">
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="login({email: email.value, password:password.value})">
 
       <mat-form-field>
 
@@ -29,8 +28,7 @@
 
       </mat-form-field>
 
-      <button mat-raised-button color="primary"
-              (click)="login({email: email.value, password:password.value})"
+      <button mat-raised-button color="primary" type="submit"
               [disabled]="!loginForm.valid">Login
       </button>
 
