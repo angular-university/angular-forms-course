@@ -2,7 +2,7 @@
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form">
+    <form class="login-form" #loginForm="ngForm">
 
       <mat-form-field>
 
@@ -17,7 +17,8 @@
 
       </mat-form-field>
 
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary"
+              (click)="login(loginForm)">
         Login
       </button>
 
