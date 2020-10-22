@@ -4,6 +4,7 @@ import * as express from 'express';
 import {Application} from "express";
 import {getAllCourses, getCourseById} from "./get-courses.route";
 import {searchLessons} from "./search-lessons.route";
+import {getCourseCategories} from './course-categories.route';
 
 
 const app: Application = express();
@@ -15,7 +16,7 @@ app.route('/api/courses/:id').get(getCourseById);
 
 app.route('/api/lessons').get(searchLessons);
 
-
+app.route('/api/course-categories').get(getCourseCategories);
 
 
 const httpServer:any = app.listen(9000, () => {
