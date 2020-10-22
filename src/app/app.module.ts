@@ -36,6 +36,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {PasswordStrengthDirective} from './directives/password-strength.directive';
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import {MatRadioModule} from '@angular/material/radio';
         MatDatepickerModule,
         MatNativeDateModule,
         MatRadioModule,
+        MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule
     ],

@@ -49,9 +49,14 @@
 
     </mat-form-field>
 
+    <mat-radio-group formControlName="courseType">
+      <mat-radio-button value="free">Free</mat-radio-button>
+      <mat-radio-button value="premium">Premium</mat-radio-button>
+    </mat-radio-group>
+
     <mat-form-field>
 
-      <input matInput [matDatepicker]="myDatepicker"
+      <input matInput [matDatepicker]="myDatepicker" placeholder="Release date"
              formControlName="releasedAt">
 
       <mat-datepicker-toggle matSuffix
@@ -62,6 +67,10 @@
       <mat-datepicker #myDatepicker></mat-datepicker>
 
     </mat-form-field>
+
+    <mat-checkbox color="primary" formControlName="downloadsAllowed">
+      Downloads allowed?
+    </mat-checkbox>
 
     <mat-form-field appearance="outline">
 
