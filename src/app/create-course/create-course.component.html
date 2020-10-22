@@ -5,7 +5,7 @@
 
     <h2 class="title">Create New Course</h2>
 
-    <p class="current-step">Step 1 of 3</p>
+    <p class="current-step">Step {{currentStep}} of 3</p>
 
     <mat-form-field>
 
@@ -101,6 +101,8 @@
 
       <mat-date-range-picker #promoPicker></mat-date-range-picker>
 
+      <mat-error *ngIf="step1Form.errors?.promoPeriod && step1Form.dirty">The start date must be before the end date.</mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -126,7 +128,7 @@
 
     <div class="form-val">
 
-      {{step1Form.value | json}}
+      {{step1Form.errors | json}}
 
     </div>
 

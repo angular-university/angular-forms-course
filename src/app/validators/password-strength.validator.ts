@@ -1,8 +1,8 @@
-import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
 
 export function createPasswordStrengthValidator(): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
+  return (control: AbstractControl): ValidationErrors | null => {
 
     const value = control.value;
 

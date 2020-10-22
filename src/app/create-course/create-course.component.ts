@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {createPasswordStrengthValidator} from '../validators/password-strength.validator';
+import {createPromoRangeValidator} from '../validators/date-range.validator';
 
 @Component({
   selector: 'create-course',
@@ -26,6 +27,8 @@ export class CreateCourseComponent implements OnInit {
       promoPeriodEndAt: [null],
       releasedAt: [new Date(), Validators.required],
       longDescription: ["",[Validators.required, Validators.minLength(3)]]
+    }, {
+      validators: createPromoRangeValidator()
     });
   }
 
