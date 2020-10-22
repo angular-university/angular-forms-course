@@ -72,6 +72,21 @@
       Downloads allowed?
     </mat-checkbox>
 
+    <mat-form-field>
+
+      <mat-label>Promotional period</mat-label>
+
+      <mat-date-range-input [rangePicker]="promoPicker">
+        <input matStartDate placeholder="Start date" formControlName="promoPeriodStartAt">
+        <input matEndDate placeholder="End date" formControlName="promoPeriodEndAt">
+      </mat-date-range-input>
+
+      <mat-datepicker-toggle matSuffix [for]="promoPicker"></mat-datepicker-toggle>
+
+      <mat-date-range-picker #promoPicker></mat-date-range-picker>
+
+    </mat-form-field>
+
     <mat-form-field appearance="outline">
 
         <textarea matInput placeholder="Description"

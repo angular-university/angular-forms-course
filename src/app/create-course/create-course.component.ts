@@ -18,6 +18,8 @@ export class CreateCourseComponent implements OnInit {
       category: ["BEGINNER", Validators.required],
       courseType: ["free", Validators.required],
       downloadsAllowed: [false, Validators.requiredTrue],
+      promoPeriodStartAt: [null],
+      promoPeriodEndAt: [null],
       releasedAt: [new Date(), Validators.required],
       longDescription: ["",[Validators.required, Validators.minLength(3)]]
     });
