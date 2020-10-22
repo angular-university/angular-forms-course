@@ -37,6 +37,7 @@ import {PasswordStrengthDirective} from './directives/password-strength.directiv
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {CreateCourseStepOneComponent} from './create-course/create-course-step-one/create-course-step-one.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         LoginComponent,
         CreateCourseComponent,
         PasswordStrengthDirective,
-        OnlyOneErrorPipe
+        OnlyOneErrorPipe,
+        CreateCourseStepOneComponent
     ],
     imports: [
         BrowserModule,
