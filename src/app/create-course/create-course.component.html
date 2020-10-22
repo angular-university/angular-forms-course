@@ -5,6 +5,8 @@
 
     <h2 class="title">Create New Course</h2>
 
+    <p class="current-step">Step 1 of 3</p>
+
     <mat-form-field>
 
       <input matInput
@@ -102,17 +104,17 @@
         Reset
       </button>
 
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSave()">
-        Save
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="continueToStep2()">
+        Continue to Step 2
       </button>
 
     </div>
 
-    <div class="form-val">
+    <!--div class="form-val">
 
       {{form.value | json}}
 
-    </div>
+    </div-->
 
   </div>
 

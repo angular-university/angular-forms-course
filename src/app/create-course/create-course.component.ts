@@ -10,6 +10,8 @@ export class CreateCourseComponent implements OnInit {
 
   form: FormGroup;
 
+  currentStep = 1;
+
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
       title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
@@ -33,8 +35,8 @@ export class CreateCourseComponent implements OnInit {
     this.form.reset();
   }
 
-  onSave() {
-    console.log(this.form.value);
+  continueToStep2() {
+    console.log("Step 1 form values", this.form.value);
   }
 
 }
