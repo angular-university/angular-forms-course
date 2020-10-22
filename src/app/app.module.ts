@@ -35,6 +35,7 @@ import { CreateCourseComponent } from './create-course/create-course.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {PasswordStrengthDirective} from './directives/password-strength.directive';
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatRadioModule,
         FormsModule,
         ReactiveFormsModule
     ],

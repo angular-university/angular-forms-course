@@ -19,6 +19,10 @@ export class CoursesService {
         return this.http.get<Course>(`/api/courses/${courseId}`);
     }
 
+    findCourseCategories(): Observable<string[]> {
+      return this.http.get<string[]>(`/api/course-categories`);
+    }
+
     findAllCourses(): Observable<Course[]> {
         return this.http.get('/api/courses')
             .pipe(
