@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {createPasswordStrengthValidator} from '../../validators/password-strength.validator';
 import {createPromoRangeValidator} from '../../validators/date-range.validator';
+import {CoursesService} from '../../services/courses.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'create-course-step-one',
@@ -12,7 +14,10 @@ export class CreateCourseStepOneComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  courseCategories$: Observable<any>;
+
+
+  constructor(private fb: FormBuilder, private courses: CoursesService) {
     this.form = fb.group({
       title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
       adminPassword: ["", [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
@@ -32,10 +37,14 @@ export class CreateCourseStepOneComponent implements OnInit {
 
   ngOnInit() {
 
+    this.courseCategories$ = this.courses.findCourseCategories();
+
   }
 
   reset() {
+
     this.form.reset();
+
   }
 
   continueToStep2() {

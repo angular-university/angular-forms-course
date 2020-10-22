@@ -49,15 +49,13 @@
 
   <mat-form-field>
 
-    <mat-select placeholder="Select category"
-                formControlName="category">
+    <mat-select placeholder="Select category" formControlName="category">
 
-      <mat-option value="BEGINNER">
-        Beginner</mat-option>
-      <mat-option value="INTERMEDIATE">
-        Intermediate</mat-option>
-      <mat-option value="ADVANCED">
-        Advanced</mat-option>
+      <ng-container *ngFor="let category of (courseCategories$ | async)">
+
+        <mat-option [value]="category.code">{{category.description}}</mat-option>
+
+      </ng-container>
 
     </mat-select>
 
