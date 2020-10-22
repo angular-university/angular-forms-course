@@ -33,6 +33,8 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {LoginComponent} from './login/login.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import {MatNativeDateModule} from '@angular/material/core';
+import {PasswordStrengthDirective} from './directives/password-strength.directive';
+import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 
 @NgModule({
     declarations: [
@@ -43,7 +45,9 @@ import {MatNativeDateModule} from '@angular/material/core';
         CoursesCardListComponent,
         CourseDialogComponent,
         LoginComponent,
-        CreateCourseComponent
+        CreateCourseComponent,
+        PasswordStrengthDirective,
+        OnlyOneErrorPipe
     ],
     imports: [
         BrowserModule,

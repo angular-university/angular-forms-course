@@ -24,21 +24,24 @@
       <mat-form-field>
 
         <input matInput type="password" #password="ngModel"
-               placeholder="Password" ngModel required [ngModelOptions]="{name:'password'}">
+               placeholder="Password" ngModel required [ngModelOptions]="{name:'password'}" minlength="8" passwordStrength>
 
       </mat-form-field>
+
+      <ng-container *ngIf="(password.errors | onlyOneError:['minlength', 'passwordStrength']) as error ">
+
+        <div class="field-message" *ngIf="error.minlength">Your password must have {{error.minlength.requiredLength}} chars, but it only has {{error.minlength.actualLength}}.</div>
+
+        <div class="field-message" *ngIf="error.passwordStrength">Your password must have lower case, upper case and numeric characters.</div>
+
+      </ng-container>
+
 
       <button mat-raised-button color="primary" type="submit"
               [disabled]="!loginForm.valid">Login
       </button>
 
     </form>
-
-    <div class="form-val">
-
-      {{ loginForm.errors | json }}
-
-    </div>
 
   </mat-card-content>
 </mat-card>
