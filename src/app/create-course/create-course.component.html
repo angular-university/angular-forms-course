@@ -1,7 +1,7 @@
 
 <div class="create-course-panel">
 
-  <div class="data-form" [formGroup]="form">
+  <div class="data-form" [formGroup]="step1Form">
 
     <h2 class="title">Create New Course</h2>
 
@@ -18,6 +18,20 @@
       </mat-hint>
 
     </mat-form-field>
+
+    <mat-form-field>
+
+      <input matInput type="password" placeholder="Password" formControlName="adminPassword">
+
+    </mat-form-field>
+
+    <ng-container *ngIf="(step1Form.controls['adminPassword'].errors | onlyOneError:['minlength', 'passwordStrength']) as error ">
+
+      <div class="field-message" *ngIf="error.minlength">Your password must have {{error.minlength.requiredLength}} chars, but it only has {{error.minlength.actualLength}}.</div>
+
+      <div class="field-message" *ngIf="error.passwordStrength">Your password must have lower case, upper case and numeric characters.</div>
+
+    </ng-container>
 
     <mat-form-field>
 
@@ -104,17 +118,17 @@
         Reset
       </button>
 
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="continueToStep2()">
+      <button mat-raised-button color="primary" [disabled]="!step1Form.valid" (click)="continueToStep2()">
         Continue to Step 2
       </button>
 
     </div>
 
-    <!--div class="form-val">
+    <div class="form-val">
 
-      {{form.value | json}}
+      {{step1Form.value | json}}
 
-    </div-->
+    </div>
 
   </div>
 
