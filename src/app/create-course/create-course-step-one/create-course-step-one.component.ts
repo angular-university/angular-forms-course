@@ -4,6 +4,7 @@ import {createPasswordStrengthValidator} from '../../validators/password-strengt
 import {createPromoRangeValidator} from '../../validators/date-range.validator';
 import {CoursesService} from '../../services/courses.service';
 import {Observable} from 'rxjs';
+import {courseTitleValidator} from '../../validators/course-title.validator';
 
 @Component({
   selector: 'create-course-step-one',
@@ -19,7 +20,13 @@ export class CreateCourseStepOneComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private courses: CoursesService) {
     this.form = fb.group({
-      title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
+      title: [
+        "", {
+          validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
+          asyncValidators: [courseTitleValidator(this.courses)],
+          updateOn: "blur"
+        }
+      ],
       adminPassword: ["", [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
       supportEmail: ["", [Validators.required, Validators.email]],
       category: ["BEGINNER", Validators.required],

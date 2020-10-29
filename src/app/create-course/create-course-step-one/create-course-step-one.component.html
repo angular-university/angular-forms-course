@@ -4,11 +4,13 @@
 
     <input matInput
            placeholder="Course title"
-           formControlName="title" #titleHint>
+           formControlName="title" #title>
 
     <mat-hint align="end">
-      {{titleHint.value.length}} / 60
+      {{title.value.length}} / 60
     </mat-hint>
+
+    <mat-error *ngIf="form.controls['title']?.errors?.titleExists">This title is already being used.</mat-error>
 
   </mat-form-field>
 
@@ -75,10 +77,10 @@
 
   </mat-form-field>
 
-  <!--div class="form-val">
+  <div class="form-val">
 
-    {{form.errors | json}}
+    {{form.controls['title'].errors | json}}
 
-  </div-->
+  </div>
 
 </div>
