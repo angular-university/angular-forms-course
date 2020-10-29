@@ -1,11 +1,34 @@
 
 <div class="create-course-panel data-form">
 
-  <h2 class="title">Create New Course <span class="current-step"> step {{currentStep}} of 3</span></h2>
+  <h2 class="title">Create New Course</h2>
 
 
+  <mat-horizontal-stepper labelPosition="bottom"  class="mat-elevation-z5">
 
+    <mat-step [stepControl]="stepOne.form">
 
-  <create-course-step-one></create-course-step-one>
+        <ng-template matStepLabel>course landing page details</ng-template>
+
+        <create-course-step-one #stepOne></create-course-step-one>
+
+        <div>
+          <button mat-raised-button color="primary" matStepperNext>Continue to Step 2</button>
+        </div>
+
+    </mat-step>
+
+    <mat-step>
+
+      <ng-template matStepLabel>course pricing details</ng-template>
+
+      <div>
+        <button mat-raised-button  matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Continue to Step 3</button>
+      </div>
+
+    </mat-step>
+
+  </mat-horizontal-stepper>
 
 </div>

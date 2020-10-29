@@ -41,14 +41,4 @@ export class CreateCourseStepOneComponent implements OnInit {
 
   }
 
-  reset() {
-
-    this.form.reset();
-
-  }
-
-  continueToStep2() {
-    console.log("Step 1 form values", this.form.value);
-  }
-
 }

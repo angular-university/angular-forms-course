@@ -105,18 +105,6 @@
 
   </mat-form-field>
 
-  <div class="form-buttons">
-
-    <button mat-raised-button (click)="reset()">
-      Reset
-    </button>
-
-    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="continueToStep2()">
-      Continue to Step 2
-    </button>
-
-  </div>
-
   <div class="form-val">
 
     {{form.errors | json}}

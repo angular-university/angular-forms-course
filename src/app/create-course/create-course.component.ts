@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
 
+
+
 @Component({
   selector: 'create-course',
   templateUrl: './create-course.component.html',
-  styleUrls: ['./create-course.component.css']
+  styleUrls: ['./create-course.component.scss']
 })
 export class CreateCourseComponent implements OnInit {
 
 
+  constructor() {
 
-  currentStep = 1;
-
+  }
 
 
   ngOnInit() {
+
+
 
   }
 
