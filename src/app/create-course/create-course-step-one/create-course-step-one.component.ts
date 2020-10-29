@@ -22,7 +22,7 @@ export class CreateCourseStepOneComponent implements OnInit {
       title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
       adminPassword: ["", [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
       supportEmail: ["", [Validators.required, Validators.email]],
-      price: [null, [Validators.required, Validators.pattern("[0-9]+")]],
+      price: [null, [Validators.required, Validators.pattern("[0-9]+"), Validators.min(1), Validators.max(9999)]],
       category: ["BEGINNER", Validators.required],
       courseType: ["free", Validators.required],
       downloadsAllowed: [false, Validators.requiredTrue],
