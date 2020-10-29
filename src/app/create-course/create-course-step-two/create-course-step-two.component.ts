@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {createPromoRangeValidator} from '../../validators/date-range.validator';
 
 
 
@@ -13,7 +14,14 @@ export class CreateCourseStepTwoComponent {
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {
-
+    this.form = fb.group({
+      price: [null, [Validators.required, Validators.pattern("[0-9]+"), Validators.min(1), Validators.max(9999)]],
+      courseType: ["free", Validators.required],
+      promoPeriodStartAt: [null],
+      promoPeriodEndAt: [null]
+    }, {
+      validators: createPromoRangeValidator()
+    });
 
 
   }

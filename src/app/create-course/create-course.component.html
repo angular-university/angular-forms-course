@@ -18,9 +18,11 @@
 
     </mat-step>
 
-    <mat-step>
+    <mat-step [stepControl]="stepTwo.form">
 
       <ng-template matStepLabel>course pricing details</ng-template>
+
+      <create-course-step-two #stepTwo></create-course-step-two>
 
       <div>
         <button mat-raised-button  matStepperPrevious>Back</button>
