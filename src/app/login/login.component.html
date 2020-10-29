@@ -7,10 +7,18 @@
       <mat-form-field>
 
         <input matInput type="email" name="email"
-               ngModel #email="ngModel" required
+               ngModel #email="ngModel"
+               required email minlength="3" maxlength="20"
                placeholder="Email">
 
         <mat-error *ngIf="email.errors?.required">The email is mandatory.</mat-error>
+
+         <mat-error *ngIf="email.errors?.minlength">
+             Your email must have minimum {{email.errors?.minlength.requiredLength}} chars,
+             but it only has {{email.errors?.minlength.actualLength}}.
+         </mat-error>
+
+          <mat-error *ngIf="email.errors?.email">This is not a valid email.</mat-error>
 
       </mat-form-field>
 
