@@ -16,7 +16,7 @@ export class CreateCourseStepTwoComponent {
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
       price: [null, [Validators.required, Validators.pattern("[0-9]+"), Validators.min(1), Validators.max(9999)]],
-      courseType: ["free", Validators.required],
+      courseType: ["premium", Validators.required],
       promoPeriodStartAt: [null],
       promoPeriodEndAt: [null]
     }, {
