@@ -25,7 +25,4 @@ export class LoginComponent implements OnInit {
 
     }
 
-    onEmailChange(change) {
-        console.log(change);
-    }
 }

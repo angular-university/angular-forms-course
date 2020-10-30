@@ -8,9 +8,8 @@
       <mat-form-field>
 
         <input matInput type="email" name="email"
-               ngModel [ngModelOptions]="{standalone:true}"
+               ngModel [ngModelOptions]="{updateOn:'submit'}"
                #email="ngModel"
-               (ngModelChange)="onEmailChange($event)"
                required email minlength="3" maxlength="20"
                placeholder="Email">
 
