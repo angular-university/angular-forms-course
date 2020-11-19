@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {forwardRef, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -28,7 +28,7 @@ import {CoursesService} from "./services/courses.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CourseResolver} from "./services/course.resolver";
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {LoginComponent} from './login/login.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
@@ -40,6 +40,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {CreateCourseStepOneComponent} from './create-course/create-course-step-one/create-course-step-one.component';
 import {CreateCourseStepTwoComponent} from './create-course/create-course-step-two/create-course-step-two.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { AddressFormComponent } from './address-form/address-form.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import {MatStepperModule} from '@angular/material/stepper';
         PasswordStrengthDirective,
         OnlyOneErrorPipe,
         CreateCourseStepOneComponent,
-        CreateCourseStepTwoComponent
+        CreateCourseStepTwoComponent,
+        AddressFormComponent
     ],
     imports: [
         BrowserModule,
