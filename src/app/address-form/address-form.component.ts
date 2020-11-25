@@ -1,5 +1,13 @@
-import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  FormBuilder, FormGroup,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  Validator,
+  Validators
+} from '@angular/forms';
 import {noop, Subscription} from 'rxjs';
 
 @Component({
@@ -10,29 +18,35 @@ import {noop, Subscription} from 'rxjs';
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => AddressFormComponent)
-    }
+      useExisting: AddressFormComponent
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: AddressFormComponent
+    },
   ]
 })
-export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
+export class AddressFormComponent implements ControlValueAccessor, OnDestroy, Validator {
 
   @Input()
   legend:string;
 
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    addressLine1: [null, [Validators.required]],
+    addressLine2: [null, [Validators.required]],
+    zipCode: [null, [Validators.required]],
+    city: [null, [Validators.required]]
+  });
 
-  onTouched: Function = noop;
+  onTouched: Function = () => {};
+  onValidationChange: Function = () => {};
 
   onChangeSubs: Subscription[] = [];
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      addressLine1: ["", Validators.required],
-      addressLine2: ["", Validators.required],
-      zipCode: ["", Validators.required],
-      city: ["", Validators.required]
-    });
   }
+
 
   ngOnDestroy() {
     for (let sub of this.onChangeSubs) {
@@ -64,4 +78,43 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
+  registerOnValidatorChange(fn: () => void) {
+    this.onValidationChange = fn;
+  }
+
+  validate(control: AbstractControl) {
+
+    if (this.form.valid) {
+      return null;
+    }
+
+    let errors : any = {};
+
+    errors = this.addControlErrors(errors, "addressLine1");
+    errors = this.addControlErrors(errors, "addressLine2");
+    errors = this.addControlErrors(errors, "zipCode");
+    errors = this.addControlErrors(errors, "city");
+
+    console.log("errors", errors);
+
+    return errors;
+  }
+
+  addControlErrors(allErrors: any, controlName:string) {
+
+    const errors = {...allErrors};
+
+    const controlErrors = this.form.controls[controlName].errors;
+
+    if (controlErrors) {
+      errors[controlName] = controlErrors;
+    }
+
+    return errors;
+
+  }
+
 }
+
+
+

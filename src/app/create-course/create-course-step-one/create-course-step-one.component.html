@@ -78,14 +78,20 @@
 
   </mat-form-field>
 
-  <!--address-form formControlName="addressOne" legend="Address 1"></address-form>
+  <address-form formControlName="address" legend="Address"></address-form>
 
-  <address-form formControlName="addressTwo" legend="Address 2"></address-form-->
+  <!--address-form formControlName="addressTwo" legend="Address 2"></address-form-->
 
 </div>
 
 <div class="form-val">
 
   {{form.value | json}}
+
+</div>
+
+<div class="form-val">
+
+  {{form.errors | json}}
 
 </div>

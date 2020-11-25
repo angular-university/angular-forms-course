@@ -33,8 +33,7 @@ export class CreateCourseStepOneComponent implements OnInit {
       downloadsAllowed: [false, Validators.requiredTrue],
       releasedAt: [new Date(), Validators.required],
       longDescription: ["",[Validators.required, Validators.minLength(3)]],
-      addressOne: [null],
-      addressTwo: [null]
+      address: [null]
     });
   }
 
