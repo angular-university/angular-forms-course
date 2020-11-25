@@ -41,6 +41,7 @@ import {CreateCourseStepOneComponent} from './create-course/create-course-step-o
 import {CreateCourseStepTwoComponent} from './create-course/create-course-step-two/create-course-step-two.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { AddressFormComponent } from './address-form/address-form.component';
+import {CreateCourseStepThreeComponent} from './create-course/create-course-step-three/create-course-step-three.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
         OnlyOneErrorPipe,
         CreateCourseStepOneComponent,
         CreateCourseStepTwoComponent,
+        CreateCourseStepThreeComponent,
         AddressFormComponent
     ],
     imports: [

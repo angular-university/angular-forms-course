@@ -31,6 +31,19 @@
 
     </mat-step>
 
+    <mat-step [stepControl]="stepThree.form" errorMessage="Course lessons in error">
+
+      <ng-template matStepLabel>course lessons</ng-template>
+
+      <create-course-step-three #stepThree></create-course-step-three>
+
+      <div class="stepper-buttons">
+        <button mat-raised-button  matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!stepThree.form.valid">Create Course</button>
+      </div>
+
+    </mat-step>
+
   </mat-horizontal-stepper>
 
 </div>
