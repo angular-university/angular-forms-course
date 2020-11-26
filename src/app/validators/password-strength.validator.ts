@@ -10,8 +10,6 @@ export function createPasswordStrengthValidator(): ValidatorFn {
       return null;
     }
 
-    console.log("Checking password strength: " + value);
-
     const hasUpperCase = /[A-Z]+/.test(value);
 
     const hasLowerCase = /[a-z]+/.test(value);
@@ -19,8 +17,6 @@ export function createPasswordStrengthValidator(): ValidatorFn {
     const hasNumeric = /[0-9]+/.test(value);
 
     const passwordValid = hasLowerCase && hasUpperCase && hasNumeric;
-
-    console.log("passwordValid: ", passwordValid);
 
     return !passwordValid ? {passwordStrength: true} : null;
   };

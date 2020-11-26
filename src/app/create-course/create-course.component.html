@@ -18,29 +18,29 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="stepTwo.form" errorMessage="Course pricing in error">
+    <mat-step [stepControl]="step2.form" errorMessage="Course pricing in error">
 
       <ng-template matStepLabel>course pricing details</ng-template>
 
-      <create-course-step-two #stepTwo></create-course-step-two>
+      <create-course-step-2 #step2></create-course-step-2>
 
       <div class="stepper-buttons">
         <button mat-raised-button  matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" matStepperNext [disabled]="!stepTwo.form.valid">Continue to Step 3</button>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!step2.form.valid">Continue to Step 3</button>
       </div>
 
     </mat-step>
 
-    <mat-step [stepControl]="stepThree.form" errorMessage="Course lessons in error">
+    <mat-step [stepControl]="step3.form" errorMessage="Course lessons in error">
 
       <ng-template matStepLabel>course lessons</ng-template>
 
-      <create-course-step-three #stepThree></create-course-step-three>
+      <create-course-step-3 #step3></create-course-step-3>
 
       <div class="stepper-buttons">
         <button mat-raised-button  matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" matStepperNext [disabled]="!stepThree.form.valid"
-        (click)="submit(step1.form.value, stepTwo.form.value, stepThree.form.value)">
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!step3.form.valid"
+        (click)="submit(step1.form.value, step2.form.value, step3.form.value)">
           Create Course
         </button>
       </div>

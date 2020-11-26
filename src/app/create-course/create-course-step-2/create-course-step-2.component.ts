@@ -4,11 +4,11 @@ import {createPromoRangeValidator} from '../../validators/date-range.validator';
 
 
 @Component({
-  selector: 'create-course-step-two',
-  templateUrl: 'create-course-step-two.component.html',
-  styleUrls: ['create-course-step-two.component.scss']
+  selector: 'create-course-step-2',
+  templateUrl: 'create-course-step-2.component.html',
+  styleUrls: ['create-course-step-2.component.scss']
 })
-export class CreateCourseStepTwoComponent implements OnInit {
+export class CreateCourseStep2Component implements OnInit {
 
   form: FormGroup;
 

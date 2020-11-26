@@ -3,11 +3,11 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
-  selector: 'create-course-step-three',
-  templateUrl: 'create-course-step-three.component.html',
-  styleUrls: ['create-course-step-three.component.scss']
+  selector: 'create-course-step-3',
+  templateUrl: 'create-course-step-3.component.html',
+  styleUrls: ['create-course-step-3.component.scss']
 })
-export class CreateCourseStepThreeComponent {
+export class CreateCourseStep3Component {
 
   form: FormGroup = this.fb.group({
     lessons: this.fb.array([])

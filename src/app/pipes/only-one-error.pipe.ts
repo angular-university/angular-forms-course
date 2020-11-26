@@ -9,8 +9,6 @@ export class OnlyOneErrorPipe implements PipeTransform {
 
   transform(allErrors: any, errorsPriority: string[]): any {
 
-    console.log("allErrors", allErrors);
-
     if (!allErrors) {
       return null;
     }
@@ -23,8 +21,6 @@ export class OnlyOneErrorPipe implements PipeTransform {
         break;
       }
     }
-
-    console.log("onlyOneError", onlyOneError);
 
     return onlyOneError;
 

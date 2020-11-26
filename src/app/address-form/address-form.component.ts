@@ -95,8 +95,6 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, Va
     errors = this.addControlErrors(errors, "zipCode");
     errors = this.addControlErrors(errors, "city");
 
-    console.log("errors", errors);
-
     return errors;
   }
 

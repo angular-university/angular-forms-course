@@ -28,8 +28,7 @@ import {CoursesService} from "./services/courses.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CourseResolver} from "./services/course.resolver";
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
-import {FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
-import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -37,10 +36,10 @@ import {PasswordStrengthDirective} from './directives/password-strength.directiv
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {CreateCourseStepTwoComponent} from './create-course/create-course-step-two/create-course-step-two.component';
+import {CreateCourseStep2Component} from './create-course/create-course-step-2/create-course-step-2.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { AddressFormComponent } from './address-form/address-form.component';
-import {CreateCourseStepThreeComponent} from './create-course/create-course-step-three/create-course-step-three.component';
+import {CreateCourseStep3Component} from './create-course/create-course-step-3/create-course-step-3.component';
 import {CreateCourseStep1Component} from './create-course/create-course-step-1/create-course-step-1.component';
 
 @NgModule({
@@ -56,8 +55,8 @@ import {CreateCourseStep1Component} from './create-course/create-course-step-1/c
         PasswordStrengthDirective,
         OnlyOneErrorPipe,
         CreateCourseStep1Component,
-        CreateCourseStepTwoComponent,
-        CreateCourseStepThreeComponent,
+        CreateCourseStep2Component,
+        CreateCourseStep3Component,
         AddressFormComponent
     ],
     imports: [
