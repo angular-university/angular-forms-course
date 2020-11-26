@@ -113,7 +113,6 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
   validate(control: AbstractControl) {
 
     if (this.validFileUploaded) {
-      console.log("Valid file uploaded");
       return null;
     }
 
@@ -125,8 +124,6 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     if (this.fileUploadError) {
       errors.uploadFailed = true;
     }
-
-    console.log("validation errors", errors);
 
     return errors;
   }
