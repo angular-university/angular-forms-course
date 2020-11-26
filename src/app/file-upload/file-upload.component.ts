@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
+import {finalize} from 'rxjs/operators';
 
 
 @Component({
@@ -13,6 +14,10 @@ export class FileUploadComponent {
   requiredFileType:string;
 
   fileName:string = '';
+
+  uploadProgress:number;
+
+  validFileUploaded = false;
 
   constructor(private http: HttpClient) {
 
@@ -33,7 +38,19 @@ export class FileUploadComponent {
       reportProgress: true,
       observe: 'events'
     })
-    .subscribe(console.log);
+    .pipe(
+      finalize(() => {
+        this.uploadProgress = null;
+        this.validFileUploaded = true;
+      })
+    )
+    .subscribe(event => {
+
+      if ( event.type === HttpEventType.UploadProgress ) {
+        this.uploadProgress  = Math.round((100 * event.loaded) / event.total);
+      }
+
+    });
 
   }
 

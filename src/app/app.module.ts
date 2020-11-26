@@ -42,6 +42,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
 import {CreateCourseStep3Component} from './create-course/create-course-step-3/create-course-step-3.component';
 import {CreateCourseStep1Component} from './create-course/create-course-step-1/create-course-step-1.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import {FileUploadComponent} from './file-upload/file-upload.component';
         MatRadioModule,
         MatCheckboxModule,
         MatStepperModule,
+        MatProgressBarModule,
         FormsModule,
         ReactiveFormsModule
     ],

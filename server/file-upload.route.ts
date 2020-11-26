@@ -8,6 +8,10 @@ export function onFileupload(req:Request, res: Response) {
 
   console.log("File uploaded: ", file.name);
 
-  res.status(200).json({message: 'File uploaded successfully.'})
+  setTimeout(() => {
+    res.status(200).json({message: 'File uploaded successfully.'});
+  }, 2000)
+
+
 
 }
