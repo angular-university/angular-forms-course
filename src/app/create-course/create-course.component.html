@@ -39,7 +39,10 @@
 
       <div class="stepper-buttons">
         <button mat-raised-button  matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" matStepperNext [disabled]="!stepThree.form.valid">Create Course</button>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="!stepThree.form.valid"
+        (click)="submit(stepOne.form.value, stepTwo.form.value, stepThree.form.value)">
+          Create Course
+        </button>
       </div>
 
     </mat-step>

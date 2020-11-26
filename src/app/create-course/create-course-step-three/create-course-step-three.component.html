@@ -1,0 +1,39 @@
+<h3>Add Course Lessons:</h3>
+
+<div [formGroup]="form" class="add-lessons-form">
+
+  <ng-container formArrayName="lessons">
+
+    <ng-container *ngFor="let lessonForm of lessons.controls">
+
+      <div class="lesson-form-row" [formGroup]="lessonForm">
+
+        <mat-form-field appearance="fill">
+
+          <input matInput
+                 placeholder="Lesson title"
+                 formControlName="title">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+
+          <mat-select placeholder="Lesson level" formControlName="level">
+            <mat-option value="beginner">Beginner</mat-option>
+            <mat-option value="intermediate">Intermediate</mat-option>
+            <mat-option value="advanced">Advanced</mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+      </div>
+
+    </ng-container>
+
+  </ng-container>
+
+  <button mat-mini-fab>
+    <mat-icon class="add-course-btn" (click)="addLesson()">add</mat-icon>
+  </button>
+
+</div>
