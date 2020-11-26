@@ -27,7 +27,7 @@ import {noop, Subscription} from 'rxjs';
     },
   ]
 })
-export class AddressFormComponent implements ControlValueAccessor, OnDestroy, Validator {
+export class AddressFormComponent implements ControlValueAccessor, OnDestroy, OnInit, Validator {
 
   @Input()
   legend:string;
@@ -45,6 +45,12 @@ export class AddressFormComponent implements ControlValueAccessor, OnDestroy, Va
   onChangeSubs: Subscription[] = [];
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+
+    this.form.valueChanges.subscribe(val => this.onValidationChange());
+
   }
 
 
