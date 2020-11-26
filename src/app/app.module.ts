@@ -37,11 +37,11 @@ import {PasswordStrengthDirective} from './directives/password-strength.directiv
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {CreateCourseStepOneComponent} from './create-course/create-course-step-one/create-course-step-one.component';
 import {CreateCourseStepTwoComponent} from './create-course/create-course-step-two/create-course-step-two.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { AddressFormComponent } from './address-form/address-form.component';
 import {CreateCourseStepThreeComponent} from './create-course/create-course-step-three/create-course-step-three.component';
+import {CreateCourseStep1Component} from './create-course/create-course-step-1/create-course-step-1.component';
 
 @NgModule({
     declarations: [
@@ -55,7 +55,7 @@ import {CreateCourseStepThreeComponent} from './create-course/create-course-step
         CreateCourseComponent,
         PasswordStrengthDirective,
         OnlyOneErrorPipe,
-        CreateCourseStepOneComponent,
+        CreateCourseStep1Component,
         CreateCourseStepTwoComponent,
         CreateCourseStepThreeComponent,
         AddressFormComponent

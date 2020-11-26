@@ -7,11 +7,11 @@ import {Observable} from 'rxjs';
 import {courseTitleValidator} from '../../validators/course-title.validator';
 
 @Component({
-  selector: 'create-course-step-one',
-  templateUrl: './create-course-step-one.component.html',
-  styleUrls: ['./create-course-step-one.component.scss']
+  selector: 'create-course-step-1',
+  templateUrl: './create-course-step-1.component.html',
+  styleUrls: ['./create-course-step-1.component.scss']
 })
-export class CreateCourseStepOneComponent implements OnInit {
+export class CreateCourseStep1Component implements OnInit {
 
   form: FormGroup;
 
