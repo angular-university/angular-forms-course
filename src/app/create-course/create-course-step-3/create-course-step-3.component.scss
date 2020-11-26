@@ -1,0 +1,16 @@
+
+.add-lessons-form {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.lesson-form-row {
+  display: flex;
+
+  mat-form-field {
+    margin-right: 10px;
+  }
+}
