@@ -26,6 +26,7 @@
     "@angular/router": "11.0.0",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
+    "express-fileupload": "^1.2.0",
     "moment": "^2.22.2",
     "rxjs": "6.5.4",
     "tslib": "^2.0.0",
