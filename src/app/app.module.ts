@@ -41,6 +41,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { AddressFormComponent } from './address-form/address-form.component';
 import {CreateCourseStep3Component} from './create-course/create-course-step-3/create-course-step-3.component';
 import {CreateCourseStep1Component} from './create-course/create-course-step-1/create-course-step-1.component';
+import {FileUploadComponent} from './file-upload/file-upload.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import {CreateCourseStep1Component} from './create-course/create-course-step-1/c
         CreateCourseStep1Component,
         CreateCourseStep2Component,
         CreateCourseStep3Component,
-        AddressFormComponent
+        AddressFormComponent,
+        FileUploadComponent
     ],
     imports: [
         BrowserModule,
