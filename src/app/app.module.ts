@@ -32,6 +32,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {LoginComponent} from './login/login.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
+import {PasswordStrengthDirective} from './directives/password-strength.directive';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { CreateCourseComponent } from './create-course/create-course.component';
         CoursesCardListComponent,
         CourseDialogComponent,
         LoginComponent,
-        CreateCourseComponent
+        CreateCourseComponent,
+        PasswordStrengthDirective
     ],
     imports: [
         BrowserModule,
