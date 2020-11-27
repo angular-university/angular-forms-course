@@ -42,6 +42,7 @@ import {CreateCourseStep3Component} from './create-course/create-course-step-3/c
 import {CreateCourseStep1Component} from './create-course/create-course-step-1/create-course-step-1.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
         CreateCourseStep2Component,
         CreateCourseStep3Component,
         AddressFormComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        OnlyOneErrorPipe
     ],
     imports: [
         BrowserModule,
