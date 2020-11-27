@@ -33,14 +33,21 @@
 
           <mat-error *ngIf="password.errors?.required">The password is mandatory.</mat-error>
 
-          <mat-error *ngIf="password.errors?.minlength">
-              Your password must have minimum {{password.errors?.minlength.requiredLength}} chars,
-              but it only has {{password.errors?.minlength.actualLength}}.
-          </mat-error>
 
-          <mat-error *ngIf="password.errors?.passwordStrength">
-              Your password must have lower case, upper case and numeric characters.
-          </mat-error>
+          <ng-container
+            *ngIf="password.errors | onlyOneError:['minlength','passwordStrength'] as error">
+
+              <mat-error *ngIf="error.minlength">
+                  Your password must have minimum {{error.minlength.requiredLength}} chars,
+                  but it only has {{error.minlength.actualLength}}.
+              </mat-error>
+
+              <mat-error *ngIf="error.passwordStrength">
+                  Your password must have lower case, upper case and numeric characters.
+              </mat-error>
+
+          </ng-container>
+
 
       </mat-form-field>
 
