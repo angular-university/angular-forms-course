@@ -43,6 +43,7 @@ import {CreateCourseStep1Component} from './create-course/create-course-step-1/c
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
+import {LoginReactiveComponent} from './login-reactive/login-reactive.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +61,7 @@ import {OnlyOneErrorPipe} from './pipes/only-one-error.pipe';
         CreateCourseStep3Component,
         AddressFormComponent,
         FileUploadComponent,
+        LoginReactiveComponent,
         OnlyOneErrorPipe
     ],
     imports: [
