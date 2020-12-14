@@ -6,3 +6,13 @@
 main {
     margin: 30px;
 }
+
+mat-toolbar {
+    position: fixed;
+    z-index: 1000;
+
+}
+
+.main-content {
+    margin-top: 80px;
+}
