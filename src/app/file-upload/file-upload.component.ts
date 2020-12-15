@@ -15,4 +15,6 @@ export class FileUploadComponent {
     @Input()
     requiredFileType:string;
 
+    fileName = '';
+
 }
