@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {ControlValueAccessor} from '@angular/forms';
 
 
 @Component({
@@ -9,7 +10,7 @@ import {of} from 'rxjs';
   templateUrl: "file-upload.component.html",
   styleUrls: ["file-upload.component.scss"]
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements ControlValueAccessor {
 
     @Input()
     requiredFileType:string;
