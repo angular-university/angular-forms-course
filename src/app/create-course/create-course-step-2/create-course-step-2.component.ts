@@ -22,8 +22,7 @@ export class CreateCourseStep2Component implements OnInit {
         promoStartAt: [null],
         promoEndAt: [null]
     }, {
-        validators: [createPromoRangeValidator()],
-        updateOn: 'blur'
+        validators: [createPromoRangeValidator()]
     });
 
     constructor(private fb: FormBuilder) {
