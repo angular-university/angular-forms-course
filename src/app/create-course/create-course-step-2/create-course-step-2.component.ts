@@ -18,6 +18,7 @@ export class CreateCourseStep2Component implements OnInit {
             Validators.max(9999),
             Validators.pattern("[0-9]+")
         ]],
+        thumbnail: [null],
         promoStartAt: [null],
         promoEndAt: [null]
     }, {

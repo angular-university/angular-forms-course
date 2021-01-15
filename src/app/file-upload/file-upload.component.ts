@@ -2,13 +2,20 @@ import {Component, Input} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {ControlValueAccessor} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 
 @Component({
   selector: 'file-upload',
   templateUrl: "file-upload.component.html",
-  styleUrls: ["file-upload.component.scss"]
+  styleUrls: ["file-upload.component.scss"],
+  providers: [
+      {
+          provide: NG_VALUE_ACCESSOR,
+          multi: true,
+          useExisting: FileUploadComponent
+      }
+  ]
 })
 export class FileUploadComponent implements ControlValueAccessor {
 
