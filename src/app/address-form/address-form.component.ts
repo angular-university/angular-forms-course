@@ -17,7 +17,18 @@ import {noop, Subscription} from 'rxjs';
 })
 export class AddressFormComponent {
 
+    @Input()
+    legend:string;
 
+    form: FormGroup = this.fb.group({
+        addressLine1: [null, [Validators.required]],
+        addressLine2: [null, [Validators.required]],
+        zipCode: [null, [Validators.required]],
+        city: [null, [Validators.required]]
+    });
+
+    constructor(private fb: FormBuilder) {
+    }
 
 }
 
