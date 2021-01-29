@@ -5,7 +5,7 @@
 
     <ng-container formArrayName="lessons">
 
-        <ng-container *ngFor="let lessonForm of lessons.controls">
+        <ng-container *ngFor="let lessonForm of lessons.controls; let i = index">
 
             <div class="lesson-form-row" [formGroup]="lessonForm">
 
@@ -28,7 +28,8 @@
 
                 </mat-form-field>
 
-                <mat-icon class="delete-btn">delete_forever</mat-icon>
+                <mat-icon class="delete-btn" (click)="deleteLesson(i)">
+                    delete_forever</mat-icon>
 
             </div>
 

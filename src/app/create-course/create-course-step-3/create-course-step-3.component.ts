@@ -31,4 +31,14 @@ export class CreateCourseStep3Component {
 
         this.lessons.push(lessonForm);
     }
+
+    deleteLesson(lessonIndex: number) {
+        this.lessons.removeAt(lessonIndex);
+    }
 }
+
+
+
+
+
+
