@@ -1,0 +1,32 @@
+
+<h3>Add Course Lessons:</h3>
+
+<div class="add-lessons-form" [formGroup]="form">
+
+    <div class="lesson-form-row">
+
+        <mat-form-field appearance="fill">
+
+            <input matInput placeholder="Lesson title">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+
+            <mat-select placeholder="Lesson level">
+                <mat-option value="beginner">Beginner</mat-option>
+                <mat-option value="intermediate">Intermediate</mat-option>
+                <mat-option value="advanced">Advanced</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-icon class="delete-btn">delete_forever</mat-icon>
+
+    </div>
+
+    <button mat-mini-fab>
+        <mat-icon class="add-course-btn">add</mat-icon>
+    </button>
+
+</div>
