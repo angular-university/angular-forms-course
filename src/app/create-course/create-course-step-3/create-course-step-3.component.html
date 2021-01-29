@@ -3,29 +3,40 @@
 
 <div class="add-lessons-form" [formGroup]="form">
 
-    <div class="lesson-form-row">
+    <ng-container formArrayName="lessons">
 
-        <mat-form-field appearance="fill">
+        <ng-container *ngFor="let lessonForm of lessons.controls">
 
-            <input matInput placeholder="Lesson title">
+            <div class="lesson-form-row" [formGroup]="lessonForm">
 
-        </mat-form-field>
+                <mat-form-field appearance="fill">
 
-        <mat-form-field appearance="fill">
+                    <input matInput
+                           formControlName="title"
+                           placeholder="Lesson title">
 
-            <mat-select placeholder="Lesson level">
-                <mat-option value="beginner">Beginner</mat-option>
-                <mat-option value="intermediate">Intermediate</mat-option>
-                <mat-option value="advanced">Advanced</mat-option>
-            </mat-select>
+                </mat-form-field>
 
-        </mat-form-field>
+                <mat-form-field appearance="fill">
 
-        <mat-icon class="delete-btn">delete_forever</mat-icon>
+                    <mat-select formControlName="level"
+                            placeholder="Lesson level">
+                        <mat-option value="beginner">Beginner</mat-option>
+                        <mat-option value="intermediate">Intermediate</mat-option>
+                        <mat-option value="advanced">Advanced</mat-option>
+                    </mat-select>
 
-    </div>
+                </mat-form-field>
 
-    <button mat-mini-fab>
+                <mat-icon class="delete-btn">delete_forever</mat-icon>
+
+            </div>
+
+        </ng-container>
+
+    </ng-container>
+
+    <button mat-mini-fab (click)="addLesson()">
         <mat-icon class="add-course-btn">add</mat-icon>
     </button>
 
