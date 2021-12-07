@@ -3,21 +3,13 @@
 
 This repository contains the code of the [Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) video course.
 
-This course repository is updated to Angular v12:
+This course repository is updated to Angular v13:
 
 ![Angular Forms In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
 
-
 # Installation pre-requisites
 
-For running this project we need node and npm installed on our machine. These are some tutorials to install node in different operating systems:
-
-*Its important to install the latest version of Node*
-
-- [Install Node and NPM on Windows](https://www.youtube.com/watch?v=8ODS6RM6x7g)
-- [Install Node and NPM on Linux](https://www.youtube.com/watch?v=yUdHk-Dk_BY)
-- [Install Node and NPM on Mac](https://www.youtube.com/watch?v=Imj8PgG3bZU)
-
+Please use Node 16 (Long Term Support version).
 
 # Installing the Angular CLI
 
