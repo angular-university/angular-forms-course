@@ -93,8 +93,7 @@ import {LoginReactiveComponent} from './login-reactive/login-reactive.component'
         CoursesService,
         CourseResolver
     ],
-    bootstrap: [AppComponent],
-    entryComponents: [CourseDialogComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

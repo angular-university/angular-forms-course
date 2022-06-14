@@ -8,11 +8,13 @@ import {getCourseCategories} from './course-categories.route';
 import {onFileupload} from './file-upload.route';
 const fileUpload = require('express-fileupload');
 
-
 const app: Application = express();
 
-app.use(fileUpload());
+const cors = require('cors');
 
+app.use(cors({origin: true}));
+
+app.use(fileUpload());
 
 app.route('/api/courses').get(getAllCourses);
 
@@ -23,7 +25,6 @@ app.route('/api/lessons').get(searchLessons);
 app.route('/api/course-categories').get(getCourseCategories);
 
 app.route('/api/thumbnail-upload').post(onFileupload);
-
 
 const httpServer:any = app.listen(9000, () => {
     console.log("HTTP REST API Server running at http://localhost:" + httpServer.address().port);
