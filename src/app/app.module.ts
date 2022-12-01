@@ -15,10 +15,10 @@ import { CoursesCardListComponent } from './courses-card-list/courses-card-list.
 import {CourseComponent} from "./course/course.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
-import { MatInputModule } from "@angular/material/input";
-import { MatListModule } from "@angular/material/list";
+import {  MatInputModule } from "@angular/material/input";
+import {  MatListModule } from "@angular/material/list";
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import {  MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSortModule } from "@angular/material/sort";
