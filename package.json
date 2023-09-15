@@ -29,6 +29,7 @@
     "express": "^4.16.2",
     "express-fileupload": "^1.2.0",
     "moment": "^2.22.2",
+    "node": "16.14",
     "rxjs": "6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.13.0"
