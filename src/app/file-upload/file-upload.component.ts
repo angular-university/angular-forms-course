@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HttpClient, HttpEventType} from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import {catchError, finalize} from 'rxjs/operators';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {noop, of} from 'rxjs';

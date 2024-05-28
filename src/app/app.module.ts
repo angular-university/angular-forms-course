@@ -25,7 +25,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {CoursesService} from "./services/courses.service";
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
@@ -42,8 +42,7 @@ import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {LoginReactiveComponent} from './login-reactive/login-reactive.component';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomeComponent,
         AboutComponent,
@@ -59,10 +58,8 @@ import {LoginReactiveComponent} from './login-reactive/login-reactive.component'
         FileUploadComponent,
         LoginReactiveComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
@@ -86,12 +83,9 @@ import {LoginReactiveComponent} from './login-reactive/login-reactive.component'
         MatStepperModule,
         MatProgressBarModule,
         FormsModule,
-        ReactiveFormsModule
-    ],
-    providers: [
-        CoursesService
-    ],
-    bootstrap: [AppComponent]
-})
+        ReactiveFormsModule], providers: [
+        CoursesService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
