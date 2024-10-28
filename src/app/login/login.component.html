@@ -1,27 +1,18 @@
 <mat-card class="login-page">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-
-    <form class="login-form data-form">
-
+    <form class="login-form data-form" #loginForm="ngForm">
       <mat-form-field>
-
-        <input matInput type="email" name="email"
-               placeholder="Email">
-
+        <input matInput type="email" name="email" placeholder="Email" />
       </mat-form-field>
 
       <mat-form-field>
-
-        <input matInput type="password" placeholder="Password">
-
+        <input matInput type="password" placeholder="Password" />
       </mat-form-field>
 
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" (click)="login(loginForm)">
         Login
       </button>
-
     </form>
-
   </mat-card-content>
 </mat-card>
