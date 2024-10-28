@@ -3,11 +3,15 @@
   <mat-card-content>
     <form class="login-form data-form" #loginForm="ngForm">
       <mat-form-field>
-        <input matInput type="email" name="email" placeholder="Email" />
+        <input matInput type="email" name="email"
+        ngModel #email="ngModel"
+        placeholder="Email" />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="password" placeholder="Password" />
+        <input matInput type="password" name="password"
+        ngModel #password="ngModel"
+        placeholder="Password" />
       </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="login(loginForm)">
