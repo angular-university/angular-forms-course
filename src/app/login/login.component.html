@@ -11,7 +11,7 @@
           matInput
           type="email"
           name="email"
-          [ngModel]="val.email"
+          ngModel
           #email="ngModel"
           required
           email
@@ -40,22 +40,24 @@
           matInput
           type="password"
           name="password"
-          [ngModel]="val.password"
+          ngModel
           #password="ngModel"
           required
           passwordStrength
           placeholder="Password"
         />
-
-        <mat-error *ngIf="password.errors?.passwordStrength"
-          >Your password must have lower case, upper case and numeric
-          characters.</mat-error
-        >
-
         <mat-error *ngIf="password.errors?.required"
           >The password is mandatory</mat-error
         >
       </mat-form-field>
+      <ng-container
+        *ngIf="password.errors | onlyOneError : ['passwordStrength'] as error"
+      >
+        <div class="field-message" *ngIf="error.passwordStrength"
+          >Your password must have lower case, upper case and numeric
+          characters.</div
+        >
+      </ng-container>
 
       <button
         mat-raised-button
