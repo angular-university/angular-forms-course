@@ -50,6 +50,11 @@
       <button mat-raised-button color="primary" [disabled]="!form.valid">
         Login
       </button>
+
+      <button mat-raised-button color="primary" (click)="reset()">
+        Reset
+      </button>
+
     </form>
 
     <div class="form-val">
