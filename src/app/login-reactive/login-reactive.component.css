@@ -14,5 +14,10 @@
   border-bottom: 1px solid grey;
   margin-bottom: 10px;
 }
+.field-message {
+  color: red; /* Example styling */
+  font-size: 12px;
+  margin-top: 5px;
+}
 
 

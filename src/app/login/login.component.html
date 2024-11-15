@@ -1,27 +1,73 @@
 <mat-card class="login-page">
-  <mat-card-title>Login</mat-card-title>
+  <mat-card-title>Login (Template-Driven-Form)</mat-card-title>
   <mat-card-content>
-
-    <form class="login-form data-form">
-
+    <form
+      class="login-form data-form"
+      #loginForm="ngForm"
+      (submit)="login(loginForm)"
+    >
       <mat-form-field>
+        <input
+          matInput
+          type="email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          email
+          minlength="3"
+          maxlength="20"
+          placeholder="Email"
+        />
 
-        <input matInput type="email" name="email"
-               placeholder="Email">
+        <mat-error *ngIf="email.errors?.required"
+          >The email is mandatory.</mat-error
+        >
 
+        <mat-error *ngIf="email.errors?.minlength">
+          Your email must have minimum
+          {{ email.errors?.minlength.requiredLength }} chars, but it only has
+          {{ email.errors?.minlength.actualLength }}.
+        </mat-error>
+
+        <mat-error *ngIf="email.errors?.email"
+          >The email is not a valid email.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field>
-
-        <input matInput type="password" placeholder="Password">
-
+        <input
+          matInput
+          type="password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+          passwordStrength
+          placeholder="Password"
+        />
+        <mat-error *ngIf="password.errors?.required"
+          >The password is mandatory</mat-error
+        >
       </mat-form-field>
+      <ng-container
+        *ngIf="password.errors | onlyOneError : ['passwordStrength'] as error"
+      >
+        <div class="field-message" *ngIf="error.passwordStrength"
+          >Your password must have lower case, upper case and numeric
+          characters.</div
+        >
+      </ng-container>
 
-      <button mat-raised-button color="primary">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="login(loginForm)"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
         Login
       </button>
-
     </form>
-
   </mat-card-content>
 </mat-card>
