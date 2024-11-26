@@ -4,9 +4,10 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
 
 
 @Component({
-  selector: 'login',
-  templateUrl: './login-reactive.component.html',
-  styleUrls: ['./login-reactive.component.css']
+    selector: 'login',
+    templateUrl: './login-reactive.component.html',
+    styleUrls: ['./login-reactive.component.css'],
+    standalone: false
 })
 export class LoginReactiveComponent implements OnInit {
 

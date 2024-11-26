@@ -11,16 +11,17 @@ import {
 import {noop, Subscription} from 'rxjs';
 
 @Component({
-  selector: 'address-form',
-  templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.scss'],
-  providers: [
-      {
-          provide: NG_VALUE_ACCESSOR,
-          multi:true,
-          useExisting: AddressFormComponent
-      }
-  ]
+    selector: 'address-form',
+    templateUrl: './address-form.component.html',
+    styleUrls: ['./address-form.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: AddressFormComponent
+        }
+    ],
+    standalone: false
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
 

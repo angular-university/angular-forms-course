@@ -2,7 +2,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 
 @Pipe({
-    name: 'onlyOneError'
+    name: 'onlyOneError',
+    standalone: false
 })
 export class OnlyOneErrorPipe implements PipeTransform {
 

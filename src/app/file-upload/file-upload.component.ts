@@ -6,21 +6,22 @@ import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR,
 
 
 @Component({
-  selector: 'file-upload',
-  templateUrl: "file-upload.component.html",
-  styleUrls: ["file-upload.component.scss"],
-  providers: [
-      {
-          provide: NG_VALUE_ACCESSOR,
-          multi: true,
-          useExisting: FileUploadComponent
-      },
-      {
-          provide: NG_VALIDATORS,
-          multi: true,
-          useExisting: FileUploadComponent
-      }
-  ]
+    selector: 'file-upload',
+    templateUrl: "file-upload.component.html",
+    styleUrls: ["file-upload.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: FileUploadComponent
+        },
+        {
+            provide: NG_VALIDATORS,
+            multi: true,
+            useExisting: FileUploadComponent
+        }
+    ],
+    standalone: false
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
 

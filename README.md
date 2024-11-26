@@ -3,7 +3,7 @@
 
 This repository contains the code of the [Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) video course.
 
-This course repository is updated to Angular v18:
+This course repository is updated to Angular v19:
 
 ![Angular Forms In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
 

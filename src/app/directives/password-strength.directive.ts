@@ -6,10 +6,11 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
 @Directive({
     selector: "[passwordStrength]",
     providers: [{
-        provide: NG_VALIDATORS,
-        useExisting:PasswordStrengthDirective,
-        multi: true
-    }]
+            provide: NG_VALIDATORS,
+            useExisting: PasswordStrengthDirective,
+            multi: true
+        }],
+    standalone: false
 })
 export class PasswordStrengthDirective implements Validator {
 
