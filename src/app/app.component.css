@@ -1,5 +1,5 @@
 
->>> body {
+body {
     margin: 0;
 }
 
@@ -15,4 +15,8 @@ mat-toolbar {
 
 .main-content {
     margin-top: 80px;
+}
+
+mat-icon{
+    vertical-align: middle;
 }

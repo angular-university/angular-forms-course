@@ -3,13 +3,13 @@
 
 This repository contains the code of the [Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) video course.
 
-This course repository is updated to Angular v19:
+This course repository is updated to Angular v20:
 
 ![Angular Forms In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
 
 # Installation pre-requisites
 
-Please use Node 18 LTS (Long Term Support version).
+Please use Node 22 LTS (Long Term Support version).
 
 # Installing the Angular CLI
 
