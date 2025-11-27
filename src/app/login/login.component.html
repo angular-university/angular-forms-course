@@ -3,62 +3,70 @@
   <mat-card-content>
 
     <form class="login-form data-form"
-          #loginForm="ngForm" (ngSubmit)="login(loginForm, $event)">
+      #loginForm="ngForm" (ngSubmit)="login(loginForm, $event)">
 
       <mat-form-field>
 
         <input matInput type="email" name="email"
-               ngModel
-               #email="ngModel"
-               required email minlength="3" maxlength="20"
-               placeholder="Email">
+          ngModel
+          #email="ngModel"
+          required email minlength="3" maxlength="20"
+          placeholder="Email">
 
-        <mat-error *ngIf="email.errors?.required">The email is mandatory.</mat-error>
+        @if (email.errors?.required) {
+          <mat-error>The email is mandatory.</mat-error>
+        }
 
-         <mat-error *ngIf="email.errors?.minlength">
-             Your email must have minimum {{email.errors?.minlength.requiredLength}} chars,
-             but it only has {{email.errors?.minlength.actualLength}}.
-         </mat-error>
+        @if (email.errors?.minlength) {
+          <mat-error>
+            Your email must have minimum {{email.errors?.minlength.requiredLength}} chars,
+            but it only has {{email.errors?.minlength.actualLength}}.
+          </mat-error>
+        }
 
-          <mat-error *ngIf="email.errors?.email">This is not a valid email.</mat-error>
+        @if (email.errors?.email) {
+          <mat-error>This is not a valid email.</mat-error>
+        }
 
       </mat-form-field>
 
       <mat-form-field>
 
         <input matInput type="password" name="password"
-               required passwordStrength minlength="8"
-               ngModel #password="ngModel"
-               placeholder="Password">
+          required passwordStrength minlength="8"
+          ngModel #password="ngModel"
+          placeholder="Password">
 
-          <mat-error *ngIf="password.errors?.required">The password is mandatory.</mat-error>
+        @if (password.errors?.required) {
+          <mat-error>The password is mandatory.</mat-error>
+        }
 
       </mat-form-field>
 
-        <ng-container
-                *ngIf="password.errors | onlyOneError:['minlength','passwordStrength'] as error">
-
-            <div class="field-message" *ngIf="error.minlength">
-                Your password must have minimum {{error.minlength.requiredLength}} chars,
-                but it only has {{error.minlength.actualLength}}.
-            </div>
-
-            <div class="field-message" *ngIf="error.passwordStrength">
-                Your password must have lower case, upper case and numeric characters.
-            </div>
-
-        </ng-container>
+      @if (password.errors | onlyOneError:['minlength','passwordStrength']; as error) {
+        @if (error.minlength) {
+          <div class="field-message">
+            Your password must have minimum {{error.minlength.requiredLength}} chars,
+            but it only has {{error.minlength.actualLength}}.
+          </div>
+        }
+        @if (error.passwordStrength) {
+          <div class="field-message">
+            Your password must have lower case, upper case and numeric characters.
+          </div>
+        }
+      }
 
       <button mat-raised-button color="primary" type="submit"
-              [disabled]="!loginForm.valid">
+        [disabled]="!loginForm.valid">
         Login
       </button>
 
     </form>
 
-     <div class="form-val">
-         {{ password.errors | json }}
-     </div>
+    <div class="form-val">
+      {{ password.errors | json }}
+    </div>
 
   </mat-card-content>
 </mat-card>

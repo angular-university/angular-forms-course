@@ -1,63 +1,63 @@
 
 <div [formGroup]="form">
 
-    <mat-form-field>
+  <mat-form-field>
 
-        <input matInput placeholder="Course title" formControlName="title" #title>
+    <input matInput placeholder="Course title" formControlName="title" #title>
 
-        <mat-hint align="end">
-            {{ title.value.length }} / 60
-        </mat-hint>
+    <mat-hint align="end">
+      {{ title.value.length }} / 60
+    </mat-hint>
 
-        <mat-error *ngIf="courseTitle.errors?.titleExists">
-            This title is already being used.</mat-error>
+    @if (courseTitle.errors?.titleExists) {
+      <mat-error>
+      This title is already being used.</mat-error>
+    }
 
-    </mat-form-field>
+  </mat-form-field>
 
-    <mat-form-field>
+  <mat-form-field>
 
-        <mat-select placeholder="Select category" formControlName="category">
+    <mat-select placeholder="Select category" formControlName="category">
 
-            <ng-container *ngFor="let category of (courseCategories$ | async)">
+      @for (category of (courseCategories$ | async); track category) {
+        <mat-option [value]="category.code">{{category.description}}</mat-option>
+      }
 
-                <mat-option [value]="category.code">{{category.description}}</mat-option>
+    </mat-select>
 
-            </ng-container>
+  </mat-form-field>
 
-        </mat-select>
+  <mat-form-field>
 
-    </mat-form-field>
+    <input matInput [matDatepicker]="releaseDatePicker"
+      formControlName="releasedAt"
+      placeholder="Release date">
 
-    <mat-form-field>
+    <mat-datepicker-toggle matSuffix
+    [for]="releaseDatePicker"></mat-datepicker-toggle>
 
-        <input matInput [matDatepicker]="releaseDatePicker"
-               formControlName="releasedAt"
-               placeholder="Release date">
+    <mat-datepicker #releaseDatePicker></mat-datepicker>
 
-        <mat-datepicker-toggle matSuffix
-                [for]="releaseDatePicker"></mat-datepicker-toggle>
+  </mat-form-field>
 
-        <mat-datepicker #releaseDatePicker></mat-datepicker>
+  <mat-checkbox color="primary" formControlName="downloadsAllowed">
+    Downloads allowed?
+  </mat-checkbox>
 
-    </mat-form-field>
+  <mat-form-field appearance="outline">
 
-    <mat-checkbox color="primary" formControlName="downloadsAllowed">
-        Downloads allowed?
-    </mat-checkbox>
+    <textarea matInput placeholder="Description" formControlName="longDescription">
 
-    <mat-form-field appearance="outline">
+    </textarea>
 
-        <textarea matInput placeholder="Description" formControlName="longDescription">
-
-        </textarea>
-
-    </mat-form-field>
+  </mat-form-field>
 
 </div>
 
 <!--div class="form-val">
 
-    {{form.value | json}}
+{{form.value | json}}
 
 </div-->
 

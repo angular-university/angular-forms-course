@@ -1,54 +1,56 @@
 
 <div [formGroup]="form">
 
-    <mat-radio-group formControlName="courseType">
+  <mat-radio-group formControlName="courseType">
 
-        <mat-radio-button value="free">Free</mat-radio-button>
+    <mat-radio-button value="free">Free</mat-radio-button>
 
-        <mat-radio-button value="premium">Premium</mat-radio-button>
+    <mat-radio-button value="premium">Premium</mat-radio-button>
 
-    </mat-radio-group>
+  </mat-radio-group>
 
-    <file-upload formControlName="thumbnail"
-                 requiredFileType="image/png"></file-upload>
+  <file-upload formControlName="thumbnail"
+  requiredFileType="image/png"></file-upload>
 
-    <mat-form-field>
+  <mat-form-field>
 
-        <input type="number" matInput placeholder="Price" formControlName="price">
+    <input type="number" matInput placeholder="Price" formControlName="price">
 
-    </mat-form-field>
+  </mat-form-field>
 
-    <mat-form-field>
+  <mat-form-field>
 
-        <mat-label>Promotional period</mat-label>
+    <mat-label>Promotional period</mat-label>
 
-        <mat-date-range-input [rangePicker]="promoPicker">
+    <mat-date-range-input [rangePicker]="promoPicker">
 
-            <input matStartDate placeholder="Start date" formControlName="promoStartAt">
+      <input matStartDate placeholder="Start date" formControlName="promoStartAt">
 
-            <input matEndDate placeholder="End date" formControlName="promoEndAt">
+      <input matEndDate placeholder="End date" formControlName="promoEndAt">
 
-        </mat-date-range-input>
+    </mat-date-range-input>
 
-        <mat-error *ngIf="form.errors?.promoPeriod && form.dirty">
-            The start date must be before the end date.</mat-error>
+    @if (form.errors?.promoPeriod && form.dirty) {
+      <mat-error>
+      The start date must be before the end date.</mat-error>
+    }
 
-        <mat-datepicker-toggle matSuffix [for]="promoPicker"></mat-datepicker-toggle>
+    <mat-datepicker-toggle matSuffix [for]="promoPicker"></mat-datepicker-toggle>
 
-        <mat-date-range-picker #promoPicker></mat-date-range-picker>
+    <mat-date-range-picker #promoPicker></mat-date-range-picker>
 
-    </mat-form-field>
+  </mat-form-field>
 
 </div>
 
 <!--div class="form-val">
 
-    Form validity state: {{form.valid }}
+Form validity state: {{form.valid }}
 
 </div>
 
 <div class="form-val">
 
-    {{form.value | json}}
+  {{form.value | json}}
 
 </div-->
