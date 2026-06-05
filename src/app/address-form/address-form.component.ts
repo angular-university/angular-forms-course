@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -21,6 +21,7 @@ import {noop, Subscription} from 'rxjs';
             useExisting: AddressFormComponent
         }
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
