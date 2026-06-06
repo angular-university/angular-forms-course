@@ -12,6 +12,11 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "ignoreDeprecations": "6.0",
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictFunctionTypes": false
   }
 }

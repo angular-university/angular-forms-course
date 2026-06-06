@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 
@@ -13,6 +13,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
             provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
         }
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CreateCourseComponent implements OnInit {

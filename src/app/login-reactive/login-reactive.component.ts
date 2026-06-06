@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
 import {createPasswordStrengthValidator} from '../validators/password-strength.validator';
 
@@ -7,6 +7,7 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
     selector: 'login',
     templateUrl: './login-reactive.component.html',
     styleUrls: ['./login-reactive.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LoginReactiveComponent implements OnInit {

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {Course} from "../model/course";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
@@ -7,6 +7,7 @@ import {FormBuilder, Validators, FormGroup} from "@angular/forms";
     selector: 'course-dialog',
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CourseDialogComponent implements OnInit {
