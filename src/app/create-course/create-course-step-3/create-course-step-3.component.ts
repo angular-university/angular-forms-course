@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
@@ -6,6 +6,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
     selector: 'create-course-step-3',
     templateUrl: 'create-course-step-3.component.html',
     styleUrls: ['create-course-step-3.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CreateCourseStep3Component {

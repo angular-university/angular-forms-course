@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -14,6 +14,7 @@ import {noop, Subscription} from 'rxjs';
     selector: 'address-form',
     templateUrl: './address-form.component.html',
     styleUrls: ['./address-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AddressFormComponent {

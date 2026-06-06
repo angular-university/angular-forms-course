@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import {CourseDialogComponent} from "../course-dialog/course-dialog.component";
@@ -7,6 +7,7 @@ import {CourseDialogComponent} from "../course-dialog/course-dialog.component";
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
     styleUrls: ['./courses-card-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CoursesCardListComponent implements OnInit {
