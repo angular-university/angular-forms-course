@@ -1,10 +1,11 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 import { CoursesService } from './app/services/courses.service';
-import { provideHttpClient, withXhr, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
 if (environment.production) {
   enableProdMode();
@@ -12,8 +13,8 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(AppRoutingModule),
+    provideRouter(routes),
     CoursesService,
-    provideHttpClient(withXhr(), withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi())
   ]
 }).catch(err => console.log(err));
