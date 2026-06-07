@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, effect, inject, input, resource, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, resource, signal } from '@angular/core';
 import { Course } from '../model/course';
 import { Lesson } from '../model/lesson';
 import { CoursesService } from '../services/courses.service';
@@ -7,7 +7,7 @@ import { CoursesService } from '../services/courses.service';
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class CourseComponent {
   course = input.required<Course>();

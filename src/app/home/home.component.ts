@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, inject, resource, signal } from '@angular/core';
+import { Component, computed, inject, resource, signal } from '@angular/core';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
 import { RouterLink } from '@angular/router';
@@ -8,7 +8,6 @@ import { CoursesCardListComponent } from '../courses-card-list/courses-card-list
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, CoursesCardListComponent]
 })
 export class HomeComponent {

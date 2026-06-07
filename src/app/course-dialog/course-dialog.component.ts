@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, input, OnInit, output } from '@angular/core';
+import { Component, inject, input, OnInit, output } from '@angular/core';
 import { Course } from '../model/course';
 import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -6,7 +6,6 @@ import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } 
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule]
 })
 export class CourseDialogComponent implements OnInit {

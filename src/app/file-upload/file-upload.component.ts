@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -12,7 +12,7 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
     { provide: NG_VALUE_ACCESSOR, multi: true, useExisting: FileUploadComponent },
     { provide: NG_VALIDATORS, multi: true, useExisting: FileUploadComponent }
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   @Input() requiredFileType: string;

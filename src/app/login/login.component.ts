@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createPasswordStrengthValidator } from '../validators/password-strength.validator';
 import { JsonPipe } from '@angular/common';
@@ -8,7 +8,6 @@ import { OnlyOneErrorPipe } from '../pipes/only-one-error.pipe';
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule, JsonPipe, OnlyOneErrorPipe]
 })
 export class LoginComponent {

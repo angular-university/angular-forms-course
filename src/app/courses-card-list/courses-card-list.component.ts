@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, input, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Course } from '../model/course';
 import { RouterLink } from '@angular/router';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
@@ -7,7 +7,6 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
   selector: 'courses-card-list',
   templateUrl: './courses-card-list.component.html',
   styleUrls: ['./courses-card-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, CourseDialogComponent]
 })
 export class CoursesCardListComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createPromoRangeValidator } from '../../validators/date-range.validator';
 import { FileUploadComponent } from '../../file-upload/file-upload.component';
@@ -7,7 +7,6 @@ import { FileUploadComponent } from '../../file-upload/file-upload.component';
   selector: 'create-course-step-2',
   templateUrl: 'create-course-step-2.component.html',
   styleUrls: ['create-course-step-2.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule, FileUploadComponent]
 })
 export class CreateCourseStep2Component implements OnInit {
