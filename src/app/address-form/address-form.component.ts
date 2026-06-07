@@ -1,14 +1,8 @@
 import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormBuilder, FormGroup,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  Validator,
-  Validators
-} from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {noop, Subscription} from 'rxjs';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { JsonPipe } from '@angular/common';
 
 @Component({
     selector: 'address-form',
@@ -22,7 +16,7 @@ import {noop, Subscription} from 'rxjs';
         }
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatInput, JsonPipe]
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
 

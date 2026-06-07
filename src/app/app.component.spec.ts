@@ -4,13 +4,11 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
+    imports: [
+        RouterTestingModule,
         AppComponent
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   }));
   it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);

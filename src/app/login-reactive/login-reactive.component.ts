@@ -1,6 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {createPasswordStrengthValidator} from '../validators/password-strength.validator';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatFormField, MatInput, MatError } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { JsonPipe } from '@angular/common';
+import { OnlyOneErrorPipe } from '../pipes/only-one-error.pipe';
 
 
 @Component({
@@ -8,7 +13,7 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
     templateUrl: './login-reactive.component.html',
     styleUrls: ['./login-reactive.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatCard, MatCardTitle, MatCardContent, FormsModule, ReactiveFormsModule, MatFormField, MatInput, MatError, MatButton, JsonPipe, OnlyOneErrorPipe]
 })
 export class LoginReactiveComponent implements OnInit {
 

@@ -9,8 +9,7 @@ import {createPasswordStrengthValidator} from '../validators/password-strength.v
             provide: NG_VALIDATORS,
             useExisting: PasswordStrengthDirective,
             multi: true
-        }],
-    standalone: false
+        }]
 })
 export class PasswordStrengthDirective implements Validator {
 

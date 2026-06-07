@@ -1,9 +1,14 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CoursesService} from '../../services/courses.service';
 import {Observable} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {courseTitleValidator} from '../../validators/course-title.validator';
+import { MatFormField, MatInput, MatHint, MatError, MatSuffix } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { AsyncPipe } from '@angular/common';
 
 interface CourseCategory {
     code:string;
@@ -15,7 +20,7 @@ interface CourseCategory {
     templateUrl: './create-course-step-1.component.html',
     styleUrls: ['./create-course-step-1.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatInput, MatHint, MatError, MatSelect, MatOption, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker, MatCheckbox, AsyncPipe]
 })
 export class CreateCourseStep1Component implements OnInit {
 

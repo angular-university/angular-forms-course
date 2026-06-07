@@ -3,6 +3,10 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator} from '@angular/forms';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 
 @Component({
@@ -22,7 +26,7 @@ import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR,
         }
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatFormField, MatInput, MatMiniFabButton, MatIcon, MatProgressBar]
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
 

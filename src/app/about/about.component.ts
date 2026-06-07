@@ -4,8 +4,7 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@
     selector: 'about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class AboutComponent implements OnInit {
 

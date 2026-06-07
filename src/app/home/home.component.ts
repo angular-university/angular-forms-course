@@ -3,13 +3,19 @@ import {Course} from "../model/course";
 import {Observable} from "rxjs";
 import {CoursesService} from "../services/courses.service";
 import {map} from "rxjs/operators";
+import { MatMiniFabButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatMiniFabButton, RouterLink, MatIcon, MatTabGroup, MatTab, CoursesCardListComponent, AsyncPipe]
 })
 export class HomeComponent implements OnInit {
 

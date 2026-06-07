@@ -1,5 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { MatFormField, MatInput, MatError } from '@angular/material/input';
+import { PasswordStrengthDirective } from '../directives/password-strength.directive';
+import { MatButton } from '@angular/material/button';
+import { JsonPipe } from '@angular/common';
+import { OnlyOneErrorPipe } from '../pipes/only-one-error.pipe';
 
 
 @Component({
@@ -7,7 +13,7 @@ import {NgForm} from '@angular/forms';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [MatCard, MatCardTitle, MatCardContent, FormsModule, MatFormField, MatInput, MatError, PasswordStrengthDirective, MatButton, JsonPipe, OnlyOneErrorPipe]
 })
 export class LoginComponent implements OnInit {
 

@@ -1,5 +1,9 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
+import { MatMiniFabButton } from '@angular/material/button';
 
 
 @Component({
@@ -7,7 +11,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
     templateUrl: 'create-course-step-3.component.html',
     styleUrls: ['create-course-step-3.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatInput, MatSelect, MatOption, MatIcon, MatMiniFabButton]
 })
 export class CreateCourseStep3Component {
 

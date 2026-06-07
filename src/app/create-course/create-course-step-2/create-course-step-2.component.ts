@@ -1,6 +1,10 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {createPromoRangeValidator} from '../../validators/date-range.validator';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { FileUploadComponent } from '../../file-upload/file-upload.component';
+import { MatFormField, MatInput, MatLabel, MatError, MatSuffix } from '@angular/material/input';
+import { MatDateRangeInput, MatStartDate, MatEndDate, MatDatepickerToggle, MatDateRangePicker } from '@angular/material/datepicker';
 
 
 @Component({
@@ -8,7 +12,7 @@ import {createPromoRangeValidator} from '../../validators/date-range.validator';
     templateUrl: 'create-course-step-2.component.html',
     styleUrls: ['create-course-step-2.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule, MatRadioGroup, MatRadioButton, FileUploadComponent, MatFormField, MatInput, MatLabel, MatDateRangeInput, MatStartDate, MatEndDate, MatError, MatDatepickerToggle, MatSuffix, MatDateRangePicker]
 })
 export class CreateCourseStep2Component implements OnInit {
 
