@@ -5,7 +5,7 @@ import {AboutComponent} from './about/about.component';
 import {CourseComponent} from './course/course.component';
 import {courseResolver} from './services/course.resolver';
 import {CreateCourseComponent} from './create-course/create-course.component';
-import {LoginReactiveComponent} from './login-reactive/login-reactive.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginReactiveComponent
+    component: LoginComponent
   },
   {
     path: '**',

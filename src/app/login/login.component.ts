@@ -10,12 +10,12 @@ import { OnlyOneErrorPipe } from '../pipes/only-one-error.pipe';
 
 @Component({
     selector: 'login',
-    templateUrl: './login-reactive.component.html',
-    styleUrls: ['./login-reactive.component.css'],
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [MatCard, MatCardTitle, MatCardContent, FormsModule, ReactiveFormsModule, MatFormField, MatInput, MatError, MatButton, JsonPipe, OnlyOneErrorPipe]
 })
-export class LoginReactiveComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
    form = this.fb.group({
       email: ["", {
