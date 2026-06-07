@@ -1,3 +1,18 @@
-.courses-panel { max-width: 440px; margin: 0 auto; }
-.header { display: flex; justify-content: center; align-items: center; margin-bottom: 24px; gap: 16px; }
-.title { margin: 0; font-size: 20px; font-weight: 600; }
+.courses-panel {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}

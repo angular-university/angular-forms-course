@@ -1,16 +1,18 @@
-@for (course of courses; track course) {
-  <div class="card course-card">
-    <img class="card-img" [src]="course.iconUrl" [alt]="course.description">
-    <div class="card-body">
-      <h3 class="card-title">{{course.description}}</h3>
-      <p class="card-text">{{course.longDescription}}</p>
+<div class="cards-grid">
+  @for (course of courses; track course) {
+    <div class="card course-card">
+      <img class="card-img" [src]="course.iconUrl" [alt]="course.description">
+      <div class="card-body">
+        <h3 class="card-title">{{course.description}}</h3>
+        <p class="card-text">{{course.longDescription}}</p>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-primary" [routerLink]="['/courses', course.id]">View Course</button>
+        <button class="btn btn-ghost" (click)="editCourse(course)">Edit</button>
+      </div>
     </div>
-    <div class="card-actions">
-      <button class="btn btn-primary" [routerLink]="['/courses', course.id]">View Course</button>
-      <button class="btn btn-ghost" (click)="editCourse(course)">Edit</button>
-    </div>
-  </div>
-}
+  }
+</div>
 
 @if (selectedCourse) {
   <div class="modal-backdrop" (click)="selectedCourse = null">

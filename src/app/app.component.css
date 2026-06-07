@@ -2,32 +2,61 @@
 
 .toolbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 56px; background: #1a1a1a; border-bottom: 1px solid #333;
-  display: flex; align-items: center; padding: 0 16px; gap: 12px;
+  height: 64px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #1d1d1d;
+  display: flex; align-items: center;
+  padding: 0 24px; gap: 16px;
 }
+
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex: 1;
+}
+.brand-logo { flex-shrink: 0; }
+.brand-name {
+  font-size: 16px; font-weight: 700; color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.toolbar-links {
+  display: flex; gap: 4px;
+}
+.toolbar-links a {
+  color: #a0aab4; text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  padding: 6px 14px; border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+.toolbar-links a:hover { color: #fff; background: #1a1a1a; }
+.toolbar-links a.active { color: #fff; }
+
 .hamburger {
-  background: none; border: none; color: #fff;
-  font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1;
+  display: none; background: none; border: none; color: #a0aab4;
+  cursor: pointer; padding: 6px; border-radius: 4px;
+  transition: color 0.15s;
 }
-.toolbar-title { font-weight: 600; font-size: 16px; color: #fff; flex: 1; }
-.toolbar-links { display: flex; gap: 20px; }
-.toolbar-links a { color: #a0aab4; text-decoration: none; font-size: 14px; transition: color 0.15s; }
-.toolbar-links a:hover { color: #fff; }
+.hamburger:hover { color: #fff; }
+
+@media (max-width: 680px) {
+  .toolbar-links { display: none; }
+  .hamburger { display: flex; }
+}
 
 .sidenav-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; }
 .sidenav-backdrop.open { display: block; }
 
 .sidenav {
   position: fixed; top: 0; left: -260px; width: 260px; height: 100%;
-  background: #1a1a1a; border-right: 1px solid #333; z-index: 300;
-  transition: left 0.25s ease; padding-top: 16px;
+  background: #0f0f0f; border-right: 1px solid #1d1d1d; z-index: 300;
+  transition: left 0.25s ease; padding: 72px 0 16px;
 }
 .sidenav.open { left: 0; }
 .sidenav ul { list-style: none; padding: 0; margin: 0; }
 .sidenav li a {
-  display: block; padding: 14px 24px; color: #a0aab4;
+  display: block; padding: 12px 24px; color: #a0aab4;
   text-decoration: none; font-size: 15px; transition: background 0.15s, color 0.15s;
 }
-.sidenav li a:hover { background: #242424; color: #fff; }
+.sidenav li a:hover { background: #1a1a1a; color: #fff; }
 
-.main-content { margin-top: 56px; padding: 24px; }
+.main-content { margin-top: 64px; padding: 32px 24px; }

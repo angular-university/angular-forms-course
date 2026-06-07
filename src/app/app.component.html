@@ -1,21 +1,36 @@
 <div class="shell">
   <header class="toolbar">
-    <button class="hamburger" (click)="navOpen = !navOpen">&#9776;</button>
-    <span class="toolbar-title">Angular Forms</span>
+    <a class="brand" routerLink="/">
+      <svg class="brand-logo" width="28" height="28" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="125,2 248,45 215,198 125,248 35,198 2,45" fill="#dd0031"/>
+        <polygon points="125,2 125,248 35,198 2,45" fill="#c3002f"/>
+        <path d="M125 42 L175 175 H155 L141 140 H109 L95 175 H75 Z M125 80 L137 120 H113 Z" fill="white"/>
+      </svg>
+      <span class="brand-name">Angular Forms</span>
+    </a>
+
     <nav class="toolbar-links">
-      <a routerLink="/">Courses</a>
-      <a routerLink="/about">About</a>
-      <a routerLink="/login">Login</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Courses</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
     </nav>
+
+    <button class="hamburger" (click)="navOpen = !navOpen" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
   </header>
 
   <div class="sidenav-backdrop" [class.open]="navOpen" (click)="navOpen = false"></div>
 
   <nav class="sidenav" [class.open]="navOpen" (click)="navOpen = false">
     <ul>
-      <li><a routerLink="/">&#128218; Courses</a></li>
-      <li><a routerLink="/about">&#128172; About</a></li>
-      <li><a routerLink="/login">&#128100; Login</a></li>
+      <li><a routerLink="/">Courses</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><a routerLink="/login">Login</a></li>
     </ul>
   </nav>
 
