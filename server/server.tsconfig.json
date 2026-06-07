@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "lib": ["es2017"]
+    "target": "ES2022",
+    "lib": ["es2022"],
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
+    "noImplicitAny": false
   }
 }
