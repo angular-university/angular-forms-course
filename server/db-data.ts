@@ -1080,9 +1080,80 @@ export const LESSONS = {
     'seqNo': 22,
     courseId: 18,
     videoId: '0Qsg8fyKwO4'
+  },
+
+  // Angular Forms In Depth Course
+
+  112: {
+    id: 112,
+    'description': 'Angular Forms - Helicopter View',
+    'duration': '05:12',
+    'seqNo': 1,
+    courseId: 19
+  },
+  113: {
+    id: 113,
+    'description': 'Template-Driven vs Reactive Forms - When To Use Each',
+    'duration': '06:34',
+    'seqNo': 2,
+    courseId: 19
+  },
+  114: {
+    id: 114,
+    'description': 'Building a Login Form with Template-Driven Forms',
+    'duration': '08:10',
+    'seqNo': 3,
+    courseId: 19
+  },
+  115: {
+    id: 115,
+    'description': 'Introduction to Reactive Forms and FormGroup',
+    'duration': '07:45',
+    'seqNo': 4,
+    courseId: 19
+  },
+  116: {
+    id: 116,
+    'description': 'FormBuilder and FormControl in Depth',
+    'duration': '09:22',
+    'seqNo': 5,
+    courseId: 19
+  },
+  117: {
+    id: 117,
+    'description': 'Built-in Validators and Custom Validators',
+    'duration': '10:05',
+    'seqNo': 6,
+    courseId: 19
+  },
+  118: {
+    id: 118,
+    'description': 'Async Validators - Checking Uniqueness on the Server',
+    'duration': '08:38',
+    'seqNo': 7,
+    courseId: 19
+  },
+  119: {
+    id: 119,
+    'description': 'ControlValueAccessor - Building Custom Form Controls',
+    'duration': '11:14',
+    'seqNo': 8,
+    courseId: 19
+  },
+  120: {
+    id: 120,
+    'description': 'Multi-Step Reactive Forms with Angular Material Stepper',
+    'duration': '09:50',
+    'seqNo': 9,
+    courseId: 19
+  },
+  121: {
+    id: 121,
+    'description': 'Form Arrays and Dynamic Form Controls',
+    'duration': '07:33',
+    'seqNo': 10,
+    courseId: 19
   }
-
-
 
 };
 
