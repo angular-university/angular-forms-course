@@ -23,7 +23,7 @@
           <path fill="url(#ng-logo-c)" d="m222.077 39.192-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"/>
         </g>
       </svg>
-      <span class="brand-name">Angular Forms</span>
+      <span class="brand-name">Angular Forms In Depth (Signals Edition)</span>
     </a>
 
     <nav class="toolbar-links">
@@ -41,7 +41,7 @@
       </a>
     </nav>
 
-    <button class="hamburger" (click)="navOpen = !navOpen" aria-label="Menu">
+    <button class="hamburger" (click)="navOpen.set(!navOpen())" aria-label="Menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
         <rect y="3" width="20" height="2" rx="1"/>
         <rect y="9" width="20" height="2" rx="1"/>
@@ -50,9 +50,9 @@
     </button>
   </header>
 
-  <div class="sidenav-backdrop" [class.open]="navOpen" (click)="navOpen = false"></div>
+  <div class="sidenav-backdrop" [class.open]="navOpen()" (click)="navOpen.set(false)"></div>
 
-  <nav class="sidenav" [class.open]="navOpen" (click)="navOpen = false">
+  <nav class="sidenav" [class.open]="navOpen()" (click)="navOpen.set(false)">
     <ul>
       <li><a routerLink="/">Courses</a></li>
       <li><a routerLink="/about">About</a></li>

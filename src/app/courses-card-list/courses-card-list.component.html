@@ -1,5 +1,5 @@
 <div class="cards-grid">
-  @for (course of courses; track course) {
+  @for (course of courses(); track course.id) {
     <div class="card course-card">
       <img class="card-img" [src]="course.iconUrl" [alt]="course.description">
       <div class="card-body">
@@ -20,13 +20,13 @@
   }
 </div>
 
-@if (selectedCourse) {
-  <div class="modal-backdrop" (click)="selectedCourse = null">
+@if (selectedCourse()) {
+  <div class="modal-backdrop" (click)="selectedCourse.set(null)">
     <div class="modal" (click)="$event.stopPropagation()">
       <course-dialog
-        [course]="selectedCourse"
-        (saved)="selectedCourse = null"
-        (closed)="selectedCourse = null">
+        [course]="selectedCourse()!"
+        (saved)="selectedCourse.set(null)"
+        (closed)="selectedCourse.set(null)">
       </course-dialog>
     </div>
   </div>

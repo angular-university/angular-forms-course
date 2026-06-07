@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesService } from '../../services/courses.service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { courseTitleValidator } from '../../validators/course-title.validator';
 import { AsyncPipe } from '@angular/common';
@@ -15,7 +15,7 @@ interface CourseCategory {
   selector: 'create-course-step-1',
   templateUrl: './create-course-step-1.component.html',
   styleUrls: ['./create-course-step-1.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule, AsyncPipe]
 })
 export class CreateCourseStep1Component implements OnInit {
@@ -36,7 +36,7 @@ export class CreateCourseStep1Component implements OnInit {
   constructor(private fb: FormBuilder, private courses: CoursesService) {}
 
   ngOnInit() {
-    this.courseCategories$ = this.courses.findCourseCategories();
+    this.courseCategories$ = from(this.courses.findCourseCategories());
 
     const draft = localStorage.getItem('STEP_1');
     if (draft) { this.form.setValue(JSON.parse(draft)); }

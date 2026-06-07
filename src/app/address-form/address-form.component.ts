@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, multi: true, useExisting: AddressFormComponent }],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule]
 })
 export class AddressFormComponent implements ControlValueAccessor, OnDestroy {

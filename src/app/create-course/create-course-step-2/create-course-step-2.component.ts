@@ -7,7 +7,7 @@ import { FileUploadComponent } from '../../file-upload/file-upload.component';
   selector: 'create-course-step-2',
   templateUrl: 'create-course-step-2.component.html',
   styleUrls: ['create-course-step-2.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule, FileUploadComponent]
 })
 export class CreateCourseStep2Component implements OnInit {

@@ -5,7 +5,7 @@ import { FormArray, FormBuilder, Validators, FormsModule, ReactiveFormsModule } 
   selector: 'create-course-step-3',
   templateUrl: 'create-course-step-3.component.html',
   styleUrls: ['create-course-step-3.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, ReactiveFormsModule]
 })
 export class CreateCourseStep3Component {

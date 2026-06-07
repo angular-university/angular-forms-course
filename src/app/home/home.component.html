@@ -5,14 +5,14 @@
   </div>
 
   <div class="tabs">
-    <div class="tab" [class.active]="activeTab === 'beginner'" (click)="activeTab = 'beginner'">Beginners</div>
-    <div class="tab" [class.active]="activeTab === 'advanced'" (click)="activeTab = 'advanced'">Advanced</div>
+    <div class="tab" [class.active]="activeTab() === 'beginner'" (click)="activeTab.set('beginner')">Beginners</div>
+    <div class="tab" [class.active]="activeTab() === 'advanced'" (click)="activeTab.set('advanced')">Advanced</div>
   </div>
 
-  @if (activeTab === 'beginner') {
-    <courses-card-list [courses]="beginnerCourses$ | async"></courses-card-list>
+  @if (activeTab() === 'beginner') {
+    <courses-card-list [courses]="beginnerCourses()"></courses-card-list>
   }
-  @if (activeTab === 'advanced') {
-    <courses-card-list [courses]="advancedCourses$ | async"></courses-card-list>
+  @if (activeTab() === 'advanced') {
+    <courses-card-list [courses]="advancedCourses()"></courses-card-list>
   }
 </div>

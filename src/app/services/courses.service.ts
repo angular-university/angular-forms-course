@@ -1,63 +1,40 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Course } from '../model/course';
+import { Lesson } from '../model/lesson';
 
-
-import {Injectable} from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Course} from "../model/course";
-import {map} from "rxjs/operators";
-import {Lesson} from "../model/lesson";
-
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CoursesService {
+  private http = inject(HttpClient);
 
-    constructor(private http:HttpClient) {
+  findCourseById(courseId: number): Promise<Course> {
+    return this.http.get<Course>(`/api/courses/${courseId}`).toPromise() as Promise<Course>;
+  }
 
-    }
+  findCourseCategories(): Promise<any[]> {
+    return this.http.get<any>('/api/course-categories').pipe(
+      map(res => res['categories'])
+    ).toPromise() as Promise<any[]>;
+  }
 
-    findCourseById(courseId: number): Observable<Course> {
-        return this.http.get<Course>(`/api/courses/${courseId}`);
-    }
+  findAllCourses(): Promise<Course[]> {
+    return this.http.get<any>('/api/courses').pipe(
+      map(res => res['payload'] as Course[])
+    ).toPromise() as Promise<Course[]>;
+  }
 
-    findCourseCategories() {
-      return this.http.get(`/api/course-categories`)
-        .pipe(
-          map(res => res["categories"])
-        );
-    }
-
-    findAllCourses(): Observable<Course[]> {
-        return this.http.get('/api/courses')
-            .pipe(
-                map(res => res['payload'])
-            );
-    }
-
-    findAllCourseLessons(courseId:number): Observable<Lesson[]> {
-        return this.http.get('/api/lessons', {
-            params: new HttpParams()
-                .set('courseId', courseId.toString())
-                .set('pageNumber', "0")
-                .set('pageSize', "1000")
-        }).pipe(
-            map(res =>  res["payload"])
-        );
-    }
-
-    findLessons(
-        courseId:number, filter = '', sortOrder = 'asc',
-        pageNumber = 0, pageSize = 3):  Observable<Lesson[]> {
-
-        return this.http.get('/api/lessons', {
-            params: new HttpParams()
-                .set('courseId', courseId.toString())
-                .set('filter', filter)
-                .set('sortOrder', sortOrder)
-                .set('pageNumber', pageNumber.toString())
-                .set('pageSize', pageSize.toString())
-        }).pipe(
-            map(res =>  res["payload"])
-        );
-    }
-
+  findLessons(
+    courseId: number, filter = '', sortOrder = 'asc',
+    pageNumber = 0, pageSize = 3
+  ): Promise<Lesson[]> {
+    return this.http.get<any>('/api/lessons', {
+      params: new HttpParams()
+        .set('courseId', courseId.toString())
+        .set('filter', filter)
+        .set('sortOrder', sortOrder)
+        .set('pageNumber', pageNumber.toString())
+        .set('pageSize', pageSize.toString())
+    }).pipe(map(res => res['payload'] as Lesson[])).toPromise() as Promise<Lesson[]>;
+  }
 }

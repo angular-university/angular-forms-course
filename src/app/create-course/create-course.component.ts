@@ -7,7 +7,7 @@ import { CreateCourseStep3Component } from './create-course-step-3/create-course
   selector: 'create-course',
   templateUrl: './create-course.component.html',
   styleUrls: ['./create-course.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CreateCourseStep1Component, CreateCourseStep2Component, CreateCourseStep3Component]
 })
 export class CreateCourseComponent {

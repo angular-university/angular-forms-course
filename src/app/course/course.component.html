@@ -1,12 +1,12 @@
 <div class="course">
-  <h2>{{course?.description}}</h2>
-  <img class="course-thumbnail" [src]="course?.iconUrl">
+  <h2>{{course().description}}</h2>
+  <img class="course-thumbnail" [src]="course().iconUrl">
 
   <div class="field">
-    <input placeholder="Search lessons" #input>
+    <input placeholder="Search lessons" [value]="rawSearch()" (input)="onSearch($event)">
   </div>
 
-  @if (dataSource.loading$ | async) {
+  @if (loading()) {
     <div class="spinner"></div>
   }
 
@@ -14,13 +14,13 @@
     <table>
       <thead>
         <tr>
-          <th class="sortable" (click)="toggleSort()"># {{sortDirection === 'asc' ? '↑' : '↓'}}</th>
+          <th class="sortable" (click)="toggleSort()"># {{sortDirection() === 'asc' ? '↑' : '↓'}}</th>
           <th>Description</th>
           <th>Duration</th>
         </tr>
       </thead>
       <tbody>
-        @for (lesson of dataSource.lessons$ | async; track lesson) {
+        @for (lesson of lessons(); track lesson.id) {
           <tr>
             <td>{{lesson.seqNo}}</td>
             <td class="description-cell">{{lesson.description}}</td>
@@ -32,8 +32,8 @@
   </div>
 
   <div class="pagination">
-    <button class="btn btn-ghost" (click)="prevPage()" [disabled]="pageIndex === 0">&#8592; Prev</button>
-    <span class="page-info">Page {{pageIndex + 1}}</span>
-    <button class="btn btn-ghost" (click)="nextPage()" [disabled]="(pageIndex + 1) * pageSize >= (course?.lessonsCount || 0)">Next &#8594;</button>
+    <button class="btn btn-ghost" (click)="prevPage()" [disabled]="pageIndex() === 0">&#8592; Prev</button>
+    <span class="page-info">Page {{pageIndex() + 1}}</span>
+    <button class="btn btn-ghost" (click)="nextPage()" [disabled]="(pageIndex() + 1) * pageSize >= course().lessonsCount">Next &#8594;</button>
   </div>
 </div>

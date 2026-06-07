@@ -12,7 +12,7 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
     { provide: NG_VALUE_ACCESSOR, multi: true, useExisting: FileUploadComponent },
     { provide: NG_VALIDATORS, multi: true, useExisting: FileUploadComponent }
   ],
-  changeDetection: ChangeDetectionStrategy.Eager
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
   @Input() requiredFileType: string;
