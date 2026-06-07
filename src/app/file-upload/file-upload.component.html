@@ -1,25 +1,14 @@
+<input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
-<input type="file" class="file-input"
-  (change)="onFileSelected($event)" #fileUpload>
-
-<div class="file-upload">
-
-  <mat-form-field>
-
-    <input matInput [disabled]="true" [value]="fileName">
-
-  </mat-form-field>
-
-  <button mat-mini-fab color="primary" class="upload-btn"
-    (click)="onClick(fileUpload)" [disabled]="disabled">
-    <mat-icon>attach_file</mat-icon>
-
-  </button>
-
+<div class="file-upload-row">
+  <div class="field file-field">
+    <input [disabled]="true" [value]="fileName" placeholder="No file chosen" readonly>
+  </div>
+  <button class="btn-icon" type="button" (click)="onClick(fileUpload)" [disabled]="disabled" title="Attach file">📎</button>
 </div>
 
 @if (uploadProgress) {
-  <mat-progress-bar class="progress-bar" mode="determinate"
-    [value]="uploadProgress">
-  </mat-progress-bar>
+  <div class="progress-bar">
+    <div class="progress-bar-fill" [style.width.%]="uploadProgress"></div>
+  </div>
 }

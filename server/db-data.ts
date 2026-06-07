@@ -1162,7 +1162,7 @@ export const USERS = {
   1: {
     id: 1,
     email: 'test@angular-university.io',
-    password: 'test',
+    password: 'Testing123',
     pictureUrl: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png'
   }
 

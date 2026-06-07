@@ -1,65 +1,39 @@
 <div class="course">
-
   <h2>{{course?.description}}</h2>
+  <img class="course-thumbnail" [src]="course?.iconUrl">
 
-  <img class="course-thumbnail" [src]="$safeNavigationMigration(course?.iconUrl)">
-
-  <mat-form-field>
-
-    <input matInput placeholder="Search lessons" #input>
-
-  </mat-form-field>
+  <div class="field">
+    <input placeholder="Search lessons" #input>
+  </div>
 
   @if (dataSource.loading$ | async) {
-    <div class="spinner-container">
-      <mat-spinner></mat-spinner>
-    </div>
+    <div class="spinner"></div>
   }
 
-  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
-    matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+  <div class="card table-card">
+    <table>
+      <thead>
+        <tr>
+          <th class="sortable" (click)="toggleSort()"># {{sortDirection === 'asc' ? '↑' : '↓'}}</th>
+          <th>Description</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (lesson of dataSource.lessons$ | async; track lesson) {
+          <tr>
+            <td>{{lesson.seqNo}}</td>
+            <td class="description-cell">{{lesson.description}}</td>
+            <td class="duration-cell">{{lesson.duration}}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 
-    <ng-container matColumnDef="seqNo">
-
-      <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
-
-      <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
-
-    </ng-container>
-
-    <ng-container matColumnDef="description">
-
-      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
-
-      <mat-cell class="description-cell"
-      *matCellDef="let lesson">{{lesson.description}}</mat-cell>
-
-    </ng-container>
-
-    <ng-container matColumnDef="duration">
-
-      <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
-
-      <mat-cell class="duration-cell"
-      *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
-
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-  </mat-table>
-
-
-  <mat-paginator [length]="$safeNavigationMigration(course?.lessonsCount)" [pageSize]="3"
-  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
-
-
+  <div class="pagination">
+    <button class="btn btn-ghost" (click)="prevPage()" [disabled]="pageIndex === 0">&#8592; Prev</button>
+    <span class="page-info">Page {{pageIndex + 1}}</span>
+    <button class="btn btn-ghost" (click)="nextPage()" [disabled]="(pageIndex + 1) * pageSize >= (course?.lessonsCount || 0)">Next &#8594;</button>
+  </div>
 </div>
-
-
-
-
-
-

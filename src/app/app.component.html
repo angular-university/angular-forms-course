@@ -1,41 +1,25 @@
-<mat-sidenav-container fullscreen>
+<div class="shell">
+  <header class="toolbar">
+    <button class="hamburger" (click)="navOpen = !navOpen">&#9776;</button>
+    <span class="toolbar-title">Angular Forms</span>
+    <nav class="toolbar-links">
+      <a routerLink="/">Courses</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/login">Login</a>
+    </nav>
+  </header>
 
-    <mat-sidenav #start>
-        <mat-nav-list (click)="start.close()">
+  <div class="sidenav-backdrop" [class.open]="navOpen" (click)="navOpen = false"></div>
 
-            <a mat-list-item routerLink="/">
-                <mat-icon>library_books</mat-icon>
-                <span>Courses</span>
-            </a>
+  <nav class="sidenav" [class.open]="navOpen" (click)="navOpen = false">
+    <ul>
+      <li><a routerLink="/">&#128218; Courses</a></li>
+      <li><a routerLink="/about">&#128172; About</a></li>
+      <li><a routerLink="/login">&#128100; Login</a></li>
+    </ul>
+  </nav>
 
-            <a mat-list-item routerLink="/about">
-                <mat-icon>question_answer</mat-icon>
-                <span>About</span>
-            </a>
-            <a mat-list-item>
-                <mat-icon>person_add</mat-icon>
-                <span>Register</span>
-            </a>
-
-            <a mat-list-item routerLink="/login">
-                <mat-icon>account_circle</mat-icon>
-                <span>Login</span>
-            </a>
-
-        </mat-nav-list>
-
-    </mat-sidenav>
-
-    <mat-toolbar color="primary">
-        <button mat-icon-button (click)="start.open('mouse')">
-            <mat-icon>menu</mat-icon>
-        </button>
-    </mat-toolbar>
-
-    <div class="main-content">
-
-        <router-outlet></router-outlet>
-
-    </div>
-
-</mat-sidenav-container>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

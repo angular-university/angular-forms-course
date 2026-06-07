@@ -1,71 +1,34 @@
-
 <div [formGroup]="form">
-
-  <mat-form-field>
-
-    <input matInput placeholder="Course title" formControlName="title" #title>
-
-    <mat-hint align="end">
-      {{ title.value.length }} / 60
-    </mat-hint>
-
-    @if (courseTitle.errors?.titleExists) {
-      <mat-error>
-      This title is already being used.</mat-error>
+  <div class="field">
+    <label>Course Title</label>
+    <input formControlName="title" placeholder="Course title" #title>
+    <div class="hint">{{title.value.length}} / 60</div>
+    @if (courseTitle.errors?.['titleExists']) {
+      <div class="err">This title is already being used.</div>
     }
+  </div>
 
-  </mat-form-field>
-
-  <mat-form-field>
-
-    <mat-select placeholder="Select category" formControlName="category">
-
-      @for (category of (courseCategories$ | async); track category) {
-        <mat-option [value]="category.code">{{category.description}}</mat-option>
+  <div class="field">
+    <label>Category</label>
+    <select formControlName="category">
+      @for (cat of courseCategories$ | async; track cat) {
+        <option [value]="cat.code">{{cat.description}}</option>
       }
+    </select>
+  </div>
 
-    </mat-select>
+  <div class="field">
+    <label>Release Date</label>
+    <input type="date" formControlName="releasedAt">
+  </div>
 
-  </mat-form-field>
+  <div class="field inline">
+    <input type="checkbox" id="downloads" formControlName="downloadsAllowed">
+    <label for="downloads">Downloads allowed?</label>
+  </div>
 
-  <mat-form-field>
-
-    <input matInput [matDatepicker]="releaseDatePicker"
-      formControlName="releasedAt"
-      placeholder="Release date">
-
-    <mat-datepicker-toggle matSuffix
-    [for]="releaseDatePicker"></mat-datepicker-toggle>
-
-    <mat-datepicker #releaseDatePicker></mat-datepicker>
-
-  </mat-form-field>
-
-  <mat-checkbox color="primary" formControlName="downloadsAllowed">
-    Downloads allowed?
-  </mat-checkbox>
-
-  <mat-form-field appearance="outline">
-
-    <textarea matInput placeholder="Description" formControlName="longDescription">
-
-    </textarea>
-
-  </mat-form-field>
-
+  <div class="field">
+    <label>Description</label>
+    <textarea formControlName="longDescription" placeholder="Course description" rows="4"></textarea>
+  </div>
 </div>
-
-<!--div class="form-val">
-
-{{form.value | json}}
-
-</div-->
-
-
-
-
-
-
-
-
-

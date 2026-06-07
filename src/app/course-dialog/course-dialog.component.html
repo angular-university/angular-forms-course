@@ -1,71 +1,32 @@
+<h2 class="modal-title">{{course.description}}</h2>
 
-<h2 mat-dialog-title>{{description}}</h2>
+<form [formGroup]="form">
+  <div class="field">
+    <label>Course Description</label>
+    <input formControlName="description" placeholder="Course description">
+  </div>
 
+  <div class="field">
+    <label>Category</label>
+    <select formControlName="category">
+      <option value="BEGINNER">Beginner</option>
+      <option value="INTERMEDIATE">Intermediate</option>
+      <option value="ADVANCED">Advanced</option>
+    </select>
+  </div>
 
-<mat-dialog-content [formGroup]="form">
+  <div class="field">
+    <label>Release Date</label>
+    <input type="date" formControlName="releasedAt">
+  </div>
 
-    <mat-form-field>
+  <div class="field">
+    <label>Long Description</label>
+    <textarea formControlName="longDescription" rows="4" placeholder="Long description"></textarea>
+  </div>
+</form>
 
-        <input matInput
-                placeholder="Course Description"
-               formControlName="description">
-
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <mat-select placeholder="Select category"
-            formControlName="category">
-
-            <mat-option value="BEGINNER">
-                Beginner</mat-option>
-            <mat-option value="INTERMEDIATE">
-                Intermediate</mat-option>
-            <mat-option value="ADVANCED">
-                Advanced</mat-option>
-
-        </mat-select>
-
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <input matInput [matDatepicker]="myDatepicker"
-            formControlName="releasedAt">
-
-        <mat-datepicker-toggle matSuffix
-                               [for]="myDatepicker">
-
-        </mat-datepicker-toggle>
-
-        <mat-datepicker #myDatepicker></mat-datepicker>
-
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <textarea matInput placeholder="Description"
-            formControlName="longDescription">
-
-        </textarea>
-
-    </mat-form-field>
-
-
-</mat-dialog-content>
-
-<mat-dialog-actions>
-
-    <button mat-raised-button
-            (click)="close()">
-        Close
-    </button>
-
-    <button mat-raised-button color="primary"
-            (click)="save()">
-        Save
-    </button>
-
-</mat-dialog-actions>
-
-
+<div class="modal-actions">
+  <button class="btn btn-ghost" (click)="close()">Close</button>
+  <button class="btn btn-primary" (click)="save()">Save</button>
+</div>

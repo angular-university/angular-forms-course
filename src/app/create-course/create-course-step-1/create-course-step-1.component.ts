@@ -1,74 +1,50 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {CoursesService} from '../../services/courses.service';
-import {Observable} from 'rxjs';
-import {filter} from 'rxjs/operators';
-import {courseTitleValidator} from '../../validators/course-title.validator';
-import { MatFormField, MatInput, MatHint, MatError, MatSuffix } from '@angular/material/input';
-import { MatSelect, MatOption } from '@angular/material/select';
-import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoursesService } from '../../services/courses.service';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { courseTitleValidator } from '../../validators/course-title.validator';
 import { AsyncPipe } from '@angular/common';
 
 interface CourseCategory {
-    code:string;
-    description:string;
+  code: string;
+  description: string;
 }
 
 @Component({
-    selector: 'create-course-step-1',
-    templateUrl: './create-course-step-1.component.html',
-    styleUrls: ['./create-course-step-1.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatInput, MatHint, MatError, MatSelect, MatOption, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker, MatCheckbox, AsyncPipe]
+  selector: 'create-course-step-1',
+  templateUrl: './create-course-step-1.component.html',
+  styleUrls: ['./create-course-step-1.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [FormsModule, ReactiveFormsModule, AsyncPipe]
 })
 export class CreateCourseStep1Component implements OnInit {
-
   form = this.fb.group({
-      title: ['', {
-          validators: [
-              Validators.required,
-              Validators.minLength(5),
-              Validators.maxLength(60)
-          ],
-          asyncValidators: [courseTitleValidator(this.courses)],
-          updateOn: 'blur'
-      }],
-      releasedAt: [new Date(), Validators.required],
-      category: ['BEGINNER', Validators.required],
-      downloadsAllowed: [false, Validators.requiredTrue],
-      longDescription: ['', [Validators.required, Validators.minLength(3)]]
-      //address: [null, Validators.required]
+    title: ['', {
+      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(60)],
+      asyncValidators: [courseTitleValidator(this.courses)],
+      updateOn: 'blur'
+    }],
+    releasedAt: [new Date(), Validators.required],
+    category: ['BEGINNER', Validators.required],
+    downloadsAllowed: [false, Validators.requiredTrue],
+    longDescription: ['', [Validators.required, Validators.minLength(3)]]
   });
 
-  courseCategories$ : Observable<CourseCategory[]>;
+  courseCategories$: Observable<CourseCategory[]>;
 
-
-  constructor(private fb: FormBuilder, private courses:CoursesService) {
-
-  }
+  constructor(private fb: FormBuilder, private courses: CoursesService) {}
 
   ngOnInit() {
+    this.courseCategories$ = this.courses.findCourseCategories();
 
-      this.courseCategories$ = this.courses.findCourseCategories();
+    const draft = localStorage.getItem('STEP_1');
+    if (draft) { this.form.setValue(JSON.parse(draft)); }
 
-      const draft = localStorage.getItem("STEP_1");
-
-      if (draft) {
-          this.form.setValue(JSON.parse(draft));
-      }
-
-      this.form.valueChanges
-          .pipe(
-              filter(() => this.form.valid)
-          )
-          .subscribe( val => localStorage.setItem("STEP_1", JSON.stringify(val)));
-
-
+    this.form.valueChanges
+      .pipe(filter(() => this.form.valid))
+      .subscribe(val => localStorage.setItem('STEP_1', JSON.stringify(val)));
   }
 
-  get courseTitle() {
-      return this.form.controls['title'];
-  }
-
+  get courseTitle() { return this.form.controls['title']; }
 }

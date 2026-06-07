@@ -1,49 +1,23 @@
 <fieldset [formGroup]="form">
+  <legend>{{legend}}</legend>
 
-    <legend>{{legend}}</legend>
+  <div class="field">
+    <label>Address Line 1</label>
+    <input formControlName="addressLine1" placeholder="Address Line 1" (blur)="onTouched()">
+  </div>
 
-    <mat-form-field>
+  <div class="field">
+    <label>Address Line 2</label>
+    <input formControlName="addressLine2" placeholder="Address Line 2" (blur)="onTouched()">
+  </div>
 
-        <input matInput
-               placeholder="Address Line 1"
-               formControlName="addressLine1" (blur)="onTouched()">
+  <div class="field">
+    <label>Zip Code</label>
+    <input formControlName="zipCode" placeholder="Zip Code" (blur)="onTouched()">
+  </div>
 
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <input matInput
-               placeholder="Address Line 2"
-               formControlName="addressLine2" (blur)="onTouched()">
-
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <input matInput
-               placeholder="Zip Code"
-               formControlName="zipCode" (blur)="onTouched()">
-
-    </mat-form-field>
-
-    <mat-form-field>
-
-        <input matInput
-               placeholder="City"
-               formControlName="city" (blur)="onTouched()">
-
-    </mat-form-field>
-
-    <div class="form-val">
-
-        {{form.value | json}}
-
-    </div>
-
-    <div class="form-val">
-
-        {{form.valid | json}}
-
-    </div>
-
+  <div class="field">
+    <label>City</label>
+    <input formControlName="city" placeholder="City" (blur)="onTouched()">
+  </div>
 </fieldset>

@@ -1,18 +1,7 @@
-
-
-.login-page {
-  max-width: 350px;
-  margin: 50px auto 0 auto;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.test-input {
-  border-bottom: 1px solid grey;
-  margin-bottom: 10px;
-}
-
-
+.login-page { max-width: 400px; margin: 40px auto 0; }
+.login-card { padding: 32px; }
+.login-title { margin: 0 0 24px; font-size: 20px; font-weight: 600; }
+.login-form { display: flex; flex-direction: column; }
+.form-actions { display: flex; gap: 10px; margin-top: 8px; }
+.field-msg { color: #f44336; font-size: 12px; margin-bottom: 12px; }
+.debug { color: #a0aab4; font-size: 12px; margin-top: 20px; white-space: pre-wrap; word-break: break-all; }

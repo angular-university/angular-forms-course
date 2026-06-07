@@ -1,22 +1,25 @@
-
-
 @for (course of courses; track course) {
-  <mat-card class="course-card mat-elevation-z10">
-    <mat-card-header>
-      <mat-card-title>{{course.description}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="course.iconUrl">
-    <mat-card-content>
-      <p>{{course.longDescription}}</p>
-    </mat-card-content>
-    <mat-card-actions class="course-actions">
-      <button mat-button mat-raised-button color="primary" [routerLink]="['/courses', course.id]">
-        VIEW COURSE
-      </button>
-      <button mat-button mat-raised-button color="accent"
-        (click)="editCourse(course)">
-        EDIT
-      </button>
-    </mat-card-actions>
-  </mat-card>
+  <div class="card course-card">
+    <img class="card-img" [src]="course.iconUrl" [alt]="course.description">
+    <div class="card-body">
+      <h3 class="card-title">{{course.description}}</h3>
+      <p class="card-text">{{course.longDescription}}</p>
+    </div>
+    <div class="card-actions">
+      <button class="btn btn-primary" [routerLink]="['/courses', course.id]">View Course</button>
+      <button class="btn btn-ghost" (click)="editCourse(course)">Edit</button>
+    </div>
+  </div>
+}
+
+@if (selectedCourse) {
+  <div class="modal-backdrop" (click)="selectedCourse = null">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <course-dialog
+        [course]="selectedCourse"
+        (saved)="selectedCourse = null"
+        (closed)="selectedCourse = null">
+      </course-dialog>
+    </div>
+  </div>
 }

@@ -1,86 +1,62 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort, MatSortHeader } from "@angular/material/sort";
-import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from "@angular/material/table";
-import {Course} from "../model/course";
-import {CoursesService} from "../services/courses.service";
-import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
-import {merge, fromEvent} from "rxjs";
-import {LessonsDataSource} from "../services/lessons.datasource";
-import { MatFormField, MatInput } from '@angular/material/input';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { LessonsDataSource } from '../services/lessons.datasource';
 import { AsyncPipe } from '@angular/common';
 
-
 @Component({
-    selector: 'course',
-    templateUrl: './course.component.html',
-    styleUrls: ['./course.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [MatFormField, MatInput, MatProgressSpinner, MatTable, MatSort, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatSortHeader, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatPaginator, AsyncPipe]
+  selector: 'course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [AsyncPipe]
 })
 export class CourseComponent implements OnInit, AfterViewInit {
+  course: Course;
+  dataSource: LessonsDataSource;
 
-    course:Course;
+  @ViewChild('input', { static: true }) input: ElementRef;
 
-    dataSource: LessonsDataSource;
+  pageIndex = 0;
+  pageSize = 3;
+  sortDirection: 'asc' | 'desc' = 'asc';
 
-    displayedColumns= ["seqNo", "description", "duration"];
+  constructor(private route: ActivatedRoute, private coursesService: CoursesService) {}
 
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  ngOnInit() {
+    this.course = this.route.snapshot.data['course'];
+    this.dataSource = new LessonsDataSource(this.coursesService);
+    this.dataSource.loadLessons(this.course.id, '', this.sortDirection, 0, this.pageSize);
+  }
 
-    @ViewChild(MatSort, { static: true }) sort: MatSort;
+  ngAfterViewInit() {
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(debounceTime(150), distinctUntilChanged(), tap(() => {
+        this.pageIndex = 0;
+        this.loadLessonsPage();
+      }))
+      .subscribe();
+  }
 
-    @ViewChild('input', { static: true }) input: ElementRef;
+  toggleSort() {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.pageIndex = 0;
+    this.loadLessonsPage();
+  }
 
-    constructor(private route: ActivatedRoute,
-                private coursesService: CoursesService) {
+  nextPage() { this.pageIndex++; this.loadLessonsPage(); }
+  prevPage() { if (this.pageIndex > 0) { this.pageIndex--; this.loadLessonsPage(); } }
 
-    }
-
-    ngOnInit() {
-
-        this.course = this.route.snapshot.data["course"];
-
-        this.dataSource = new LessonsDataSource(this.coursesService);
-
-        this.dataSource.loadLessons(this.course.id, '', 'asc', 0, 3);
-
-    }
-
-    ngAfterViewInit() {
-
-        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-        fromEvent(this.input.nativeElement,'keyup')
-            .pipe(
-                debounceTime(150),
-                distinctUntilChanged(),
-                tap(() => {
-                    this.paginator.pageIndex = 0;
-
-                    this.loadLessonsPage();
-                })
-            )
-            .subscribe();
-
-        merge(this.sort.sortChange, this.paginator.page)
-        .pipe(
-            tap(() => this.loadLessonsPage())
-        )
-        .subscribe();
-
-    }
-
-    loadLessonsPage() {
-        this.dataSource.loadLessons(
-            this.course.id,
-            this.input.nativeElement.value,
-            this.sort.direction,
-            this.paginator.pageIndex,
-            this.paginator.pageSize);
-    }
-
-
+  loadLessonsPage() {
+    this.dataSource.loadLessons(
+      this.course.id,
+      this.input.nativeElement.value,
+      this.sortDirection,
+      this.pageIndex,
+      this.pageSize
+    );
+  }
 }

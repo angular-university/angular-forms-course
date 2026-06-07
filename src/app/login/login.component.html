@@ -1,77 +1,43 @@
-<mat-card class="login-page">
-  <mat-card-title>Login (Reactive)</mat-card-title>
-  <mat-card-content>
+<div class="login-page">
+  <div class="card login-card">
+    <h2 class="login-title">Login</h2>
 
-    <form class="login-form data-form" [formGroup]="form">
-
-      <mat-form-field>
-
-        <input matInput type="email" name="email"
-          placeholder="Email" formControlName="email">
-
-        @if (email.errors?.required) {
-          <mat-error>The email is mandatory.</mat-error>
+    <form class="login-form" [formGroup]="form">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="your@email.com">
+        @if (email.errors?.['required'] && email.touched) {
+          <div class="err">Email is required.</div>
         }
-
-        @if (email.errors?.minlength) {
-          <mat-error>
-            Your email must have minimum {{email.errors?.minlength.requiredLength}} chars,
-            but it only has {{email.errors?.minlength.actualLength}}.
-          </mat-error>
+        @if (email.errors?.['email'] && email.touched) {
+          <div class="err">Enter a valid email address.</div>
         }
+      </div>
 
-        @if (email.errors?.email) {
-          <mat-error>This is not a valid email.</mat-error>
-        }
-
-      </mat-form-field>
-
-      <mat-form-field>
-
-        <input matInput type="password"
-          placeholder="Password" formControlName="password">
-
-        @if (password.errors?.required) {
-          <mat-error>The password is mandatory.</mat-error>
-        }
-
-      </mat-form-field>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Password">
+      </div>
 
       @if (password.errors | onlyOneError:['minlength','passwordStrength']; as error) {
         @if (error.minlength) {
-          <div class="field-message">
-            Your password must have minimum {{error.minlength.requiredLength}} chars,
-            but it only has {{error.minlength.actualLength}}.
+          <div class="field-msg">
+            Minimum {{error.minlength.requiredLength}} characters
+            ({{error.minlength.actualLength}} entered).
           </div>
         }
         @if (error.passwordStrength) {
-          <div class="field-message">
-            Your password must have lower case, upper case and numeric characters.
-          </div>
+          <div class="field-msg">Must contain lower, upper and numeric characters.</div>
         }
       }
 
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()">
-        Login
-      </button>
-
-      <button mat-raised-button   (click)="reset()">
-        Reset
-      </button>
-
+      <div class="form-actions">
+        <button class="btn btn-primary" [disabled]="!form.valid" (click)="login()">Login</button>
+        <button class="btn btn-ghost" type="button" (click)="reset()">Reset</button>
+      </div>
     </form>
 
-    <div class="form-val">
-
-      {{form.value | json }}
-
-    </div>
-
-    <div class="form-val">
-
-      {{form.valid}}
-
-    </div>
-
-  </mat-card-content>
-</mat-card>
+    <pre class="debug">{{form.value | json}}</pre>
+    <div class="debug">Valid: {{form.valid}}</div>
+  </div>
+</div>

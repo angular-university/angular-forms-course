@@ -1,18 +1,10 @@
+.file-input { display: none; }
 
-.file-input {
-  display: none;
+.file-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
-.file-upload {
-display: flex;
-  align-items: flex-end;
-}
-
-.upload-btn {
-  margin-left: 10px;
-  margin-bottom:15px;
-}
-
-.progress-bar {
-  margin-bottom: 10px;
-}
+.file-field { flex: 1; margin-bottom: 0; }

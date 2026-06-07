@@ -1,4 +1,1 @@
-
-.course-image {
-    max-width: 200px;
-}
+.course-image { max-width: 200px; border-radius: 6px; }

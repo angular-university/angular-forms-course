@@ -1,40 +1,18 @@
-
 <div class="courses-panel">
-
   <div class="header">
-
     <h2 class="title">All Courses</h2>
-
-    <button mat-mini-fab routerLink="/add-new-course">
-      <mat-icon class="add-course-btn">add</mat-icon>
-    </button>
-
+    <button class="btn-icon" routerLink="/add-new-course" title="Add course">+</button>
   </div>
 
+  <div class="tabs">
+    <div class="tab" [class.active]="activeTab === 'beginner'" (click)="activeTab = 'beginner'">Beginners</div>
+    <div class="tab" [class.active]="activeTab === 'advanced'" (click)="activeTab = 'advanced'">Advanced</div>
+  </div>
 
-    <mat-tab-group>
-
-        <mat-tab label="Beginners">
-
-            <courses-card-list
-                    [courses]="beginnerCourses$ | async">
-
-            </courses-card-list>
-
-        </mat-tab>
-
-        <mat-tab label="Advanced">
-
-            <courses-card-list
-                    [courses]="advancedCourses$ | async"
-
-            ></courses-card-list>
-
-        </mat-tab>
-
-    </mat-tab-group>
-
-
-
+  @if (activeTab === 'beginner') {
+    <courses-card-list [courses]="beginnerCourses$ | async"></courses-card-list>
+  }
+  @if (activeTab === 'advanced') {
+    <courses-card-list [courses]="advancedCourses$ | async"></courses-card-list>
+  }
 </div>
-

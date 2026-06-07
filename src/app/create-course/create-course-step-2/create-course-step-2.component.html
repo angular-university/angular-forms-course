@@ -1,56 +1,34 @@
-
 <div [formGroup]="form">
+  <div class="field">
+    <label>Course Type</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" formControlName="courseType" value="free"> Free
+      </label>
+      <label class="radio-option">
+        <input type="radio" formControlName="courseType" value="premium"> Premium
+      </label>
+    </div>
+  </div>
 
-  <mat-radio-group formControlName="courseType">
+  <file-upload formControlName="thumbnail" requiredFileType="image/png"></file-upload>
 
-    <mat-radio-button value="free">Free</mat-radio-button>
+  <div class="field">
+    <label>Price</label>
+    <input type="number" formControlName="price" placeholder="Price">
+  </div>
 
-    <mat-radio-button value="premium">Premium</mat-radio-button>
+  <div class="field">
+    <label>Promo Start Date</label>
+    <input type="date" formControlName="promoStartAt">
+  </div>
 
-  </mat-radio-group>
+  <div class="field">
+    <label>Promo End Date</label>
+    <input type="date" formControlName="promoEndAt">
+  </div>
 
-  <file-upload formControlName="thumbnail"
-  requiredFileType="image/png"></file-upload>
-
-  <mat-form-field>
-
-    <input type="number" matInput placeholder="Price" formControlName="price">
-
-  </mat-form-field>
-
-  <mat-form-field>
-
-    <mat-label>Promotional period</mat-label>
-
-    <mat-date-range-input [rangePicker]="promoPicker">
-
-      <input matStartDate placeholder="Start date" formControlName="promoStartAt">
-
-      <input matEndDate placeholder="End date" formControlName="promoEndAt">
-
-    </mat-date-range-input>
-
-    @if (form.errors?.promoPeriod && form.dirty) {
-      <mat-error>
-      The start date must be before the end date.</mat-error>
-    }
-
-    <mat-datepicker-toggle matSuffix [for]="promoPicker"></mat-datepicker-toggle>
-
-    <mat-date-range-picker #promoPicker></mat-date-range-picker>
-
-  </mat-form-field>
-
+  @if (form.errors?.['promoPeriod'] && form.dirty) {
+    <div class="err">Start date must be before end date.</div>
+  }
 </div>
-
-<!--div class="form-val">
-
-Form validity state: {{form.valid }}
-
-</div>
-
-<div class="form-val">
-
-  {{form.value | json}}
-
-</div-->

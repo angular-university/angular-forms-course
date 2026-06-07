@@ -1,22 +1,33 @@
+.shell { min-height: 100vh; }
 
-body {
-    margin: 0;
+.toolbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 56px; background: #1a1a1a; border-bottom: 1px solid #333;
+  display: flex; align-items: center; padding: 0 16px; gap: 12px;
 }
-
-main {
-    margin: 30px;
+.hamburger {
+  background: none; border: none; color: #fff;
+  font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1;
 }
+.toolbar-title { font-weight: 600; font-size: 16px; color: #fff; flex: 1; }
+.toolbar-links { display: flex; gap: 20px; }
+.toolbar-links a { color: #a0aab4; text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toolbar-links a:hover { color: #fff; }
 
-mat-toolbar {
-    position: fixed;
-    z-index: 1000;
+.sidenav-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 200; }
+.sidenav-backdrop.open { display: block; }
 
+.sidenav {
+  position: fixed; top: 0; left: -260px; width: 260px; height: 100%;
+  background: #1a1a1a; border-right: 1px solid #333; z-index: 300;
+  transition: left 0.25s ease; padding-top: 16px;
 }
-
-.main-content {
-    margin-top: 80px;
+.sidenav.open { left: 0; }
+.sidenav ul { list-style: none; padding: 0; margin: 0; }
+.sidenav li a {
+  display: block; padding: 14px 24px; color: #a0aab4;
+  text-decoration: none; font-size: 15px; transition: background 0.15s, color 0.15s;
 }
+.sidenav li a:hover { background: #242424; color: #fff; }
 
-mat-icon{
-    vertical-align: middle;
-}
+.main-content { margin-top: 56px; padding: 24px; }
