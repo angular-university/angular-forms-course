@@ -23,6 +23,7 @@
   display: flex; gap: 4px;
 }
 .toolbar-links a {
+  display: inline-flex; align-items: center; gap: 6px;
   color: #a0aab4; text-decoration: none;
   font-size: 14px; font-weight: 500;
   padding: 6px 14px; border-radius: 4px;
