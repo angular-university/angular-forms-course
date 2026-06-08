@@ -1,11 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { email, form, FormField, FormRoot, minLength, required, validate } from '@angular/forms/signals';
+import {LOGIN_FORM_DEFAULT, LoginData} from './login.model';
 
-interface LoginData {
-  email: string;
-  password: string;
-}
 
 @Component({
   selector: 'login',
@@ -14,7 +11,7 @@ interface LoginData {
   imports: [FormField, FormRoot, JsonPipe]
 })
 export class LoginComponent {
-  loginModel = signal<LoginData>({ email: '', password: '' });
+  loginModel = signal<LoginData>({ ...LOGIN_FORM_DEFAULT });
 
   loginForm = form(
     this.loginModel,
@@ -41,6 +38,6 @@ export class LoginComponent {
   );
 
   reset() {
-    this.loginModel.set({ email: '', password: '' });
+    this.loginModel.set({ ...LOGIN_FORM_DEFAULT });
   }
 }
