@@ -1,34 +1,32 @@
-<div [formGroup]="form">
-  <div class="field">
-    <label>Course Title</label>
-    <input formControlName="title" placeholder="Course title" #title>
-    <div class="hint">{{title.value.length}} / 60</div>
-    @if (courseTitle.errors?.['titleExists']) {
-      <div class="err">This title is already being used.</div>
+<div class="field">
+  <label>Course Title</label>
+  <input [formField]="step1Form.title" placeholder="Course title">
+  <div class="hint">{{ step1Model().title.length }} / 60</div>
+  @if (step1Form.title() | fieldError; as error) {
+    <div class="err">{{ error }}</div>
+  }
+</div>
+
+<div class="field">
+  <label>Category</label>
+  <select [formField]="step1Form.category">
+    @for (cat of courseCategories(); track cat.code) {
+      <option [value]="cat.code">{{ cat.description }}</option>
     }
-  </div>
+  </select>
+</div>
 
-  <div class="field">
-    <label>Category</label>
-    <select formControlName="category">
-      @for (cat of courseCategories$ | async; track cat) {
-        <option [value]="cat.code">{{cat.description}}</option>
-      }
-    </select>
-  </div>
+<div class="field">
+  <label>Release Date</label>
+  <input type="date" [formField]="step1Form.releasedAt">
+</div>
 
-  <div class="field">
-    <label>Release Date</label>
-    <input type="date" formControlName="releasedAt">
-  </div>
+<div class="field inline">
+  <input type="checkbox" id="downloads" [formField]="step1Form.downloadsAllowed">
+  <label for="downloads">Downloads allowed?</label>
+</div>
 
-  <div class="field inline">
-    <input type="checkbox" id="downloads" formControlName="downloadsAllowed">
-    <label for="downloads">Downloads allowed?</label>
-  </div>
-
-  <div class="field">
-    <label>Description</label>
-    <textarea formControlName="longDescription" placeholder="Course description" rows="4"></textarea>
-  </div>
+<div class="field">
+  <label>Description</label>
+  <textarea [formField]="step1Form.longDescription" placeholder="Course description" rows="4"></textarea>
 </div>

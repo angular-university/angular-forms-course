@@ -1,49 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { from } from 'rxjs';
+import { debounce, form, FormField, minLength, maxLength, required, validate } from '@angular/forms/signals';
 import { CoursesService } from '../../services/courses.service';
-import { Observable, from } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { courseTitleValidator } from '../../validators/course-title.validator';
-import { AsyncPipe } from '@angular/common';
-
-type CourseCategory = {
-  code: string;
-  description: string;
-};
+import { FieldErrorPipe } from '../../pipes/field-error.pipe';
+import { courseTitleExists } from '../../validators/course-title-signal.validator';
+import { CourseCategory, STEP1_DEFAULT, Step1Data } from './step1.model';
 
 @Component({
   selector: 'create-course-step-1',
   templateUrl: './create-course-step-1.component.html',
   styleUrls: ['./create-course-step-1.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, AsyncPipe]
+  imports: [FormField, FieldErrorPipe],
 })
-export class CreateCourseStep1Component implements OnInit {
-  form = this.fb.group({
-    title: ['', {
-      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(60)],
-      asyncValidators: [courseTitleValidator(this.courses)],
-      updateOn: 'blur'
-    }],
-    releasedAt: [new Date(), Validators.required],
-    category: ['BEGINNER', Validators.required],
-    downloadsAllowed: [false, Validators.requiredTrue],
-    longDescription: ['', [Validators.required, Validators.minLength(3)]]
+export class CreateCourseStep1Component {
+  private courses = inject(CoursesService);
+
+  courseCategories = toSignal(from(this.courses.findCourseCategories()), {
+    initialValue: [] as CourseCategory[],
   });
 
-  courseCategories$: Observable<CourseCategory[]>;
+  step1Model = signal<Step1Data>(
+    (() => {
+      const draft = localStorage.getItem('STEP_1');
+      if (!draft) return { ...STEP1_DEFAULT };
+      const parsed = JSON.parse(draft);
+      return { ...parsed, releasedAt: new Date(parsed.releasedAt) };
+    })()
+  );
 
-  constructor(private fb: FormBuilder, private courses: CoursesService) {}
+  step1Form = form(this.step1Model, (schemaPath) => {
+    required(schemaPath.title, { message: 'Title is required.' });
+    minLength(schemaPath.title, 5, { message: 'Title must be at least 5 characters.' });
+    maxLength(schemaPath.title, 60, { message: 'Title must be at most 60 characters.' });
+    debounce(schemaPath.title, 'blur');
+    courseTitleExists(schemaPath.title);
 
-  ngOnInit() {
-    this.courseCategories$ = from(this.courses.findCourseCategories());
+    required(schemaPath.releasedAt, { message: 'Release date is required.' });
+    required(schemaPath.category, { message: 'Category is required.' });
 
-    const draft = localStorage.getItem('STEP_1');
-    if (draft) { this.form.setValue(JSON.parse(draft)); }
+    validate(schemaPath.downloadsAllowed, ({ value }) =>
+      value() === true ? null : { kind: 'requiredTrue', message: 'You must allow downloads.' }
+    );
 
-    this.form.valueChanges
-      .pipe(filter(() => this.form.valid))
-      .subscribe(val => localStorage.setItem('STEP_1', JSON.stringify(val)));
+    required(schemaPath.longDescription, { message: 'Description is required.' });
+    minLength(schemaPath.longDescription, 3, { message: 'Description must be at least 3 characters.' });
+  });
+
+  constructor() {
+    effect(() => {
+      if (this.step1Form().valid()) {
+        localStorage.setItem('STEP_1', JSON.stringify(this.step1Model()));
+      }
+    });
   }
-
-  get courseTitle() { return this.form.controls['title']; }
 }
