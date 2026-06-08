@@ -61,3 +61,4 @@
 .sidenav li a:hover { background: #1a1a1a; color: #fff; }
 
 .main-content { margin-top: 64px; padding: 32px 24px; }
+.main-content.no-toolbar { margin-top: 0; padding: 0; }

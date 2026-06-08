@@ -1,15 +1,13 @@
 .login-page {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 16px 12vh;
-  background: #0d0d0d
-    radial-gradient(ellipse at 65% 0%, rgba(228, 0, 53, 0.35) 0%, transparent 50%),
-    radial-gradient(ellipse at 35% 100%, rgba(108, 0, 245, 0.25) 0%, transparent 50%);
-  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at 70% -5%, rgba(228, 0, 53, 0.55) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 105%, rgba(108, 0, 245, 0.45) 0%, transparent 45%),
+    #0d0d0d;
 }
 
 .login-card {
