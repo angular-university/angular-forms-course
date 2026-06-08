@@ -1,1 +1,46 @@
-.course-image { max-width: 200px; border-radius: 6px; }
+.about-page {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.about-card {
+  overflow: hidden;
+}
+
+.course-hero {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.about-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.about-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.about-subtitle {
+  font-size: 14px;
+  color: var(--red);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.about-description {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 8px 0 16px;
+}

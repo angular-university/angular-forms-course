@@ -1,27 +1,46 @@
-import { Component } from '@angular/core';
-import { NonNullableFormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { createPasswordStrengthValidator } from '../validators/password-strength.validator';
+import { Component, signal } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { OnlyOneErrorPipe } from '../pipes/only-one-error.pipe';
+import { email, form, FormField, FormRoot, minLength, required, validate } from '@angular/forms/signals';
+
+interface LoginData {
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule, ReactiveFormsModule, JsonPipe, OnlyOneErrorPipe]
+  imports: [FormField, FormRoot, JsonPipe]
 })
 export class LoginComponent {
-  form = this.fb.group({
-    email: ['', { validators: [Validators.required, Validators.email], updateOn: 'blur' }],
-    password: ['', [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]]
-  });
+  loginModel = signal<LoginData>({ email: '', password: '' });
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  loginForm = form(
+    this.loginModel,
+    (schemaPath) => {
+      required(schemaPath.email, { message: 'Email is required.' });
+      email(schemaPath.email, { message: 'Enter a valid email address.' });
 
-  get email() { return this.form.controls['email']; }
-  get password() { return this.form.controls['password']; }
+      required(schemaPath.password, { message: 'Password is required.' });
+      minLength(schemaPath.password, 8, { message: 'Password must be at least 8 characters.' });
+      validate(schemaPath.password, ({ value }) => {
+        const password = value();
+        if (!password) return null;
+        const valid = /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
+        return valid ? null : { kind: 'passwordStrength', message: 'Must contain lower, upper and numeric characters.' };
+      });
+    },
+    {
+      submission: {
+        action: async () => {
+          console.log('Logging in with:', this.loginModel());
+        }
+      }
+    }
+  );
 
-  login() {}
-
-  reset() { this.form.reset(); }
+  reset() {
+    this.loginModel.set({ email: '', password: '' });
+  }
 }

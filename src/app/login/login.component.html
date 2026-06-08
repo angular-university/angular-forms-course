@@ -2,42 +2,32 @@
   <div class="card login-card">
     <h2 class="login-title">Login</h2>
 
-    <form class="login-form" [formGroup]="form">
+    <form class="login-form" [formRoot]="loginForm">
       <div class="field">
         <label>Email</label>
-        <input type="email" formControlName="email" placeholder="your@email.com">
-        @if (email.errors?.['required'] && email.touched) {
-          <div class="err">Email is required.</div>
-        }
-        @if (email.errors?.['email'] && email.touched) {
-          <div class="err">Enter a valid email address.</div>
+        <input type="email" [formField]="loginForm.email" placeholder="your@email.com">
+        @if (loginForm.email().touched() && loginForm.email().invalid()) {
+          @for (error of loginForm.email().errors(); track error.kind) {
+            <div class="err">{{ error.message }}</div>
+          }
         }
       </div>
 
       <div class="field">
         <label>Password</label>
-        <input type="password" formControlName="password" placeholder="Password">
+        <input type="password" [formField]="loginForm.password" placeholder="Password">
+        @if (loginForm.password().touched() && loginForm.password().invalid()) {
+          <div class="field-msg">{{ loginForm.password().errors()[0]?.message }}</div>
+        }
       </div>
 
-      @if (password.errors | onlyOneError:['minlength','passwordStrength']; as error) {
-        @if (error.minlength) {
-          <div class="field-msg">
-            Minimum {{error.minlength.requiredLength}} characters
-            ({{error.minlength.actualLength}} entered).
-          </div>
-        }
-        @if (error.passwordStrength) {
-          <div class="field-msg">Must contain lower, upper and numeric characters.</div>
-        }
-      }
-
       <div class="form-actions">
-        <button class="btn btn-primary" [disabled]="!form.valid" (click)="login()">Login</button>
+        <button class="btn btn-primary" type="submit" [disabled]="loginForm().submitting()">Login</button>
         <button class="btn btn-ghost" type="button" (click)="reset()">Reset</button>
       </div>
     </form>
 
-    <pre class="debug">{{form.value | json}}</pre>
-    <div class="debug">Valid: {{form.valid}}</div>
+    <pre class="debug">{{ loginModel() | json }}</pre>
+    <div class="debug">Valid: {{ loginForm().valid() }}</div>
   </div>
 </div>
