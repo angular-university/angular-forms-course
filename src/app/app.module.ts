@@ -25,7 +25,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {CoursesService} from "./services/courses.service";
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
@@ -89,7 +89,7 @@ import {LoginReactiveComponent} from './login-reactive/login-reactive.component'
         FormsModule,
         ReactiveFormsModule], providers: [
         CoursesService,
-        provideHttpClient(withXhr(), withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi())
     ] })
 export class AppModule {
 }
