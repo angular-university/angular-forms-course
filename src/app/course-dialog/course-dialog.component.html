@@ -1,14 +1,17 @@
-<h2 class="modal-title">{{course().description}}</h2>
+<h2 class="modal-title">{{ course().description }}</h2>
 
-<form [formGroup]="form">
+<form [formRoot]="courseForm">
   <div class="field">
-    <label>Course Description</label>
-    <input formControlName="description" placeholder="Course description">
+    <label for="description">Course Description</label>
+    <input id="description" [formField]="courseForm.description" placeholder="Course description">
+    @if (courseForm.description().touched() && courseForm.description().invalid()) {
+      <div class="err">{{ courseForm.description().errors()[0]?.message }}</div>
+    }
   </div>
 
   <div class="field">
-    <label>Category</label>
-    <select formControlName="category">
+    <label for="category">Category</label>
+    <select id="category" [formField]="courseForm.category">
       <option value="BEGINNER">Beginner</option>
       <option value="INTERMEDIATE">Intermediate</option>
       <option value="ADVANCED">Advanced</option>
@@ -16,17 +19,23 @@
   </div>
 
   <div class="field">
-    <label>Release Date</label>
-    <input type="date" formControlName="releasedAt">
+    <label for="releasedAt">Release Date</label>
+    <input id="releasedAt" type="date" [formField]="courseForm.releasedAt">
+    @if (courseForm.releasedAt().touched() && courseForm.releasedAt().invalid()) {
+      <div class="err">{{ courseForm.releasedAt().errors()[0]?.message }}</div>
+    }
   </div>
 
   <div class="field">
-    <label>Long Description</label>
-    <textarea formControlName="longDescription" rows="4" placeholder="Long description"></textarea>
+    <label for="longDescription">Long Description</label>
+    <textarea id="longDescription" [formField]="courseForm.longDescription" rows="4" placeholder="Long description"></textarea>
+    @if (courseForm.longDescription().touched() && courseForm.longDescription().invalid()) {
+      <div class="err">{{ courseForm.longDescription().errors()[0]?.message }}</div>
+    }
+  </div>
+
+  <div class="modal-actions">
+    <button class="btn btn-ghost" type="button" (click)="close()">Close</button>
+    <button class="btn btn-primary" type="submit" [disabled]="courseForm().invalid() || courseForm().submitting()">Save</button>
   </div>
 </form>
-
-<div class="modal-actions">
-  <button class="btn btn-ghost" (click)="close()">Close</button>
-  <button class="btn btn-primary" (click)="save()">Save</button>
-</div>

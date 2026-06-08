@@ -1,30 +1,48 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, input, linkedSignal, output } from '@angular/core';
 import { Course } from '../model/course';
-import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+
+interface CourseFormData {
+  description: string;
+  category: string;
+  releasedAt: Date;
+  longDescription: string;
+}
 
 @Component({
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css'],
-  imports: [FormsModule, ReactiveFormsModule]
+  imports: [FormField, FormRoot]
 })
-export class CourseDialogComponent implements OnInit {
+export class CourseDialogComponent {
   course = input.required<Course>();
-  saved = output<any>();
-  closed = output<void>();
+  saved = output<CourseFormData>();
+  closed = output();
 
-  private fb = inject(FormBuilder);
-  form: FormGroup;
+  courseModel = linkedSignal<CourseFormData>(() => ({
+    description: this.course().description,
+    category: this.course().category,
+    releasedAt: new Date(),
+    longDescription: this.course().longDescription,
+  }));
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      description:     [this.course().description,     Validators.required],
-      category:        [this.course().category,        Validators.required],
-      releasedAt:      [new Date(),                    Validators.required],
-      longDescription: [this.course().longDescription, Validators.required]
-    });
-  }
+  courseForm = form(
+    this.courseModel,
+    (schemaPath) => {
+      required(schemaPath.description, { message: 'Description is required.' });
+      required(schemaPath.category, { message: 'Category is required.' });
+      required(schemaPath.releasedAt, { message: 'Release date is required.' });
+      required(schemaPath.longDescription, { message: 'Long description is required.' });
+    },
+    {
+      submission: {
+        action: async () => {
+          this.saved.emit(this.courseModel());
+        }
+      }
+    }
+  );
 
-  save()  { this.saved.emit(this.form.value); }
   close() { this.closed.emit(); }
 }
