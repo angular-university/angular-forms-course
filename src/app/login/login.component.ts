@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 import { email, form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
 import { LOGIN_FORM_DEFAULT, LoginData } from './login.model';
 import { passwordStrength } from '../validators/password-strength-signal.validator';
@@ -9,7 +8,7 @@ import { passwordStrength } from '../validators/password-strength-signal.validat
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormField, FormRoot, JsonPipe]
+  imports: [FormField, FormRoot]
 })
 export class LoginComponent {
   loginModel = signal<LoginData>({ ...LOGIN_FORM_DEFAULT });

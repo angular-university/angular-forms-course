@@ -4,30 +4,25 @@
 
     <form class="login-form" [formRoot]="loginForm">
       <div class="field">
-        <label>Email</label>
-        <input type="email" [formField]="loginForm.email" placeholder="your@email.com">
+        <label for="email">Email</label>
+        <input id="email" type="email" [formField]="loginForm.email" placeholder="your@email.com">
         @if (loginForm.email().touched() && loginForm.email().invalid()) {
-          @for (error of loginForm.email().errors(); track error.kind) {
-            <div class="err">{{ error.message }}</div>
-          }
+          <div class="err">{{ loginForm.email().errors()[0]?.message }}</div>
         }
       </div>
 
       <div class="field">
-        <label>Password</label>
-        <input type="password" [formField]="loginForm.password" placeholder="Password">
+        <label for="password">Password</label>
+        <input id="password" type="password" [formField]="loginForm.password" placeholder="Password">
         @if (loginForm.password().touched() && loginForm.password().invalid()) {
-          <div class="field-msg">{{ loginForm.password().errors()[0]?.message }}</div>
+          <div class="err">{{ loginForm.password().errors()[0]?.message }}</div>
         }
       </div>
 
       <div class="form-actions">
-        <button class="btn btn-primary" type="submit" [disabled]="loginForm().submitting()">Login</button>
+        <button class="btn btn-primary" type="submit" [disabled]="loginForm().invalid() || loginForm().submitting()">Login</button>
         <button class="btn btn-ghost" type="button" (click)="reset()">Reset</button>
       </div>
     </form>
-
-    <pre class="debug">{{ loginModel() | json }}</pre>
-    <div class="debug">Valid: {{ loginForm().valid() }}</div>
   </div>
 </div>
