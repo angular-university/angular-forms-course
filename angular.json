@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "angular-forms-course:build"
+            "buildTarget": "angular-forms-course:build",
+            "proxyConfig": "proxy.json"
           },
           "configurations": {
             "production": {
