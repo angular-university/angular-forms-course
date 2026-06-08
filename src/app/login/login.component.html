@@ -6,16 +6,16 @@
       <div class="field">
         <label for="email">Email</label>
         <input id="email" type="email" [formField]="loginForm.email" placeholder="your@email.com">
-        @if (loginForm.email().touched() && loginForm.email().invalid()) {
-          <div class="err">{{ loginForm.email().errors()[0]?.message }}</div>
+        @if (loginForm.email() | fieldError; as error) {
+          <div class="err">{{ error }}</div>
         }
       </div>
 
       <div class="field">
         <label for="password">Password</label>
         <input id="password" type="password" [formField]="loginForm.password" placeholder="Password">
-        @if (loginForm.password().touched() && loginForm.password().invalid()) {
-          <div class="err">{{ loginForm.password().errors()[0]?.message }}</div>
+        @if (loginForm.password() | fieldError; as error) {
+          <div class="err">{{ error }}</div>
         }
       </div>
 

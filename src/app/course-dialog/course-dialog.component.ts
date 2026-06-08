@@ -1,6 +1,7 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
 import { Course } from '../model/course';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { FieldErrorPipe } from '../pipes/field-error.pipe';
 
 interface CourseFormData {
   description: string;
@@ -13,7 +14,7 @@ interface CourseFormData {
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css'],
-  imports: [FormField, FormRoot]
+  imports: [FormField, FormRoot, FieldErrorPipe]
 })
 export class CourseDialogComponent {
   course = input.required<Course>();
