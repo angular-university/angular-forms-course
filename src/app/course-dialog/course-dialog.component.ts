@@ -3,12 +3,12 @@ import { Course } from '../model/course';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { FieldErrorPipe } from '../pipes/field-error.pipe';
 
-interface CourseFormData {
+type CourseFormData = {
   description: string;
   category: string;
   releasedAt: Date;
   longDescription: string;
-}
+};
 
 @Component({
   selector: 'course-dialog',

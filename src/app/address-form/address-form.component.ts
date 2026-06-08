@@ -1,32 +1,27 @@
-import { Component, Input, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, input, model } from '@angular/core';
+import { FieldTree, form, FormField, FormValueControl, required, schema } from '@angular/forms/signals';
+import { FieldErrorPipe } from '../pipes/field-error.pipe';
+import { ADDRESS_DEFAULT, AddressData } from './address.model';
+
+const addressSchema = schema<AddressData>((path) => {
+  required(path.addressLine1, { message: 'Address line 1 is required.' });
+  required(path.addressLine2, { message: 'Address line 2 is required.' });
+  required(path.zipCode, { message: 'Zip code is required.' });
+  required(path.city, { message: 'City is required.' });
+});
 
 @Component({
   selector: 'address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, multi: true, useExisting: AddressFormComponent }],
-  imports: [FormsModule, ReactiveFormsModule]
+  imports: [FormField, FieldErrorPipe],
 })
-export class AddressFormComponent implements ControlValueAccessor, OnDestroy {
-  @Input() legend: string;
+export class AddressFormComponent implements FormValueControl<AddressData> {
+  readonly legend = input<string>('Address');
 
-  onTouched = () => {};
-  onChangeSub: Subscription;
+  // Required by FormValueControl — the parent's [formField] keeps this in sync
+  readonly value = model<AddressData>({ ...ADDRESS_DEFAULT });
 
-  form: FormGroup = this.fb.group({
-    addressLine1: [null, [Validators.required]],
-    addressLine2: [null, [Validators.required]],
-    zipCode: [null, [Validators.required]],
-    city: [null, [Validators.required]]
-  });
-
-  constructor(private fb: FormBuilder) {}
-
-  registerOnChange(onChange: any) { this.onChangeSub = this.form.valueChanges.subscribe(onChange); }
-  ngOnDestroy() { this.onChangeSub.unsubscribe(); }
-  writeValue(value: any) { if (value) { this.form.setValue(value); } }
-  registerOnTouched(onTouched: any) { this.onTouched = onTouched; }
-  setDisabledState(disabled: boolean) { disabled ? this.form.disable() : this.form.enable(); }
+  // Internal form: decomposes the value signal into typed sub-fields with validation
+  readonly addressForm: FieldTree<AddressData> = form(this.value, addressSchema);
 }

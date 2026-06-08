@@ -6,10 +6,10 @@ import { filter } from 'rxjs/operators';
 import { courseTitleValidator } from '../../validators/course-title.validator';
 import { AsyncPipe } from '@angular/common';
 
-interface CourseCategory {
+type CourseCategory = {
   code: string;
   description: string;
-}
+};
 
 @Component({
   selector: 'create-course-step-1',

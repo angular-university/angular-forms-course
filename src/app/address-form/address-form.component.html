@@ -1,23 +1,35 @@
-<fieldset [formGroup]="form">
-  <legend>{{legend}}</legend>
+<fieldset>
+  <legend>{{ legend() }}</legend>
 
   <div class="field">
-    <label>Address Line 1</label>
-    <input formControlName="addressLine1" placeholder="Address Line 1" (blur)="onTouched()">
+    <label for="addressLine1">Address Line 1</label>
+    <input id="addressLine1" [formField]="addressForm.addressLine1" placeholder="Address Line 1">
+    @if (addressForm.addressLine1() | fieldError; as error) {
+      <div class="err">{{ error }}</div>
+    }
   </div>
 
   <div class="field">
-    <label>Address Line 2</label>
-    <input formControlName="addressLine2" placeholder="Address Line 2" (blur)="onTouched()">
+    <label for="addressLine2">Address Line 2</label>
+    <input id="addressLine2" [formField]="addressForm.addressLine2" placeholder="Address Line 2">
+    @if (addressForm.addressLine2() | fieldError; as error) {
+      <div class="err">{{ error }}</div>
+    }
   </div>
 
   <div class="field">
-    <label>Zip Code</label>
-    <input formControlName="zipCode" placeholder="Zip Code" (blur)="onTouched()">
+    <label for="zipCode">Zip Code</label>
+    <input id="zipCode" [formField]="addressForm.zipCode" placeholder="Zip Code">
+    @if (addressForm.zipCode() | fieldError; as error) {
+      <div class="err">{{ error }}</div>
+    }
   </div>
 
   <div class="field">
-    <label>City</label>
-    <input formControlName="city" placeholder="City" (blur)="onTouched()">
+    <label for="city">City</label>
+    <input id="city" [formField]="addressForm.city" placeholder="City">
+    @if (addressForm.city() | fieldError; as error) {
+      <div class="err">{{ error }}</div>
+    }
   </div>
 </fieldset>
