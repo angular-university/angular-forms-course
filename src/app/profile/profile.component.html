@@ -1,0 +1,35 @@
+<div class="profile-page">
+  <h2 class="profile-title">My Profile</h2>
+
+  <div class="card profile-card">
+    <form [formRoot]="profileForm">
+
+      <div class="field-row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" [formField]="profileForm.firstName" placeholder="First name">
+          @if (profileForm.firstName() | touchedError; as error) {
+            <div class="err">{{ error }}</div>
+          }
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" [formField]="profileForm.lastName" placeholder="Last name">
+          @if (profileForm.lastName() | touchedError; as error) {
+            <div class="err">{{ error }}</div>
+          }
+        </div>
+      </div>
+
+      <address-form [formField]="profileForm.address" legend="Billing Address"></address-form>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit" [disabled]="profileForm().submitting()">
+          @if (profileForm().submitting()) { Saving… } @else { Save profile }
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

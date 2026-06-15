@@ -5,10 +5,12 @@ import { CourseComponent } from './course/course.component';
 import { courseResolver } from './services/course.resolver';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'courses/:id', component: CourseComponent, resolve: { course: courseResolver } },
   { path: 'add-new-course', component: CreateCourseComponent },
   { path: 'login', component: LoginComponent },
