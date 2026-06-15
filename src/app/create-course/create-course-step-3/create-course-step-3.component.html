@@ -1,7 +1,7 @@
 <h3>Add Course Lessons</h3>
 
 <div class="add-lessons-form">
-  @for (lessonForm of step3Form.lessons; track $index; let i = $index) {
+  @for (lessonForm of step3Form.lessons; track lessonForm; let i = $index) {
     <div class="lesson-row">
       <div class="field">
         <input [formField]="lessonForm.title" placeholder="Lesson title">

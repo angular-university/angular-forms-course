@@ -53,6 +53,12 @@ address-form {
   margin-top: 2rem;
 }
 
+.unsaved-warning {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
 .form-actions {
   margin-top: 1.5rem;
   display: flex;

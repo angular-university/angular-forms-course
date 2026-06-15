@@ -2,6 +2,9 @@
   <label>Course Title</label>
   <input [formField]="step1Form.title" placeholder="Course title">
   <div class="hint">{{ step1Model().title.length }} / 60</div>
+  @if (step1Form.title().pending()) {
+    <div class="hint">Checking availability…</div>
+  }
   <field-error [field]="step1Form.title()" />
 </div>
 

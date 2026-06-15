@@ -18,15 +18,19 @@
   <field-error [field]="step2Form.price()" />
 </div>
 
-<div class="field">
-  <label>Promo Start Date</label>
-  <input type="date" [formField]="step2Form.promoStartAt">
-</div>
+@if (!step2Form.promoStartAt().hidden()) {
+  <div class="field">
+    <label>Promo Start Date</label>
+    <input type="date" [formField]="step2Form.promoStartAt">
+  </div>
+}
 
-<div class="field">
-  <label>Promo End Date</label>
-  <input type="date" [formField]="step2Form.promoEndAt">
-</div>
+@if (!step2Form.promoEndAt().hidden()) {
+  <div class="field">
+    <label>Promo End Date</label>
+    <input type="date" [formField]="step2Form.promoEndAt">
+  </div>
+}
 
 @if (step2Form().dirty()) {
   <field-error [field]="step2Form()" />

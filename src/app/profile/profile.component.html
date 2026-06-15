@@ -20,10 +20,16 @@
         <div class="field">
           <label for="email">Email address</label>
           <input id="email" type="email" [formField]="profileForm.email" placeholder="your@email.com">
-          <field-error [field]="profileForm.email()" />
+          @if (profileForm.email().readonly()) {
+            <div class="hint">Email cannot be changed after registration</div>
+          }
         </div>
 
         <address-form [formField]="profileForm.address" legend="Billing Address" />
+
+        @if (profileForm().dirty()) {
+          <div class="unsaved-warning">You have unsaved changes</div>
+        }
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" [disabled]="profileForm().submitting()">

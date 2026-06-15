@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, max, min, required } from '@angular/forms/signals';
+import { applyWhen, disabled, form, FormField, hidden, max, min, required } from '@angular/forms/signals';
 import { FileUploadComponent } from '../../file-upload/file-upload.component';
 import { FieldErrorComponent } from '../../field-error/field-error.component';
 import { STEP2_DEFAULT, Step2Data } from './step2.model';
@@ -20,8 +20,15 @@ export class CreateCourseStep2Component {
     required(schemaPath.price, { message: 'Price is required.' });
     min(schemaPath.price, 1, { message: 'Price must be at least 1.' });
     max(schemaPath.price, 9999, { message: 'Price must be at most 9999.' });
-    disabled(schemaPath.price, { when: (ctx) => ctx.valueOf(schemaPath.courseType) === 'free' });
+    disabled(schemaPath.price, { when: ({ valueOf }) => valueOf(schemaPath.courseType) === 'free' });
 
-    promoPeriod(schemaPath, { message: 'Start date must be before end date.' });
+    hidden(schemaPath.promoStartAt, { when: ({ valueOf }) => valueOf(schemaPath.courseType) === 'free' });
+    hidden(schemaPath.promoEndAt, { when: ({ valueOf }) => valueOf(schemaPath.courseType) === 'free' });
+
+    applyWhen(
+      schemaPath,
+      ({ valueOf }) => valueOf(schemaPath.courseType) === 'premium',
+      (path) => { promoPeriod(path, { message: 'Start date must be before end date.' }); }
+    );
   });
 }
