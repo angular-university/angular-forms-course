@@ -1,4 +1,4 @@
-import { Component, input, linkedSignal, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Course } from '../model/course';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
@@ -21,12 +21,12 @@ export class CourseDialogComponent {
   saved = output<CourseFormData>();
   closed = output();
 
-  courseModel = linkedSignal<CourseFormData>(() => ({
+  courseModel = signal({
     description: this.course().description,
     category: this.course().category,
     releasedAt: new Date(),
     longDescription: this.course().longDescription,
-  }));
+  } as CourseFormData);
 
   courseForm = form(
     this.courseModel,
