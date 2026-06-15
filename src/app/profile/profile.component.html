@@ -20,10 +20,10 @@
         <div class="field">
           <label for="email">Email address</label>
           <input id="email" type="email" [formField]="profileForm.email" placeholder="your@email.com">
-          <field-error [field]="profileForm.email()"></field-error>
+          <field-error [field]="profileForm.email()" />
         </div>
 
-        <address-form [formField]="profileForm.address" legend="Billing Address"></address-form>
+        <address-form [formField]="profileForm.address" legend="Billing Address" />
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" [disabled]="profileForm().submitting()">

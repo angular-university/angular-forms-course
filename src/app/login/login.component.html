@@ -31,13 +31,13 @@
       <div class="field">
         <label for="email">Email address</label>
         <input id="email" type="email" [formField]="loginForm.email" placeholder="your@email.com" autocomplete="email">
-        <field-error [field]="loginForm.email()"></field-error>
+        <field-error [field]="loginForm.email()" />
       </div>
 
       <div class="field">
         <label for="password">Password</label>
         <input id="password" type="password" [formField]="loginForm.password" placeholder="••••••••" autocomplete="current-password">
-        <field-error [field]="loginForm.password()"></field-error>
+        <field-error [field]="loginForm.password()" />
       </div>
 
       <div class="form-actions">

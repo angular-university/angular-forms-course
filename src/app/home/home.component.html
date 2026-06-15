@@ -18,10 +18,10 @@
   </div>
 
   @if (activeTab() === 'beginner') {
-    <courses-card-list [courses]="beginnerCourses()"></courses-card-list>
+    <courses-card-list [courses]="beginnerCourses()" />
   }
   @if (activeTab() === 'advanced') {
-    <courses-card-list [courses]="advancedCourses()"></courses-card-list>
+    <courses-card-list [courses]="advancedCourses()" />
   }
 
 </div>

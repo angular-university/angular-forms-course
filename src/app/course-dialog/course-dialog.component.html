@@ -13,7 +13,9 @@
   <div class="field">
     <label for="description">Course Description</label>
     <input id="description" [formField]="courseForm.description" placeholder="Course description">
-    <field-error [field]="courseForm.description()"></field-error>
+    @if (courseForm.description().touched() && courseForm.description().invalid()) {
+      <div class="err">{{ courseForm.description().errors()[0]?.message }}</div>
+    }
   </div>
 
   <div class="field">
@@ -28,13 +30,17 @@
   <div class="field">
     <label for="releasedAt">Release Date</label>
     <input id="releasedAt" type="date" [formField]="courseForm.releasedAt">
-    <field-error [field]="courseForm.releasedAt()"></field-error>
+    @if (courseForm.releasedAt().touched() && courseForm.releasedAt().invalid()) {
+      <div class="err">{{ courseForm.releasedAt().errors()[0]?.message }}</div>
+    }
   </div>
 
   <div class="field">
     <label for="longDescription">Long Description</label>
     <textarea id="longDescription" [formField]="courseForm.longDescription" rows="4" placeholder="Long description"></textarea>
-    <field-error [field]="courseForm.longDescription()"></field-error>
+    @if (courseForm.longDescription().touched() && courseForm.longDescription().invalid()) {
+      <div class="err">{{ courseForm.longDescription().errors()[0]?.message }}</div>
+    }
   </div>
 
   <div class="modal-actions">

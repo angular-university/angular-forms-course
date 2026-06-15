@@ -10,12 +10,12 @@
   </div>
 </div>
 
-<file-upload [formField]="step2Form.thumbnail" requiredFileType="image/png"></file-upload>
+<file-upload [formField]="step2Form.thumbnail" requiredFileType="image/png" />
 
 <div class="field">
   <label>Price</label>
   <input type="number" [formField]="step2Form.price" placeholder="Price">
-  <field-error [field]="step2Form.price()"></field-error>
+  <field-error [field]="step2Form.price()" />
 </div>
 
 <div class="field">
@@ -29,5 +29,5 @@
 </div>
 
 @if (step2Form().dirty()) {
-  <field-error [field]="step2Form()"></field-error>
+  <field-error [field]="step2Form()" />
 }
