@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 import { debounce, form, FormField, minLength, maxLength, required } from '@angular/forms/signals';
 import { TouchedErrorPipe } from '../../pipes/touched-error.pipe';
@@ -19,14 +19,7 @@ export class CreateCourseStep1Component {
   );
   courseCategories = this.categoriesResource.value;
 
-  step1Model = signal<Step1Data>(
-    (() => {
-      const draft = localStorage.getItem('STEP_1');
-      if (!draft) return { ...STEP1_DEFAULT };
-      const parsed = JSON.parse(draft);
-      return { ...parsed, releasedAt: new Date(parsed.releasedAt) };
-    })()
-  );
+  step1Model = signal<Step1Data>({ ...STEP1_DEFAULT });
 
   step1Form = form(this.step1Model, (schemaPath) => {
     required(schemaPath.title, { message: 'Title is required.' });
@@ -44,11 +37,4 @@ export class CreateCourseStep1Component {
     minLength(schemaPath.longDescription, 3, { message: 'Description must be at least 3 characters.' });
   });
 
-  constructor() {
-    effect(() => {
-      if (this.step1Form().valid()) {
-        localStorage.setItem('STEP_1', JSON.stringify(this.step1Model()));
-      }
-    });
-  }
 }

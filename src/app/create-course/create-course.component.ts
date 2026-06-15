@@ -13,6 +13,7 @@ export class CreateCourseComponent {
   currentStep = signal(0);
 
   submit(step1: any, step2: any, step3: any) {
+    localStorage.setItem('COURSE_DRAFT', JSON.stringify({ step1, step2, step3 }));
     console.log(step1, step2, step3);
   }
 }
