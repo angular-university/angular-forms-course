@@ -1,7 +1,6 @@
 import { Component, input, output, signal } from '@angular/core';
 import { Course } from '../model/course';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
 
 type CourseFormData = {
   description: string;
@@ -14,7 +13,7 @@ type CourseFormData = {
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css'],
-  imports: [FormField, FormRoot, TouchedErrorPipe]
+  imports: [FormField, FormRoot]
 })
 export class CourseDialogComponent {
   course = input.required<Course>();
