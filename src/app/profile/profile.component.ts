@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { AddressFormComponent } from '../address-form/address-form.component';
-import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
+import { FieldErrorComponent } from '../field-error/field-error.component';
 import { PROFILE_DEFAULT, ProfileData } from './profile.model';
 
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  imports: [FormField, FormRoot, AddressFormComponent, TouchedErrorPipe]
+  imports: [FormField, FormRoot, AddressFormComponent, FieldErrorComponent]
 })
 export class ProfileComponent {
   profileModel = signal<ProfileData>({ ...PROFILE_DEFAULT });

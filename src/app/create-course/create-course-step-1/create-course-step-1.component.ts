@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 import { debounce, form, FormField, minLength, maxLength, required } from '@angular/forms/signals';
-import { TouchedErrorPipe } from '../../pipes/touched-error.pipe';
+import { FieldErrorComponent } from '../../field-error/field-error.component';
 import { courseTitleExists } from '../../validators/course-title.validator';
 import { requiredTrue } from '../../validators/required-true.validator';
 import { CourseCategory, STEP1_DEFAULT, Step1Data } from './step1.model';
@@ -10,7 +10,7 @@ import { CourseCategory, STEP1_DEFAULT, Step1Data } from './step1.model';
   selector: 'create-course-step-1',
   templateUrl: './create-course-step-1.component.html',
   styleUrls: ['./create-course-step-1.component.scss'],
-  imports: [FormField, TouchedErrorPipe],
+  imports: [FormField, FieldErrorComponent],
 })
 export class CreateCourseStep1Component {
   private categoriesResource = httpResource<CourseCategory[]>(

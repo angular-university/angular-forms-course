@@ -20,9 +20,7 @@
         <div class="field">
           <label for="email">Email address</label>
           <input id="email" type="email" [formField]="profileForm.email" placeholder="your@email.com">
-          @if (profileForm.email() | touchedError; as error) {
-            <div class="err">{{ error }}</div>
-          }
+          <field-error [field]="profileForm.email()"></field-error>
         </div>
 
         <address-form [formField]="profileForm.address" legend="Billing Address"></address-form>

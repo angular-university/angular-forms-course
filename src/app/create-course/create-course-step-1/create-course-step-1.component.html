@@ -2,9 +2,7 @@
   <label>Course Title</label>
   <input [formField]="step1Form.title" placeholder="Course title">
   <div class="hint">{{ step1Model().title.length }} / 60</div>
-  @if (step1Form.title() | touchedError; as error) {
-    <div class="err">{{ error }}</div>
-  }
+  <field-error [field]="step1Form.title()"></field-error>
 </div>
 
 <div class="field">
