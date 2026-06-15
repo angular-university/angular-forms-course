@@ -4,41 +4,41 @@
   <div class="card stepper-card">
     <div class="stepper-header">
       <div class="step-indicator">
-        <div class="step-circle" [class.active]="currentStep === 0" [class.done]="currentStep > 0">1</div>
-        <span class="step-label" [class.active]="currentStep === 0">Landing page</span>
+        <div class="step-circle" [class.active]="currentStep() === 0" [class.done]="currentStep() > 0">1</div>
+        <span class="step-label" [class.active]="currentStep() === 0">Landing page</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-indicator">
-        <div class="step-circle" [class.active]="currentStep === 1" [class.done]="currentStep > 1">2</div>
-        <span class="step-label" [class.active]="currentStep === 1">Pricing</span>
+        <div class="step-circle" [class.active]="currentStep() === 1" [class.done]="currentStep() > 1">2</div>
+        <span class="step-label" [class.active]="currentStep() === 1">Pricing</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-indicator">
-        <div class="step-circle" [class.active]="currentStep === 2" [class.done]="currentStep > 2">3</div>
-        <span class="step-label" [class.active]="currentStep === 2">Lessons</span>
+        <div class="step-circle" [class.active]="currentStep() === 2" [class.done]="currentStep() > 2">3</div>
+        <span class="step-label" [class.active]="currentStep() === 2">Lessons</span>
       </div>
     </div>
 
     <div class="step-content">
-      <div [class.hidden]="currentStep !== 0">
+      <div [class.hidden]="currentStep() !== 0">
         <create-course-step-1 #step1></create-course-step-1>
         <div class="stepper-buttons">
-          <button class="btn btn-primary" [disabled]="step1.step1Form().invalid()" (click)="currentStep = 1">Continue →</button>
+          <button class="btn btn-primary" [disabled]="step1.step1Form().invalid()" (click)="currentStep.set(1)">Continue →</button>
         </div>
       </div>
 
-      <div [class.hidden]="currentStep !== 1">
+      <div [class.hidden]="currentStep() !== 1">
         <create-course-step-2 #step2></create-course-step-2>
         <div class="stepper-buttons">
-          <button class="btn btn-ghost" (click)="currentStep = 0">← Back</button>
-          <button class="btn btn-primary" [disabled]="step2.step2Form().invalid()" (click)="currentStep = 2">Continue →</button>
+          <button class="btn btn-ghost" (click)="currentStep.set(0)">← Back</button>
+          <button class="btn btn-primary" [disabled]="step2.step2Form().invalid()" (click)="currentStep.set(2)">Continue →</button>
         </div>
       </div>
 
-      <div [class.hidden]="currentStep !== 2">
+      <div [class.hidden]="currentStep() !== 2">
         <create-course-step-3 #step3></create-course-step-3>
         <div class="stepper-buttons">
-          <button class="btn btn-ghost" (click)="currentStep = 1">← Back</button>
+          <button class="btn btn-ghost" (click)="currentStep.set(1)">← Back</button>
           <button class="btn btn-primary"
             [disabled]="step3.step3Form().invalid() || step3.step3Model().lessons.length === 0"
             (click)="submit(step1.step1Model(), step2.step2Model(), step3.step3Model())">

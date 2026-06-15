@@ -12,7 +12,7 @@ import { promoPeriod } from '../../validators/promo-period.validator';
   imports: [FormField, FileUploadComponent, FieldErrorPipe],
 })
 export class CreateCourseStep2Component {
-  step2Model = signal<Step2Data>({ ...STEP2_DEFAULT });
+  step2Model = signal<Step2Data>({...STEP2_DEFAULT});
 
   step2Form = form(this.step2Model, (schemaPath) => {
     required(schemaPath.courseType, { message: 'Course type is required.' });

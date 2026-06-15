@@ -1,8 +1,6 @@
-import { Component, effect, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { from } from 'rxjs';
+import { Component, effect, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { debounce, form, FormField, minLength, maxLength, required } from '@angular/forms/signals';
-import { CoursesService } from '../../services/courses.service';
 import { FieldErrorPipe } from '../../pipes/field-error.pipe';
 import { courseTitleExists } from '../../validators/course-title.validator';
 import { requiredTrue } from '../../validators/required-true.validator';
@@ -15,11 +13,11 @@ import { CourseCategory, STEP1_DEFAULT, Step1Data } from './step1.model';
   imports: [FormField, FieldErrorPipe],
 })
 export class CreateCourseStep1Component {
-  private courses = inject(CoursesService);
-
-  courseCategories = toSignal(from(this.courses.findCourseCategories()), {
-    initialValue: [] as CourseCategory[],
-  });
+  private categoriesResource = httpResource<CourseCategory[]>(
+    () => '/api/course-categories',
+    { parse: (res: any) => res.categories as CourseCategory[], defaultValue: [] as CourseCategory[] }
+  );
+  courseCategories = this.categoriesResource.value;
 
   step1Model = signal<Step1Data>(
     (() => {

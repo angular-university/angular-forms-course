@@ -1,4 +1,4 @@
-import { Component, inject, input, model, output } from '@angular/core';
+import { Component, inject, input, model, output, signal } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -19,10 +19,10 @@ export class FileUploadComponent implements FormValueControl<string | null> {
   readonly disabled = input<boolean>(false);
   readonly touch = output<void>();
 
-  fileName = '';
-  fileUploadError = false;
-  fileUploadSuccess = false;
-  uploadProgress: number | null = null;
+  fileName = signal('');
+  fileUploadError = signal(false);
+  fileUploadSuccess = signal(false);
+  uploadProgress = signal<number | null>(null);
 
   onClick(fileUpload: HTMLInputElement) {
     this.touch.emit();
@@ -32,25 +32,25 @@ export class FileUploadComponent implements FormValueControl<string | null> {
   onFileSelected(event: Event) {
     const file: File = (event.target as HTMLInputElement).files![0];
     if (file) {
-      this.fileName = file.name;
+      this.fileName.set(file.name);
       const formData = new FormData();
       formData.append('thumbnail', file);
-      this.fileUploadError = false;
-      this.fileUploadSuccess = false;
+      this.fileUploadError.set(false);
+      this.fileUploadSuccess.set(false);
       this.value.set(null);
 
       this.http
         .post('/api/thumbnail-upload', formData, { reportProgress: true, observe: 'events' })
         .pipe(
-          catchError((error) => { this.fileUploadError = true; return of(error); }),
-          finalize(() => { this.uploadProgress = null; })
+          catchError((error) => { this.fileUploadError.set(true); return of(error); }),
+          finalize(() => { this.uploadProgress.set(null); })
         )
         .subscribe((event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
-            this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+            this.uploadProgress.set(Math.round(100 * (event.loaded / event.total)));
           } else if (event.type === HttpEventType.Response) {
-            this.fileUploadSuccess = true;
-            this.value.set(this.fileName);
+            this.fileUploadSuccess.set(true);
+            this.value.set(this.fileName());
           }
         });
     }

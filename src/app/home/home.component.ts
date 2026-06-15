@@ -1,6 +1,6 @@
-import { Component, computed, inject, resource, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { Course } from '../model/course';
-import { CoursesService } from '../services/courses.service';
 import { RouterLink } from '@angular/router';
 import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
 
@@ -11,19 +11,18 @@ import { CoursesCardListComponent } from '../courses-card-list/courses-card-list
   imports: [RouterLink, CoursesCardListComponent]
 })
 export class HomeComponent {
-  private coursesService = inject(CoursesService);
-
   activeTab = signal<'beginner' | 'advanced'>('beginner');
 
-  private coursesResource = resource({
-    loader: () => this.coursesService.findAllCourses()
-  });
+  private coursesResource = httpResource<Course[]>(
+    () => '/api/courses',
+    { parse: (res: any) => res.payload as Course[], defaultValue: [] as Course[] }
+  );
 
   beginnerCourses = computed(() =>
-    (this.coursesResource.value() ?? []).filter((c: Course) => c.category === 'BEGINNER')
+    this.coursesResource.value().filter(c => c.category === 'BEGINNER')
   );
 
   advancedCourses = computed(() =>
-    (this.coursesResource.value() ?? []).filter((c: Course) => c.category === 'ADVANCED')
+    this.coursesResource.value().filter(c => c.category === 'ADVANCED')
   );
 }

@@ -1,6 +1,6 @@
 import { enableProdMode, provideZonelessChangeDetection } from '@angular/core';
 import { environment } from './environments/environment';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
@@ -14,6 +14,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     provideZonelessChangeDetection(),
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient()
   ]
 }).catch(err => console.log(err));

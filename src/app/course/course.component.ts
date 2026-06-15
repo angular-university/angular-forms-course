@@ -1,18 +1,15 @@
-import { Component, computed, effect, inject, input, resource, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { Course } from '../model/course';
 import { Lesson } from '../model/lesson';
-import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-
 })
 export class CourseComponent {
   course = input.required<Course>();
-
-  private coursesService = inject(CoursesService);
 
   pageIndex = signal(0);
   readonly pageSize = 3;
@@ -32,19 +29,21 @@ export class CourseComponent {
     });
   }
 
-  private lessonsResource = resource<Lesson[], { courseId: number; filter: string; sortOrder: string; pageIndex: number; pageSize: number }>({
-    params: () => ({
-      courseId: this.course().id,
-      filter: this.searchFilter(),
-      sortOrder: this.sortDirection(),
-      pageIndex: this.pageIndex(),
-      pageSize: this.pageSize
+  private lessonsResource = httpResource<Lesson[]>(
+    () => ({
+      url: '/api/lessons',
+      params: {
+        courseId: this.course().id,
+        filter: this.searchFilter(),
+        sortOrder: this.sortDirection(),
+        pageNumber: this.pageIndex(),
+        pageSize: this.pageSize
+      }
     }),
-    loader: ({ params: p }) =>
-      this.coursesService.findLessons(p.courseId, p.filter, p.sortOrder, p.pageIndex, p.pageSize)
-  });
+    { parse: (res: any) => res.payload as Lesson[], defaultValue: [] as Lesson[] }
+  );
 
-  lessons = computed(() => this.lessonsResource.value() ?? []);
+  lessons = computed(() => this.lessonsResource.value());
   loading = computed(() => this.lessonsResource.isLoading());
 
   onSearch(e: Event) {

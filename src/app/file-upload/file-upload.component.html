@@ -2,13 +2,13 @@
 
 <div class="file-upload-row">
   <div class="field file-field">
-    <input [disabled]="true" [value]="fileName" placeholder="No file chosen" readonly>
+    <input [disabled]="true" [value]="fileName()" placeholder="No file chosen" readonly>
   </div>
   <button class="btn-icon" type="button" (click)="onClick(fileUpload)" [disabled]="disabled()" title="Attach file">📎</button>
 </div>
 
-@if (uploadProgress) {
+@if (uploadProgress() !== null) {
   <div class="progress-bar">
-    <div class="progress-bar-fill" [style.width.%]="uploadProgress"></div>
+    <div class="progress-bar-fill" [style.width.%]="uploadProgress()"></div>
   </div>
 }
