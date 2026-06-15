@@ -1,7 +1,5 @@
-import { Component, inject, input, model, output, signal } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Component, computed, effect, input, model, output, signal } from '@angular/core';
+import { HttpEventType, httpResource } from '@angular/common/http';
 import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
@@ -10,8 +8,6 @@ import { FormValueControl } from '@angular/forms/signals';
   styleUrls: ['file-upload.component.scss'],
 })
 export class FileUploadComponent implements FormValueControl<string | null> {
-  private http = inject(HttpClient);
-
   readonly requiredFileType = input<string>('');
 
   // FormValueControl contract
@@ -20,9 +16,31 @@ export class FileUploadComponent implements FormValueControl<string | null> {
   readonly touch = output<void>();
 
   fileName = signal('');
-  fileUploadError = signal(false);
-  fileUploadSuccess = signal(false);
-  uploadProgress = signal<number | null>(null);
+  private uploadPayload = signal<FormData | null>(null);
+
+  private uploadResource = httpResource(
+    () => {
+      const payload = this.uploadPayload();
+      if (!payload) return undefined;
+      return { url: '/api/thumbnail-upload', method: 'POST', body: payload, reportProgress: true };
+    }
+  );
+
+  uploadProgress = computed(() => {
+    const p = this.uploadResource.progress();
+    if (p?.type !== HttpEventType.UploadProgress || !p.total) return null;
+    return Math.round(100 * p.loaded / p.total);
+  });
+  fileUploadSuccess = computed(() => this.uploadResource.hasValue());
+  fileUploadError = computed(() => this.uploadResource.error() !== undefined);
+
+  constructor() {
+    effect(() => {
+      if (this.uploadResource.hasValue()) {
+        this.value.set(this.fileName());
+      }
+    });
+  }
 
   onClick(fileUpload: HTMLInputElement) {
     this.touch.emit();
@@ -33,26 +51,10 @@ export class FileUploadComponent implements FormValueControl<string | null> {
     const file: File = (event.target as HTMLInputElement).files![0];
     if (file) {
       this.fileName.set(file.name);
+      this.value.set(null);
       const formData = new FormData();
       formData.append('thumbnail', file);
-      this.fileUploadError.set(false);
-      this.fileUploadSuccess.set(false);
-      this.value.set(null);
-
-      this.http
-        .post('/api/thumbnail-upload', formData, { reportProgress: true, observe: 'events' })
-        .pipe(
-          catchError((error) => { this.fileUploadError.set(true); return of(error); }),
-          finalize(() => { this.uploadProgress.set(null); })
-        )
-        .subscribe((event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.uploadProgress.set(Math.round(100 * (event.loaded / event.total)));
-          } else if (event.type === HttpEventType.Response) {
-            this.fileUploadSuccess.set(true);
-            this.value.set(this.fileName());
-          }
-        });
+      this.uploadPayload.set(formData);
     }
   }
 }
