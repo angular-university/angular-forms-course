@@ -19,6 +19,8 @@ export class CourseComponent {
   private searchFilter = signal('');
 
   constructor() {
+    // Debounce: wait 150ms after the last keystroke before updating searchFilter,
+    // so lessonsResource doesn't fire a new HTTP request on every character typed.
     effect((onCleanup) => {
       const val = this.rawSearch();
       const id = setTimeout(() => {
