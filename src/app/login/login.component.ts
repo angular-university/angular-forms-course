@@ -23,6 +23,9 @@ export class LoginComponent {
       required(schemaPath.password, { message: 'Password is required.' });
       minLength(schemaPath.password, 8, { message: 'Password must be at least 8 characters.' });
       passwordStrength(schemaPath.password);
+
+      // Alternative: swap the above for a Zod schema
+      // validateStandardSchema(schemaPath, loginZodSchema);
     },
     {
       submission: {
