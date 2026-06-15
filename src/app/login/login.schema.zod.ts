@@ -1,4 +1,3 @@
-// Reference file — requires: npm install zod
 import * as z from 'zod';
 
 export const loginZodSchema = z.object({
