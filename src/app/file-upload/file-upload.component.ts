@@ -18,11 +18,11 @@ export class FileUploadComponent implements FormValueControl<string | null> {
   fileName = signal('');
   private uploadPayload = signal<FormData | null>(null);
 
-  private uploadResource = httpResource(
+  private uploadResource = httpResource<{ url: string }>(
     () => {
       const payload = this.uploadPayload();
       if (!payload) return undefined;
-      return { url: '/api/thumbnail-upload', method: 'POST', body: payload, reportProgress: true };
+      return { url: '/api/upload', method: 'POST', body: payload, reportProgress: true };
     }
   );
 
@@ -31,13 +31,13 @@ export class FileUploadComponent implements FormValueControl<string | null> {
     if (p?.type !== HttpEventType.UploadProgress || !p.total) return null;
     return Math.round(100 * p.loaded / p.total);
   });
-  fileUploadSuccess = computed(() => this.uploadResource.hasValue());
   fileUploadError = computed(() => this.uploadResource.error() !== undefined);
 
   constructor() {
     effect(() => {
-      if (this.uploadResource.hasValue()) {
-        this.value.set(this.fileName());
+      const result = this.uploadResource.value();
+      if (result?.url) {
+        this.value.set(result.url);
       }
     });
   }
