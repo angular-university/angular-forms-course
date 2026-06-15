@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, readonly, required } from '@angular/forms/signals';
 import { AddressFormComponent } from '../address-form/address-form.component';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { HasUnsavedChanges } from '../guards/unsaved-changes.guard';
 import { PROFILE_DEFAULT, ProfileData } from './profile.model';
 
@@ -8,7 +9,7 @@ import { PROFILE_DEFAULT, ProfileData } from './profile.model';
   selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  imports: [FormField, FormRoot, AddressFormComponent]
+  imports: [FormField, FormRoot, AddressFormComponent, FileUploadComponent]
 })
 export class ProfileComponent implements HasUnsavedChanges {
 
