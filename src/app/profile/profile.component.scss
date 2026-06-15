@@ -10,14 +10,42 @@
   margin-bottom: 1.5rem;
 }
 
-.profile-card {
-  padding: 2rem;
+.profile-avatar-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(228, 0, 53, 0.12) 0%, transparent 60%),
+    var(--surface);
 }
 
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E40035, #9717E7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.profile-avatar-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.profile-avatar-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.profile-form {
+  padding: 24px;
 }
 
 address-form {

@@ -109,6 +109,10 @@
   cursor: pointer;
   transition: opacity 0.15s, transform 0.1s;
   letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn-login:hover:not(:disabled) {
@@ -131,6 +135,10 @@
   font-size: 13px;
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn-reset:hover {

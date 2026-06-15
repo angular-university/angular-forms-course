@@ -3,6 +3,38 @@
   margin: 0 auto;
 }
 
+.create-course-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 0 32px;
+}
+
+.create-course-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #E40035, #9717E7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.create-course-headline {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.create-course-sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
 .stepper-buttons {
   display: flex;
   gap: 10px;

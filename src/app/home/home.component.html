@@ -1,6 +1,14 @@
 <div class="courses-panel">
+
   <div class="header">
-    <h2 class="title">All Courses</h2>
+    <div class="header-left">
+      <div class="section-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+        </svg>
+      </div>
+      <h2 class="title">All Courses</h2>
+    </div>
     <button class="btn-icon" routerLink="/add-new-course" title="Add course">+</button>
   </div>
 
@@ -15,4 +23,5 @@
   @if (activeTab() === 'advanced') {
     <courses-card-list [courses]="advancedCourses()"></courses-card-list>
   }
+
 </div>
