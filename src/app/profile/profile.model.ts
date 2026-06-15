@@ -1,13 +1,11 @@
 import { AddressData, ADDRESS_DEFAULT } from '../address-form/address.model';
 
 export type ProfileData = {
-  firstName: string;
-  lastName: string;
+  email: string;
   address: AddressData;
 };
 
 export const PROFILE_DEFAULT: ProfileData = {
-  firstName: '',
-  lastName: '',
+  email: '',
   address: { ...ADDRESS_DEFAULT }
 };

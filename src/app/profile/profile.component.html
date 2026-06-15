@@ -4,28 +4,19 @@
   <div class="card profile-card">
     <form [formRoot]="profileForm">
 
-      <div class="field-row">
-        <div class="field">
-          <label for="firstName">First name</label>
-          <input id="firstName" [formField]="profileForm.firstName" placeholder="First name">
-          @if (profileForm.firstName() | touchedError; as error) {
-            <div class="err">{{ error }}</div>
-          }
-        </div>
-
-        <div class="field">
-          <label for="lastName">Last name</label>
-          <input id="lastName" [formField]="profileForm.lastName" placeholder="Last name">
-          @if (profileForm.lastName() | touchedError; as error) {
-            <div class="err">{{ error }}</div>
-          }
-        </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input id="email" type="email" [formField]="profileForm.email" placeholder="your@email.com">
+        @if (profileForm.email() | touchedError; as error) {
+          <div class="err">{{ error }}</div>
+        }
       </div>
 
       <address-form [formField]="profileForm.address" legend="Billing Address"></address-form>
 
       <div class="form-actions">
         <button class="btn btn-primary" type="submit" [disabled]="profileForm().submitting()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
           @if (profileForm().submitting()) { Saving… } @else { Save profile }
         </button>
       </div>

@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { AddressFormComponent } from '../address-form/address-form.component';
 import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
 import { PROFILE_DEFAULT, ProfileData } from './profile.model';
@@ -16,8 +16,8 @@ export class ProfileComponent {
   profileForm = form(
     this.profileModel,
     (schemaPath) => {
-      required(schemaPath.firstName, { message: 'First name is required.' });
-      required(schemaPath.lastName, { message: 'Last name is required.' });
+      required(schemaPath.email, { message: 'Email is required.' });
+      email(schemaPath.email, { message: 'Enter a valid email address.' });
     },
     {
       submission: {

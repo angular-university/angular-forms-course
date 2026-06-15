@@ -23,25 +23,38 @@
       <div [class.hidden]="currentStep() !== 0">
         <create-course-step-1 #step1></create-course-step-1>
         <div class="stepper-buttons">
-          <button class="btn btn-primary" [disabled]="step1.step1Form().invalid()" (click)="currentStep.set(1)">Continue →</button>
+          <button class="btn btn-primary" [disabled]="step1.step1Form().invalid()" (click)="currentStep.set(1)">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </button>
         </div>
       </div>
 
       <div [class.hidden]="currentStep() !== 1">
         <create-course-step-2 #step2></create-course-step-2>
         <div class="stepper-buttons">
-          <button class="btn btn-ghost" (click)="currentStep.set(0)">← Back</button>
-          <button class="btn btn-primary" [disabled]="step2.step2Form().invalid()" (click)="currentStep.set(2)">Continue →</button>
+          <button class="btn btn-ghost" (click)="currentStep.set(0)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" [disabled]="step2.step2Form().invalid()" (click)="currentStep.set(2)">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </button>
         </div>
       </div>
 
       <div [class.hidden]="currentStep() !== 2">
         <create-course-step-3 #step3></create-course-step-3>
         <div class="stepper-buttons">
-          <button class="btn btn-ghost" (click)="currentStep.set(1)">← Back</button>
+          <button class="btn btn-ghost" (click)="currentStep.set(1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back
+          </button>
           <button class="btn btn-primary"
             [disabled]="step3.step3Form().invalid() || step3.step3Model().lessons.length === 0"
             (click)="submit(step1.step1Model(), step2.step2Model(), step3.step3Model())">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
             Create Course
           </button>
         </div>
