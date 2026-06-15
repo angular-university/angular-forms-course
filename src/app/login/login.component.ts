@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
 import { FieldErrorPipe } from '../pipes/field-error.pipe';
 import { LOGIN_FORM_DEFAULT, LoginData } from './login.model';
-import { passwordStrength } from '../validators/password-strength-signal.validator';
+import { passwordStrength } from '../validators/password-strength.validator';
 
 
 @Component({

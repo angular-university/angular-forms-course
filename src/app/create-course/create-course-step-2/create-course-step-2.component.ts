@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, max, min, required, validateTree } from '@angular/forms/signals';
+import { disabled, form, FormField, max, min, required } from '@angular/forms/signals';
 import { FileUploadComponent } from '../../file-upload/file-upload.component';
 import { FieldErrorPipe } from '../../pipes/field-error.pipe';
 import { STEP2_DEFAULT, Step2Data } from './step2.model';
+import { promoPeriod } from '../../validators/promo-period.validator';
 
 @Component({
   selector: 'create-course-step-2',
@@ -21,12 +22,6 @@ export class CreateCourseStep2Component {
     max(schemaPath.price, 9999, { message: 'Price must be at most 9999.' });
     disabled(schemaPath.price, { when: (ctx) => ctx.valueOf(schemaPath.courseType) === 'free' });
 
-    validateTree(schemaPath, ({ value }) => {
-      const { promoStartAt, promoEndAt } = value();
-      if (promoStartAt && promoEndAt && promoEndAt.getTime() - promoStartAt.getTime() <= 0) {
-        return { kind: 'promoPeriod', message: 'Start date must be before end date.' };
-      }
-      return null;
-    });
+    promoPeriod(schemaPath, { message: 'Start date must be before end date.' });
   });
 }

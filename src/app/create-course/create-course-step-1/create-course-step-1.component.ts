@@ -1,10 +1,11 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { from } from 'rxjs';
-import { debounce, form, FormField, minLength, maxLength, required, validate } from '@angular/forms/signals';
+import { debounce, form, FormField, minLength, maxLength, required } from '@angular/forms/signals';
 import { CoursesService } from '../../services/courses.service';
 import { FieldErrorPipe } from '../../pipes/field-error.pipe';
-import { courseTitleExists } from '../../validators/course-title-signal.validator';
+import { courseTitleExists } from '../../validators/course-title.validator';
+import { requiredTrue } from '../../validators/required-true.validator';
 import { CourseCategory, STEP1_DEFAULT, Step1Data } from './step1.model';
 
 @Component({
@@ -39,9 +40,7 @@ export class CreateCourseStep1Component {
     required(schemaPath.releasedAt, { message: 'Release date is required.' });
     required(schemaPath.category, { message: 'Category is required.' });
 
-    validate(schemaPath.downloadsAllowed, ({ value }) =>
-      value() === true ? null : { kind: 'requiredTrue', message: 'You must allow downloads.' }
-    );
+    requiredTrue(schemaPath.downloadsAllowed, { message: 'You must allow downloads.' });
 
     required(schemaPath.longDescription, { message: 'Description is required.' });
     minLength(schemaPath.longDescription, 3, { message: 'Description must be at least 3 characters.' });
