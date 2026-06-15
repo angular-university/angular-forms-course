@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
-import { FieldErrorPipe } from '../pipes/field-error.pipe';
+import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
 import { LOGIN_FORM_DEFAULT, LoginData } from './login.model';
 import { passwordStrength } from '../validators/password-strength.validator';
 
@@ -9,7 +9,7 @@ import { passwordStrength } from '../validators/password-strength.validator';
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormField, FormRoot, FieldErrorPipe]
+  imports: [FormField, FormRoot, TouchedErrorPipe]
 })
 export class LoginComponent {
   loginModel = signal<LoginData>({ ...LOGIN_FORM_DEFAULT });

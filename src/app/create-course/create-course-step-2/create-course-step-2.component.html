@@ -15,7 +15,7 @@
 <div class="field">
   <label>Price</label>
   <input type="number" [formField]="step2Form.price" placeholder="Price">
-  @if (step2Form.price() | fieldError; as error) {
+  @if (step2Form.price() | touchedError; as error) {
     <div class="err">{{ error }}</div>
   }
 </div>
@@ -31,7 +31,7 @@
 </div>
 
 @if (step2Form().dirty()) {
-  @if (step2Form() | fieldError; as error) {
+  @if (step2Form() | touchedError; as error) {
     <div class="err">{{ error }}</div>
   }
 }

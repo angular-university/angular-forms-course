@@ -31,7 +31,7 @@
       <div class="field">
         <label for="email">Email address</label>
         <input id="email" type="email" [formField]="loginForm.email" placeholder="your@email.com" autocomplete="email">
-        @if (loginForm.email() | fieldError; as error) {
+        @if (loginForm.email() | touchedError; as error) {
           <div class="field-error">{{ error }}</div>
         }
       </div>
@@ -39,7 +39,7 @@
       <div class="field">
         <label for="password">Password</label>
         <input id="password" type="password" [formField]="loginForm.password" placeholder="••••••••" autocomplete="current-password">
-        @if (loginForm.password() | fieldError; as error) {
+        @if (loginForm.password() | touchedError; as error) {
           <div class="field-error">{{ error }}</div>
         }
       </div>

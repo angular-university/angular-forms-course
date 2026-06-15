@@ -1,13 +1,13 @@
 import { Component, input, model } from '@angular/core';
 import { FieldTree, form, FormField, FormValueControl, required } from '@angular/forms/signals';
-import { FieldErrorPipe } from '../pipes/field-error.pipe';
+import { TouchedErrorPipe } from '../pipes/touched-error.pipe';
 import { ADDRESS_DEFAULT, AddressData } from './address.model';
 
 @Component({
   selector: 'address-form',
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss'],
-  imports: [FormField, FieldErrorPipe],
+  imports: [FormField, TouchedErrorPipe],
 })
 export class AddressFormComponent implements FormValueControl<AddressData> {
   readonly legend = input<string>('Address');

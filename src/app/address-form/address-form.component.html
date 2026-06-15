@@ -4,7 +4,7 @@
   <div class="field">
     <label for="addressLine1">Address Line 1</label>
     <input id="addressLine1" [formField]="addressForm.addressLine1" placeholder="Address Line 1">
-    @if (addressForm.addressLine1() | fieldError; as error) {
+    @if (addressForm.addressLine1() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
@@ -12,7 +12,7 @@
   <div class="field">
     <label for="addressLine2">Address Line 2</label>
     <input id="addressLine2" [formField]="addressForm.addressLine2" placeholder="Address Line 2">
-    @if (addressForm.addressLine2() | fieldError; as error) {
+    @if (addressForm.addressLine2() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
@@ -20,7 +20,7 @@
   <div class="field">
     <label for="zipCode">Zip Code</label>
     <input id="zipCode" [formField]="addressForm.zipCode" placeholder="Zip Code">
-    @if (addressForm.zipCode() | fieldError; as error) {
+    @if (addressForm.zipCode() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
@@ -28,7 +28,7 @@
   <div class="field">
     <label for="city">City</label>
     <input id="city" [formField]="addressForm.city" placeholder="City">
-    @if (addressForm.city() | fieldError; as error) {
+    @if (addressForm.city() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>

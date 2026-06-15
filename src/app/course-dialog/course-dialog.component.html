@@ -4,7 +4,7 @@
   <div class="field">
     <label for="description">Course Description</label>
     <input id="description" [formField]="courseForm.description" placeholder="Course description">
-    @if (courseForm.description() | fieldError; as error) {
+    @if (courseForm.description() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
@@ -21,7 +21,7 @@
   <div class="field">
     <label for="releasedAt">Release Date</label>
     <input id="releasedAt" type="date" [formField]="courseForm.releasedAt">
-    @if (courseForm.releasedAt() | fieldError; as error) {
+    @if (courseForm.releasedAt() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
@@ -29,7 +29,7 @@
   <div class="field">
     <label for="longDescription">Long Description</label>
     <textarea id="longDescription" [formField]="courseForm.longDescription" rows="4" placeholder="Long description"></textarea>
-    @if (courseForm.longDescription() | fieldError; as error) {
+    @if (courseForm.longDescription() | touchedError; as error) {
       <div class="err">{{ error }}</div>
     }
   </div>
