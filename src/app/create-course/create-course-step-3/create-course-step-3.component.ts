@@ -1,25 +1,34 @@
-import { Component } from '@angular/core';
-import { FormArray, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+import { applyEach, form, FormField, required } from '@angular/forms/signals';
+import { Lesson, Step3Data } from './step3.model';
 
 @Component({
   selector: 'create-course-step-3',
   templateUrl: 'create-course-step-3.component.html',
   styleUrls: ['create-course-step-3.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule]
+  imports: [FormField],
 })
 export class CreateCourseStep3Component {
-  form = this.fb.group({ lessons: this.fb.array([]) });
+  step3Model = signal<Step3Data>({ lessons: [] });
 
-  constructor(private fb: FormBuilder) {}
-
-  get lessons() { return this.form.controls['lessons'] as FormArray; }
+  step3Form = form(this.step3Model, (schemaPath) => {
+    applyEach(schemaPath.lessons, (lessonPath) => {
+      required(lessonPath.title, { message: 'Lesson title is required.' });
+      required(lessonPath.level, { message: 'Lesson level is required.' });
+    });
+  });
 
   addLesson() {
-    this.lessons.push(this.fb.group({
-      title: ['', Validators.required],
-      level: ['beginner', Validators.required]
+    this.step3Model.update((m) => ({
+      ...m,
+      lessons: [...m.lessons, { title: '', level: 'beginner' } satisfies Lesson],
     }));
   }
 
-  deleteLesson(i: number) { this.lessons.removeAt(i); }
+  deleteLesson(i: number) {
+    this.step3Model.update((m) => ({
+      ...m,
+      lessons: m.lessons.filter((_, idx) => idx !== i),
+    }));
+  }
 }

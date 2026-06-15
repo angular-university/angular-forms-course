@@ -4,7 +4,7 @@
   <div class="field file-field">
     <input [disabled]="true" [value]="fileName" placeholder="No file chosen" readonly>
   </div>
-  <button class="btn-icon" type="button" (click)="onClick(fileUpload)" [disabled]="disabled" title="Attach file">📎</button>
+  <button class="btn-icon" type="button" (click)="onClick(fileUpload)" [disabled]="disabled()" title="Attach file">📎</button>
 </div>
 
 @if (uploadProgress) {

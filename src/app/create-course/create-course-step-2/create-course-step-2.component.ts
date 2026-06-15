@@ -1,33 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { createPromoRangeValidator } from '../../validators/date-range.validator';
+import { Component, signal } from '@angular/core';
+import { disabled, form, FormField, max, min, required, validateTree } from '@angular/forms/signals';
 import { FileUploadComponent } from '../../file-upload/file-upload.component';
+import { FieldErrorPipe } from '../../pipes/field-error.pipe';
+import { STEP2_DEFAULT, Step2Data } from './step2.model';
 
 @Component({
   selector: 'create-course-step-2',
   templateUrl: 'create-course-step-2.component.html',
   styleUrls: ['create-course-step-2.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, FileUploadComponent]
+  imports: [FormField, FileUploadComponent, FieldErrorPipe],
 })
-export class CreateCourseStep2Component implements OnInit {
-  form = this.fb.group({
-    courseType: ['premium', Validators.required],
-    price: [null, [Validators.required, Validators.min(1), Validators.max(9999), Validators.pattern('[0-9]+')]],
-    thumbnail: [null],
-    promoStartAt: [null],
-    promoEndAt: [null]
-  }, { validators: [createPromoRangeValidator()] });
+export class CreateCourseStep2Component {
+  step2Model = signal<Step2Data>({ ...STEP2_DEFAULT });
 
-  constructor(private fb: FormBuilder) {}
+  step2Form = form(this.step2Model, (schemaPath) => {
+    required(schemaPath.courseType, { message: 'Course type is required.' });
 
-  ngOnInit() {
-    this.form.valueChanges.subscribe(val => {
-      const priceControl = this.form.controls['price'];
-      if (val.courseType === 'free' && priceControl.enabled) {
-        priceControl.disable({ emitEvent: false });
-      } else if (val.courseType === 'premium' && priceControl.disabled) {
-        priceControl.enable({ emitEvent: false });
+    required(schemaPath.price, { message: 'Price is required.' });
+    min(schemaPath.price, 1, { message: 'Price must be at least 1.' });
+    max(schemaPath.price, 9999, { message: 'Price must be at most 9999.' });
+    disabled(schemaPath.price, { when: (ctx) => ctx.valueOf(schemaPath.courseType) === 'free' });
+
+    validateTree(schemaPath, ({ value }) => {
+      const { promoStartAt, promoEndAt } = value();
+      if (promoStartAt && promoEndAt && promoEndAt.getTime() - promoStartAt.getTime() <= 0) {
+        return { kind: 'promoPeriod', message: 'Start date must be before end date.' };
       }
+      return null;
     });
-  }
+  });
 }

@@ -31,7 +31,7 @@
         <create-course-step-2 #step2></create-course-step-2>
         <div class="stepper-buttons">
           <button class="btn btn-ghost" (click)="currentStep = 0">← Back</button>
-          <button class="btn btn-primary" [disabled]="!step2.form.valid" (click)="currentStep = 2">Continue →</button>
+          <button class="btn btn-primary" [disabled]="step2.step2Form().invalid()" (click)="currentStep = 2">Continue →</button>
         </div>
       </div>
 
@@ -40,8 +40,8 @@
         <div class="stepper-buttons">
           <button class="btn btn-ghost" (click)="currentStep = 1">← Back</button>
           <button class="btn btn-primary"
-            [disabled]="!step3.form.valid || step3.lessons.length === 0"
-            (click)="submit(step1.step1Model(), step2.form.value, step3.form.value)">
+            [disabled]="step3.step3Form().invalid() || step3.step3Model().lessons.length === 0"
+            (click)="submit(step1.step1Model(), step2.step2Model(), step3.step3Model())">
             Create Course
           </button>
         </div>
