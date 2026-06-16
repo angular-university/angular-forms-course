@@ -3,7 +3,9 @@
 
 This repository contains the code of the [Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) video course.
 
-This course repository is updated to Angular v22:
+This course covers **template-driven and reactive forms** using `FormsModule` and `ReactiveFormsModule` — the classic Angular Forms API. It is updated to Angular v22 and remains the go-to reference for reactive forms patterns.
+
+> **Looking for the Signals Edition?** A newer version of this course — [Angular Forms In Depth (Signals Edition)](https://angular-university.io/course/angular-signal-forms-course) — covers the brand-new `@angular/forms/signals` API introduced in Angular 22. It uses a schema-based, signal-first approach and is a separate course with its own [repository](https://github.com/angular-university/angular-signal-forms-course). If you are starting fresh and targeting Angular 22+, consider the Signals Edition. If you are working with an existing reactive forms codebase or want to learn the classic API, this is the right course.
 
 ![Angular Forms In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
 
@@ -116,9 +118,15 @@ Here is a list of all the courses of the Angular University.
 
 <img src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png" width="400" alt="RxJs In Practice">
 
+## Angular Forms In Depth (Signals Edition)
+
+[Angular Forms In Depth - Signals Edition](https://angular-university.io/course/angular-signal-forms-course) — Build complex enterprise data forms with the new Angular Signal Forms API (`@angular/forms/signals`). Schema-based, signal-first, no `FormGroup` or `FormControl`.
+
+<img src="https://d3vigmphadbn9b.cloudfront.net/course-images/large-images/angular-forms-in-depth.jpg" width="400" alt="Angular Forms In Depth - Signals Edition">
+
 ## Angular Forms In Depth
 
-[Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) — Build complex enterprise data forms with the powerful Angular Forms module.
+[Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) — Build complex enterprise data forms with template-driven and reactive forms (`FormsModule` / `ReactiveFormsModule`).
 
 <img src="https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg" width="400" alt="Angular Forms In Depth">
 
